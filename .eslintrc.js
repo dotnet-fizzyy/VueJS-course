@@ -12,6 +12,7 @@ module.exports = {
         },
     },
     extends: [
+        'plugin:storybook/recommended',
         'plugin:vue/essential',
         'eslint:recommended',
         '@vue/typescript/recommended',
@@ -26,6 +27,7 @@ module.exports = {
             },
         },
     ],
+    ignorePatterns: ['node_modules', '**/storybook-init-framework-entry.js', '**/generated-stories-entry.js'],
     plugins: ['sort-imports-es6-autofix', 'unused-imports'],
     rules: {
         curly: [2, 'all'],
@@ -37,6 +39,7 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-inferrable-types': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
         'prefer-const': 'error',
         'prettier/prettier': [
             'error',
