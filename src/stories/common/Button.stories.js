@@ -1,4 +1,5 @@
-import Button, { FontStyle } from '../../components/common/Button';
+import Button from '../../components/common/Button';
+import { FontStyle } from '../../enums/styles';
 import { action } from '@storybook/addon-actions';
 
 export default {

@@ -1,5 +1,5 @@
 <template>
-    <button v-bind:class="style" v-on:click="onClick"><slot /></button>
+    <span v-bind:class="style"><slot /></span>
 </template>
 
 <script lang="ts">
@@ -7,26 +7,21 @@ import Vue from 'vue';
 import { FontStyle } from '@/enums/styles';
 
 export default Vue.extend({
-    name: 'Button',
+    name: 'Title',
     props: {
         fontStyle: {
             type: String,
             default: FontStyle.Normal,
         },
-        onClick: {
-            type: Function,
-            required: true,
-        },
     },
     computed: {
         style(): string[] {
-            return ['primary-button', this.fontStyle];
+            return ['font', this.fontStyle];
         },
     },
 });
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/buttons';
 @import '../../styles/fonts';
 </style>
