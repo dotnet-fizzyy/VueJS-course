@@ -2,7 +2,7 @@ import Title from '../../components/common/Title';
 import { FontStyle } from '../../enums/styles';
 
 export default {
-    title: 'Title',
+    title: 'common/Title',
 };
 
 export const Default = () => ({

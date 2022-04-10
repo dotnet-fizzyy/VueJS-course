@@ -20,13 +20,13 @@ export default Vue.extend({
     },
     computed: {
         style(): string[] {
-            return ['primary-button', this.fontStyle];
+            return [this.$style['primary-button'], this.fontStyle];
         },
     },
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped module>
 @import '../../styles/buttons';
 @import '../../styles/fonts';
 </style>

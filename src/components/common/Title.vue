@@ -16,12 +16,12 @@ export default Vue.extend({
     },
     computed: {
         style(): string[] {
-            return ['font', this.fontStyle];
+            return [this.$style.font, this.fontStyle];
         },
     },
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped module>
 @import '../../styles/fonts';
 </style>
