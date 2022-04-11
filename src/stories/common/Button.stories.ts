@@ -1,5 +1,5 @@
-import Button from '../../components/common/Button';
-import { FontStyle } from '../../enums/styles';
+import Button from '@/components/common/Button.vue';
+import { FontStyle } from '@/enums/styles';
 import { action } from '@storybook/addon-actions';
 
 export default {
