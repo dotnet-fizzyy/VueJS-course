@@ -13,14 +13,15 @@ export default Vue.extend({
             type: String,
             default: FontStyle.Normal,
         },
-        onClick: {
-            type: Function,
-            required: true,
-        },
     },
     computed: {
         style(): string[] {
             return [this.$style['primary-button'], this.fontStyle];
+        },
+    },
+    methods: {
+        onClick() {
+            this.$emit('on-click');
         },
     },
 });

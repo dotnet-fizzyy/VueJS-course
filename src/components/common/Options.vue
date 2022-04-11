@@ -34,10 +34,6 @@ export default Vue.extend({
             type: String,
             required: true,
         },
-        onSelectOption: {
-            type: Function,
-            required: true,
-        },
     },
     computed: {
         rootStyle(): string {
@@ -56,7 +52,7 @@ export default Vue.extend({
                 return;
             }
 
-            this.onSelectOption(option);
+            this.$emit('on-select-option', option);
         },
         getButtonStyle(optionName: string): string[] {
             const buttonStyle: string =

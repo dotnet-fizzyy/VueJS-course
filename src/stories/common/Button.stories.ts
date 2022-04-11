@@ -9,7 +9,7 @@ export default {
 export const Default = () => ({
     components: { Button },
     template:
-        '<div style="width: 100px; height: 30px"><Button :onClick="onClick" :font-style="fontWeight">{{ title }}</Button></div>',
+        '<div style="width: 100px; height: 30px"><Button :font-style="fontWeight" @on-click="onClick">{{ title }}</Button></div>',
     data: () => ({ title: 'Hello world!', fontWeight: FontStyle.Normal }),
     methods: { onClick: action('clicked') },
 });
