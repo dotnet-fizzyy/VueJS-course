@@ -6,6 +6,11 @@
 import Vue from 'vue';
 import { FontStyle } from '@/enums/styles';
 
+export interface TitleProps {
+    fontStyle: FontStyle;
+    title: string;
+}
+
 export default Vue.extend({
     name: 'Title',
     props: {
@@ -16,7 +21,9 @@ export default Vue.extend({
     },
     computed: {
         style(): string[] {
-            return [this.$style.font, this.fontStyle];
+            const fontStyle: string = this.$style[this.fontStyle];
+
+            return [this.$style.font, fontStyle];
         },
     },
 });

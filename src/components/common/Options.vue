@@ -20,6 +20,13 @@ export interface OptionGroup {
     name: string;
 }
 
+export interface OptionsProps {
+    label: string;
+    options: OptionGroup[];
+    selectedOption: string;
+    onSelectOption: (value: string) => void;
+}
+
 export default Vue.extend({
     name: 'Options',
     props: {

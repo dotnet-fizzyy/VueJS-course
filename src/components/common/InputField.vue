@@ -15,6 +15,14 @@
 import ErrorIcon from '@/assets/icons/Error.vue';
 import Vue from 'vue';
 
+export interface InputFieldProps {
+    label: string;
+    placeholder: string;
+    value: string;
+    errorMessage: string;
+    onChange: (value: string) => void;
+}
+
 export default Vue.extend({
     name: 'InputField',
     components: { ErrorIcon },
