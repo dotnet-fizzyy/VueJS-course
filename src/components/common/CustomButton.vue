@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { FontStyle } from '@/enums/styles';
+import { FontSize, FontStyle } from '@/enums/styles';
 
 export enum ButtonType {
     Primary = 'primary',
@@ -13,8 +13,9 @@ export enum ButtonType {
 
 export interface CustomButtonProps {
     title: string;
-    type: ButtonType;
-    fontStyle: string;
+    type?: ButtonType;
+    fontStyle?: FontStyle;
+    fontSize?: FontSize;
     onClick: () => void;
 }
 
@@ -25,6 +26,10 @@ export default Vue.extend({
             type: String,
             default: ButtonType.Primary,
         },
+        fontSize: {
+            type: String,
+            default: FontSize.Medium,
+        },
         fontStyle: {
             type: String,
             default: FontStyle.Normal,
@@ -33,6 +38,8 @@ export default Vue.extend({
     computed: {
         root(): string[] {
             const fontStyle: string = this.$style[this.fontStyle];
+            const fontSize: string = this.$style[this.fontSize];
+
             let buttonStyle: string;
 
             switch (this.type) {
@@ -44,7 +51,7 @@ export default Vue.extend({
                     break;
             }
 
-            return [buttonStyle, fontStyle];
+            return [buttonStyle, fontStyle, fontSize];
         },
     },
     methods: {

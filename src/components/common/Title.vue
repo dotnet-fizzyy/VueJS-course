@@ -4,10 +4,11 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { FontStyle } from '@/enums/styles';
+import { FontSize, FontStyle } from '@/enums/styles';
 
 export interface TitleProps {
-    fontStyle: FontStyle;
+    fontStyle?: FontStyle;
+    fontSize?: FontSize;
     title: string;
 }
 
@@ -18,12 +19,17 @@ export default Vue.extend({
             type: String,
             default: FontStyle.Normal,
         },
+        fontSize: {
+            type: String,
+            default: FontSize.Medium,
+        },
     },
     computed: {
         style(): string[] {
             const fontStyle: string = this.$style[this.fontStyle];
+            const fontSize: string = this.$style[this.fontSize];
 
-            return [this.$style.font, fontStyle];
+            return [this.$style.font, fontStyle, fontSize];
         },
     },
 });

@@ -1,6 +1,8 @@
 @import "variables";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400;700&family=Roboto:wght@300;400;700&display=swap');
 
 .font {
+  font-family: $roboto-mono;
   color: $white;
   font-size: 16px;
 }
@@ -15,4 +17,16 @@
 
 .italic {
   font-style: italic;
+}
+
+.small {
+  font-size: 12px;
+}
+
+.medium {
+  font-size: 16px;
+}
+
+.large {
+  font-size: 22px;
 }

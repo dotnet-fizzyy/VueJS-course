@@ -1,10 +1,10 @@
 <template>
-    <div :class="rootStyle">
-        <span :class="labelStyle" v-if="!!label">{{ label }}</span>
+    <div v-bind:class="rootStyle">
+        <span v-bind:class="labelStyle" v-if="!!label">{{ label }}</span>
 
-        <div :class="optionsContainerStyle">
+        <div v-bind:class="optionsContainerStyle">
             <template v-for="(option, index) in options">
-                <button :class="getButtonStyle(option.name)" v-bind:key="index" v-on:click="onClick(option.name)">
+                <button v-bind:class="getButtonStyle(option.name)" v-bind:key="index" v-on:click="onClick(option.name)">
                     {{ option.label }}
                 </button>
             </template>

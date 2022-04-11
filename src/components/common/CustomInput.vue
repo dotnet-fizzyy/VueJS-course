@@ -15,7 +15,7 @@
 import ErrorIcon from '@/assets/icons/Error.vue';
 import Vue from 'vue';
 
-export interface InputFieldProps {
+export interface CustomInputProps {
     label: string;
     placeholder: string;
     value: string;
@@ -24,7 +24,7 @@ export interface InputFieldProps {
 }
 
 export default Vue.extend({
-    name: 'InputField',
+    name: 'CustomInput',
     components: { ErrorIcon },
     props: {
         label: {
@@ -94,5 +94,7 @@ export default Vue.extend({
 .error-message {
     color: $light-red;
     margin-left: 5px;
+    font-family: $roboto;
+    font-size: 14px;
 }
 </style>

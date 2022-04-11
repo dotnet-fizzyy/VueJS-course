@@ -1,4 +1,6 @@
-// variables
+/* variables */
+
+// colors
 $dark-pink: #f65261;
 
 $light-red: #ff5555;
@@ -9,7 +11,12 @@ $dark-grey: #232323;
 
 $white: #FFF;
 
-// functions
+// fonts
+$roboto: 'Roboto', sans-serif;
+$roboto-mono: 'Roboto Mono', monospace;
+
+
+/* functions */
 @function getRgbaGrey($opacity) {
   @return rgba(42, 42, 42, $opacity);
 }

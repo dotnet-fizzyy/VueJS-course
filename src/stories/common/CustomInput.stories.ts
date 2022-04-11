@@ -1,16 +1,16 @@
-import InputField, { InputFieldProps } from '@/components/common/InputField.vue';
+import CustomInput, { CustomInputProps } from '@/components/common/CustomInput.vue';
 import { action } from '@storybook/addon-actions';
 
 export default {
-    title: 'common/InputField',
-    component: InputField,
+    title: 'common/CustomInput',
+    component: CustomInput,
 };
 
 const Template = (args, { argTypes }) => ({
-    components: { InputField },
+    components: { CustomInput },
     props: Object.keys(argTypes),
     template:
-        '<div style="max-width: 200px; width: 100%; height: 90px; background-color: #555555; padding: 10px"><InputField :label="label" :value="value" :placeholder="placeholder" :error-message="errorMessage" @on-change="onChange" /></div>',
+        '<div style="max-width: 200px; width: 100%; height: 90px; background-color: #555555; padding: 10px"><CustomInput :label="label" :value="value" :placeholder="placeholder" :error-message="errorMessage" @on-change="onChange" /></div>',
 });
 
 export const InputWithLabelAndError = Template.bind({});
@@ -20,11 +20,11 @@ InputWithLabelAndError.args = {
     value: '',
     errorMessage: 'Some error',
     onChange: action('change'),
-} as InputFieldProps;
+} as CustomInputProps;
 
 export const SimpleInput = Template.bind({});
 SimpleInput.args = {
     placeholder: 'Placeholder',
     value: '',
     onChange: action('change'),
-} as InputFieldProps;
+} as CustomInputProps;

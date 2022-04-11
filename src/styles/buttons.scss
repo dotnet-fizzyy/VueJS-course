@@ -1,4 +1,5 @@
 @import './variables';
+@import "./fonts";
 
 .button {
   width: 100%;
@@ -7,6 +8,7 @@
   cursor: pointer;
   color: #fff;
   outline: none;
+  font-family: $roboto-mono;
 }
 
 .primary-button {
