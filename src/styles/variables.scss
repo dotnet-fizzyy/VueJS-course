@@ -1,3 +1,4 @@
+// variables
 $dark-pink: #f65261;
 
 $light-grey: #555555;
@@ -5,3 +6,8 @@ $grey: #424242;
 $dark-grey: #232323;
 
 $white: #FFF;
+
+// functions
+@function getRgbaGrey($opacity) {
+  @return rgba(42, 42, 42, $opacity);
+}
