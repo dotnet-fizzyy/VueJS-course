@@ -47,7 +47,7 @@ export default Vue.extend({
             return this.$style.root;
         },
         labelStyle(): string {
-            return this.$style.font;
+            return this.$style.label;
         },
         optionsContainerStyle(): string {
             return this.$style['options-container'];
@@ -80,6 +80,12 @@ export default Vue.extend({
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.label {
+    @extend .font;
+
+    margin-right: 20px;
 }
 
 .options-container {
