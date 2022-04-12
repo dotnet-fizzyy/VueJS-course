@@ -1,11 +1,11 @@
 <template>
     <div v-bind:class="rootStyle" v-on:click="onClick(id)">
-        <img v-bind:class="posterStyle" v-bind:src="posterLink" v-bind:alt="posterAlt" />
+        <img v-bind:class="posterStyle" v-bind:src="posterUrl" v-bind:alt="posterAlt" />
 
         <div v-bind:class="posterFooterStyle">
             <div v-bind:class="posterFooterDescriptionContainerStyle">
                 <span v-bind:class="filmNameStyle">{{ name }}</span>
-                <span v-bind:class="filmShortInfoStyle">{{ shortInfo }}</span>
+                <span v-bind:class="filmShortInfoStyle">{{ shortDescription }}</span>
             </div>
             <div v-bind:class="posterFooterYearReleaseContainerStyle">
                 <span v-bind:class="releaseYearPillStyle">{{ releaseYear }}</span>
@@ -16,13 +16,14 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { getAppSettings } from '@/components/utils/appSettings';
 
 export interface FilmItemProps {
     id: string;
-    posterLink?: string;
+    posterUrl?: string;
     posterAlt?: string;
     name: string;
-    shortInfo: string;
+    shortDescription: string;
     releaseYear: number;
     onClick: (id: string) => void;
 }
@@ -38,16 +39,15 @@ export default Vue.extend({
             type: String,
             required: true,
         },
-        posterLink: {
+        posterUrl: {
             type: String,
-            // todo: move to env variables
-            default: 'https://res.cloudinary.com/djlynoeio/image/upload/v1649763572/vue/NoImageAvailable.png',
+            default: getAppSettings().defaultPosterUrl,
         },
         posterAlt: {
             type: String,
-            default: 'film poster',
+            default: getAppSettings().defaultPosterAlt,
         },
-        shortInfo: {
+        shortDescription: {
             type: String,
             required: true,
         },
@@ -124,12 +124,6 @@ export default Vue.extend({
     @extend .font;
     @extend .bold;
     margin-bottom: 10px;
-}
-
-.film-short-info {
-    @extend .font;
-    color: getRgbaWhite($white-small-opacity);
-    font-size: 13px;
 }
 
 .release-year-pill {

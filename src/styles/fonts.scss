@@ -29,3 +29,9 @@
 .large {
   font-size: 24px;
 }
+
+.film-short-info {
+  @extend .font;
+  color: getRgbaWhite($white-small-opacity);
+  font-size: 13px;
+}

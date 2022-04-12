@@ -54,6 +54,9 @@ export default Vue.extend({
         };
     },
     computed: {
+        /**
+         *  styles
+         */
         rootStyle(): string {
             return this.$style.root;
         },
@@ -72,11 +75,15 @@ export default Vue.extend({
         searchButtonContainerStyle(): string {
             return this.$style['search-button-container'];
         },
-        buttonType(): ButtonType {
-            return ButtonType.Primary;
-        },
         optionsContainerStyle(): string {
             return this.$style['options-container'];
+        },
+
+        /**
+         *  values
+         */
+        buttonType(): ButtonType {
+            return ButtonType.Primary;
         },
     },
     methods: {

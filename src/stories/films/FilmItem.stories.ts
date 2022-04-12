@@ -10,16 +10,16 @@ const Template = (args, { argTypes }) => ({
     components: { FilmItem },
     props: Object.keys(argTypes),
     template:
-        '<div style="background-color: #232323; padding: 30px; width: fit-content"><FilmItem :id="$props.id" :name="$props.name" :poster-alt="$props.posterAlt" :poster-link="$props.posterLink" :short-info="$props.shortInfo" :release-year="$props.releaseYear" @on-click="$props.onClick" /></div>',
+        '<div style="background-color: #232323; padding: 30px; width: fit-content"><FilmItem v-bind="$props" @on-click="$props.onClick" /></div>',
 });
 
 export const Default = Template.bind({});
 Default.args = {
     id: 'rd',
     name: 'Reservoir dogs',
-    posterLink: 'https://res.cloudinary.com/djlynoeio/image/upload/v1649708947/vue/ReservoirDogs.png',
+    posterUrl: 'https://res.cloudinary.com/djlynoeio/image/upload/v1649708947/vue/ReservoirDogs.png',
     posterAlt: 'reservoir dogs',
-    shortInfo: 'Oscar winning movie',
+    shortDescription: 'Oscar winning movie',
     releaseYear: 1994,
     onClick: action('onClick'),
 } as FilmItemProps;
@@ -27,6 +27,6 @@ Default.args = {
 export const FilmWithoutPoster = Template.bind({});
 FilmWithoutPoster.args = {
     ...Default.args,
-    posterLink: undefined,
+    posterUrl: undefined,
     posterAlt: undefined,
 } as FilmItemProps;
