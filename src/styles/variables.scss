@@ -9,10 +9,10 @@ $light-grey: #555555;
 $grey: #424242;
 $dark-grey: #232323;
 
-$white: #FFF;
-$dark-white: getRgbaWhite(0.6);
 $white-small-opacity: 0.6;
 $white-medium-opacity: 0.8;
+$white: #FFF;
+$dark-white: getRgbaWhite($white-small-opacity);
 
 // fonts
 $roboto: 'Roboto', sans-serif;
