@@ -14,12 +14,14 @@
 <script lang="ts">
 import ErrorIcon from '@/assets/icons/Error.vue';
 import Vue from 'vue';
+import { FontSize } from '@/enums/styles';
 
 export interface CustomInputProps {
-    label: string;
-    placeholder: string;
     value: string;
-    errorMessage: string;
+    label?: string;
+    placeholder?: string;
+    errorMessage?: string;
+    fontSize?: FontSize;
     onChange: (value: string) => void;
 }
 
@@ -37,6 +39,10 @@ export default Vue.extend({
             type: String,
             required: true,
         },
+        fontSize: {
+            type: String,
+            default: FontSize.Medium,
+        },
         errorMessage: {
             type: String,
         },
@@ -48,8 +54,10 @@ export default Vue.extend({
         labelStyle(): string {
             return this.$style.label;
         },
-        inputStyle(): string {
-            return this.$style.input;
+        inputStyle(): string[] {
+            const fontSizeStyle = this.$style[this.fontSize];
+
+            return [this.$style.input, fontSizeStyle];
         },
         errorMessageContainerStyle(): string {
             return this.$style['error-message-container'];

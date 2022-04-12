@@ -85,6 +85,7 @@ export default Vue.extend({
 .label {
     @extend .font;
 
+    text-transform: uppercase;
     margin-right: 20px;
 }
 
