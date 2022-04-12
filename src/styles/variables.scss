@@ -10,6 +10,9 @@ $grey: #424242;
 $dark-grey: #232323;
 
 $white: #FFF;
+$dark-white: getRgbaWhite(0.6);
+$white-small-opacity: 0.6;
+$white-medium-opacity: 0.8;
 
 // fonts
 $roboto: 'Roboto', sans-serif;
@@ -19,4 +22,8 @@ $roboto-mono: 'Roboto Mono', monospace;
 /* functions */
 @function getRgbaGrey($opacity) {
   @return rgba(42, 42, 42, $opacity);
+}
+
+@function getRgbaWhite($opacity) {
+  @return rgba(255, 255, 255, $opacity);
 }

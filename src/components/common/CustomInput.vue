@@ -81,6 +81,7 @@ export default Vue.extend({
 
 .label {
     @extend .font;
+    color: getRgbaWhite($white-medium-opacity);
     margin-bottom: 15px;
 }
 

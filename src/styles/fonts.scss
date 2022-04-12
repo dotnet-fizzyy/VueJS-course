@@ -3,8 +3,7 @@
 
 .font {
   font-family: $roboto-mono;
-  color: $white;
-  font-size: 16px;
+  color: getRgbaWhite($white-medium-opacity);
 }
 
 .normal {
@@ -24,7 +23,7 @@
 }
 
 .medium {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .large {
