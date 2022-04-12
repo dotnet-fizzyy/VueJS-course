@@ -18,7 +18,7 @@
 import Vue from 'vue';
 import { getAppSettings } from '@/components/utils/appSettings';
 
-export interface FilmItemProps {
+export interface FilmShortDescriptionProps {
     id: string;
     posterUrl?: string;
     posterAlt?: string;
@@ -29,7 +29,7 @@ export interface FilmItemProps {
 }
 
 export default Vue.extend({
-    name: 'FilmItem',
+    name: 'FilmShortDescription',
     props: {
         id: {
             type: String,

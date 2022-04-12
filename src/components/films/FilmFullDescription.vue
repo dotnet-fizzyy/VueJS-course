@@ -11,8 +11,8 @@
             <span v-bind:class="shortInfoStyle">{{ shortDescription }}</span>
 
             <div v-bind:class="summaryContainer">
-                <film-summary :key-label="formattedReleaseYear" additional-label="year" />
-                <film-summary :key-label="formattedRuntime" additional-label="min" />
+                <film-description-item :key-label="formattedReleaseYear" additional-label="year" />
+                <film-description-item :key-label="formattedRuntime" additional-label="min" />
             </div>
 
             <span v-bind:class="descriptionStyle">
@@ -23,11 +23,11 @@
 </template>
 
 <script lang="ts">
-import FilmSummary from '@/components/films/FilmSummary.vue';
+import FilmDescriptionItem from '@/components/films/FilmDescriptionItem.vue';
 import Vue from 'vue';
 import { getAppSettings } from '@/components/utils/appSettings';
 
-export interface FilmDescriptionProps {
+export interface FilmFullDescriptionProps {
     name: string;
     releaseYear: number;
     runtime: number;
@@ -39,8 +39,8 @@ export interface FilmDescriptionProps {
 }
 
 export default Vue.extend({
-    name: 'FilmDescription',
-    components: { FilmSummary },
+    name: 'FilmFullDescription',
+    components: { FilmDescriptionItem },
     props: {
         name: {
             type: String,

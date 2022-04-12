@@ -10,7 +10,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-    name: 'FilmSummary',
+    name: 'FilmDescriptionItem',
     props: {
         keyLabel: {
             type: String,

@@ -1,15 +1,15 @@
-import FilmDescription, { FilmDescriptionProps } from '@/components/films/FilmDescription.vue';
+import FilmFullDescription, { FilmFullDescriptionProps } from '@/components/films/FilmFullDescription.vue';
 
 export default {
-    title: 'films/FilmDescription',
-    component: FilmDescription,
+    title: 'films/FilmFullDescription',
+    component: FilmFullDescription,
 };
 
 const Template = (args, { argTypes }) => ({
-    components: { FilmDescription },
+    components: { FilmFullDescription },
     props: Object.keys(argTypes),
     template:
-        '<div style="background-color: rgba(0, 0, 0, 0.8); padding: 30px; width: fit-content"><FilmDescription v-bind="$props" /></div>',
+        '<div style="background-color: rgba(0, 0, 0, 0.8); padding: 30px; width: fit-content"><FilmFullDescription v-bind="$props" /></div>',
 });
 
 export const Default = Template.bind({});
@@ -25,11 +25,11 @@ Default.args = {
     releaseYear: 1994,
     rating: 5,
     runtime: 89,
-} as FilmDescriptionProps;
+} as FilmFullDescriptionProps;
 
-export const DescriptionWithoutPoster = Template.bind({});
-DescriptionWithoutPoster.args = {
+export const FilmWithoutPoster = Template.bind({});
+FilmWithoutPoster.args = {
     ...Default.args,
     posterUrl: undefined,
     posterAlt: undefined,
-} as FilmDescriptionProps;
+} as FilmFullDescriptionProps;

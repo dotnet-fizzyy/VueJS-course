@@ -1,16 +1,16 @@
-import FilmItem, { FilmItemProps } from '@/components/films/FilmItem.vue';
+import FilmShortDescription, { FilmShortDescriptionProps } from '@/components/films/FilmShortDescription.vue';
 import { action } from '@storybook/addon-actions';
 
 export default {
-    title: 'films/FilmItem',
-    component: FilmItem,
+    title: 'films/FilmShortDescription',
+    component: FilmShortDescription,
 };
 
 const Template = (args, { argTypes }) => ({
-    components: { FilmItem },
+    components: { FilmShortDescription },
     props: Object.keys(argTypes),
     template:
-        '<div style="background-color: #232323; padding: 30px; width: fit-content"><FilmItem v-bind="$props" @on-click="$props.onClick" /></div>',
+        '<div style="background-color: #232323; padding: 30px; width: fit-content"><FilmShortDescription v-bind="$props" @on-click="$props.onClick" /></div>',
 });
 
 export const Default = Template.bind({});
@@ -22,11 +22,11 @@ Default.args = {
     shortDescription: 'Oscar winning movie',
     releaseYear: 1994,
     onClick: action('onClick'),
-} as FilmItemProps;
+} as FilmShortDescriptionProps;
 
 export const FilmWithoutPoster = Template.bind({});
 FilmWithoutPoster.args = {
     ...Default.args,
     posterUrl: undefined,
     posterAlt: undefined,
-} as FilmItemProps;
+} as FilmShortDescriptionProps;
