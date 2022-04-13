@@ -1,7 +1,7 @@
-import SortPanel, { SortPanelProps } from '@/components/search/SortPanel.vue';
+import SortPanel, { SortPanelProps } from '@/components/listing/SortPanel.vue';
 
 export default {
-    title: 'search/SortPanel',
+    title: 'listing/SortPanel',
     component: SortPanel,
 };
 
