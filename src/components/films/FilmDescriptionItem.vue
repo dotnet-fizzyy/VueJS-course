@@ -1,8 +1,8 @@
 <template>
-    <div v-bind:class="rootStyle">
-        <span v-bind:class="keyLabelStyle">{{ keyLabel }}</span>
+    <div :class="rootStyle">
+        <span :class="keyLabelStyle">{{ keyLabel }}</span>
 
-        <span v-if="!!additionalLabel" v-bind:class="additionalLabelStyle">{{ additionalLabel }}</span>
+        <span v-if="!!additionalLabel" :class="additionalLabelStyle">{{ additionalLabel }}</span>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
-    <div v-bind:class="rootStyle">
-        <span v-bind:class="titleStyle">{{ availableItemsCount }} movies found</span>
+    <div :class="rootStyle">
+        <span :class="titleStyle">{{ availableItemsCount }} movies found</span>
 
         <Options
             label="Sort By"

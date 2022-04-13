@@ -1,5 +1,5 @@
 <template>
-    <button v-bind:class="root" v-on:click="onClick"><slot /></button>
+    <button :class="root" v-on:click="onClick"><slot /></button>
 </template>
 
 <script lang="ts">

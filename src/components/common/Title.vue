@@ -1,5 +1,5 @@
 <template>
-    <span v-bind:class="style"><slot /></span>
+    <span :class="style"><slot /></span>
 </template>
 
 <script lang="ts">

@@ -1,21 +1,21 @@
 <template>
-    <div v-bind:class="rootStyle">
-        <img v-bind:class="posterStyle" :src="posterUrl" :alt="posterAlt" />
+    <div :class="rootStyle">
+        <img :class="posterStyle" :src="posterUrl" :alt="posterAlt" />
 
-        <div v-bind:class="filmDescriptionContainerStyle">
-            <div v-bind:class="nameContainerStyle">
-                <span v-bind:class="nameStyle">{{ name }}</span>
-                <span v-bind:class="ratingStyle">{{ formattedRating }}</span>
+        <div :class="filmDescriptionContainerStyle">
+            <div :class="nameContainerStyle">
+                <span :class="nameStyle">{{ name }}</span>
+                <span :class="ratingStyle">{{ formattedRating }}</span>
             </div>
 
-            <span v-bind:class="shortInfoStyle">{{ shortDescription }}</span>
+            <span :class="shortInfoStyle">{{ shortDescription }}</span>
 
-            <div v-bind:class="summaryContainer">
+            <div :class="summaryContainer">
                 <film-description-item :key-label="formattedReleaseYear" additional-label="year" />
                 <film-description-item :key-label="formattedRuntime" additional-label="min" />
             </div>
 
-            <span v-bind:class="descriptionStyle">
+            <span :class="descriptionStyle">
                 {{ fullDescription }}
             </span>
         </div>

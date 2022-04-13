@@ -1,9 +1,9 @@
 <template>
-    <div v-bind:class="rootStyle">
-        <span v-bind:class="mainLabelStyle">Find your movie</span>
+    <div :class="rootStyle">
+        <span :class="mainLabelStyle">Find your movie</span>
 
-        <div v-bind:class="searchContainerStyle">
-            <div v-bind:class="inputContainerStyle">
+        <div :class="searchContainerStyle">
+            <div :class="inputContainerStyle">
                 <CustomInput
                     :value="searchValue"
                     placeholder="Search"
@@ -11,12 +11,12 @@
                     @on-change="onChangeSearchValue"
                 />
             </div>
-            <div v-bind:class="searchButtonContainerStyle">
+            <div :class="searchButtonContainerStyle">
                 <CustomButton :type="buttonType" @on-click="onClickSearch">Search</CustomButton>
             </div>
         </div>
 
-        <div v-bind:class="optionsContainerStyle">
+        <div :class="optionsContainerStyle">
             <Options
                 label="Search By"
                 :options="filterOptions"

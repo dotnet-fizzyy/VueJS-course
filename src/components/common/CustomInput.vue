@@ -1,12 +1,12 @@
 <template>
-    <div v-bind:class="rootStyle">
-        <span v-if="!!label" v-bind:class="labelStyle">{{ label }}</span>
+    <div :class="rootStyle">
+        <span v-if="!!label" :class="labelStyle">{{ label }}</span>
 
-        <input v-bind:class="inputStyle" v-bind:placeholder="placeholder" v-bind:value="value" v-on:input="onChange" />
+        <input :class="inputStyle" :placeholder="placeholder" :value="value" v-on:input="onChange" />
 
-        <div v-if="!!errorMessage" v-bind:class="errorMessageContainerStyle">
+        <div v-if="!!errorMessage" :class="errorMessageContainerStyle">
             <error-icon />
-            <span v-bind:class="errorMessageStyle">{{ errorMessage }}</span>
+            <span :class="errorMessageStyle">{{ errorMessage }}</span>
         </div>
     </div>
 </template>

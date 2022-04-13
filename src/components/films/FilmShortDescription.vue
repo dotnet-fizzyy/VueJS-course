@@ -1,14 +1,14 @@
 <template>
-    <div v-bind:class="rootStyle" v-on:click="onClick(id)">
-        <img v-bind:class="posterStyle" v-bind:src="posterUrl" v-bind:alt="posterAlt" />
+    <div :class="rootStyle" v-on:click="onClick(id)">
+        <img :class="posterStyle" :src="posterUrl" :alt="posterAlt" />
 
-        <div v-bind:class="posterFooterStyle">
-            <div v-bind:class="posterFooterDescriptionContainerStyle">
-                <span v-bind:class="filmNameStyle">{{ name }}</span>
-                <span v-bind:class="filmShortInfoStyle">{{ shortDescription }}</span>
+        <div :class="posterFooterStyle">
+            <div :class="posterFooterDescriptionContainerStyle">
+                <span :class="filmNameStyle">{{ name }}</span>
+                <span :class="filmShortInfoStyle">{{ shortDescription }}</span>
             </div>
-            <div v-bind:class="posterFooterYearReleaseContainerStyle">
-                <span v-bind:class="releaseYearPillStyle">{{ releaseYear }}</span>
+            <div :class="posterFooterYearReleaseContainerStyle">
+                <span :class="releaseYearPillStyle">{{ releaseYear }}</span>
             </div>
         </div>
     </div>
