@@ -4,7 +4,7 @@
 
         <div :class="$style['search-container']">
             <div :class="$style['input-container']">
-                <CustomInput
+                <app-input
                     :value="searchValue"
                     placeholder="Search"
                     :font-size="inputFontSize"
@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import CustomInput from '@/components/common/CustomInput.vue';
+import AppInput from '@/components/common/AppInput.vue';
 import Options, { OptionGroup } from '@/components/common/Options.vue';
 import PrimaryButton from '@/components/common/PrimaryButton.vue';
 import Vue from 'vue';
@@ -45,7 +45,7 @@ export interface SearchPanelProps {
 
 export default Vue.extend({
     name: 'SearchPanel',
-    components: { PrimaryButton, CustomInput, Options },
+    components: { AppInput, PrimaryButton, Options },
     data() {
         return {
             filterOptions: AvailableOptionGroups,

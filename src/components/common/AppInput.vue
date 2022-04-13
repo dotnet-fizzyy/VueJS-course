@@ -21,7 +21,7 @@ import ErrorIcon from '@/assets/icons/Error.vue';
 import Vue from 'vue';
 import { FontSize } from '@/enums/styles';
 
-export interface CustomInputProps {
+export interface AppInputProps {
     value: string;
     label?: string;
     placeholder?: string;
@@ -31,7 +31,7 @@ export interface CustomInputProps {
 }
 
 export default Vue.extend({
-    name: 'CustomInput',
+    name: 'AppInput',
     components: { ErrorIcon },
     props: {
         label: {

@@ -1,17 +1,17 @@
-import CustomInput, { CustomInputProps } from '@/components/common/CustomInput.vue';
+import AppInput, { AppInputProps } from '@/components/common/AppInput.vue';
 import { FontSize } from '@/enums/styles';
 import { action } from '@storybook/addon-actions';
 
 export default {
-    title: 'common/CustomInput',
-    component: CustomInput,
+    title: 'common/AppInput',
+    component: AppInput,
 };
 
 const Template = (args, { argTypes }) => ({
-    components: { CustomInput },
+    components: { AppInput },
     props: Object.keys(argTypes),
     template:
-        '<div style="max-width: 200px; width: 100%; height: 90px; background-color: #555555; padding: 10px"><CustomInput v-bind="$props" @on-change="onChange" /></div>',
+        '<div style="max-width: 200px; width: 100%; height: 90px; background-color: #555555; padding: 10px"><AppInput v-bind="$props" @on-change="onChange" /></div>',
 });
 
 export const InputWithLabelAndError = Template.bind({});
@@ -21,7 +21,7 @@ InputWithLabelAndError.args = {
     value: '',
     errorMessage: 'Some error',
     onChange: action('change'),
-} as CustomInputProps;
+} as AppInputProps;
 
 export const SimpleInputWithLargeFont = Template.bind({});
 SimpleInputWithLargeFont.args = {
@@ -29,4 +29,4 @@ SimpleInputWithLargeFont.args = {
     value: '',
     fontSize: FontSize.Large,
     onChange: action('change'),
-} as CustomInputProps;
+} as AppInputProps;
