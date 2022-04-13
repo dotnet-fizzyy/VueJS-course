@@ -22,26 +22,26 @@
 <script lang="ts">
 import Vue from 'vue';
 
-export interface OptionGroup {
+export interface ButtonGroupOption {
     label: string;
     name: string;
 }
 
-export interface OptionsProps {
+export interface ButtonGroupProps {
     label: string;
-    options: OptionGroup[];
+    options: ButtonGroupOption[];
     selectedOption: string;
     onSelectOption: (value: string) => void;
 }
 
 export default Vue.extend({
-    name: 'Options',
+    name: 'ButtonGroup',
     props: {
         label: {
             type: String,
         },
         options: {
-            type: Array as Vue.PropType<OptionGroup[]>,
+            type: Array as Vue.PropType<ButtonGroupOption[]>,
             required: true,
         },
         selectedOption: {

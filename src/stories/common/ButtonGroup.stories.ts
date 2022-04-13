@@ -1,16 +1,16 @@
-import Options, { OptionGroup, OptionsProps } from '@/components/common/Options.vue';
+import ButtonGroup, { ButtonGroupOption, ButtonGroupProps } from '@/components/common/ButtonGroup.vue';
 import { action } from '@storybook/addon-actions';
 
 export default {
-    title: 'common/Options',
-    component: Options,
+    title: 'common/ButtonGroup',
+    component: ButtonGroup,
 };
 
 const Template = (args, { argTypes }) => ({
-    components: { Options },
+    components: { ButtonGroup },
     props: Object.keys(argTypes),
     template:
-        '<div style="max-width: 400px; width: 100%; background-color: #555555; padding: 10px"><Options v-bind="$props" @on-select-option="onSelectOption" /></div>',
+        '<div style="max-width: 400px; width: 100%; background-color: #555555; padding: 10px"><ButtonGroup v-bind="$props" @on-select-option="onSelectOption" /></div>',
 });
 
 export const OptionsGroupWithLabel = Template.bind({});
@@ -19,13 +19,13 @@ OptionsGroupWithLabel.args = {
     options: [
         { label: 'First', name: 'first' },
         { label: 'Second', name: 'second' },
-    ] as OptionGroup[],
+    ] as ButtonGroupOption[],
     selectedOption: 'first',
     onSelectOption: action('selected-option'),
-} as OptionsProps;
+} as ButtonGroupProps;
 
 export const OptionsGroupWithoutLabel = Template.bind({});
 OptionsGroupWithoutLabel.args = {
     ...OptionsGroupWithLabel.args,
     label: '',
-} as OptionsProps;
+} as ButtonGroupProps;

@@ -17,7 +17,7 @@
         </div>
 
         <div :class="$style['options-container']">
-            <Options
+            <button-group
                 label="Search By"
                 :options="filterOptions"
                 :selected-option="selectedFilterOption"
@@ -29,12 +29,12 @@
 
 <script lang="ts">
 import AppInput from '@/components/common/AppInput.vue';
-import Options, { OptionGroup } from '@/components/common/Options.vue';
+import ButtonGroup, { ButtonGroupOption } from '@/components/common/ButtonGroup.vue';
 import PrimaryButton from '@/components/common/PrimaryButton.vue';
 import Vue from 'vue';
 import { FontSize } from '@/enums/styles';
 
-const AvailableOptionGroups: OptionGroup[] = [
+const AvailableOptionGroups: ButtonGroupOption[] = [
     { label: 'Title', name: 'tl' },
     { label: 'Genre', name: 'gr' },
 ];
@@ -45,7 +45,7 @@ export interface SearchPanelProps {
 
 export default Vue.extend({
     name: 'SearchPanel',
-    components: { AppInput, PrimaryButton, Options },
+    components: { AppInput, PrimaryButton, ButtonGroup },
     data() {
         return {
             filterOptions: AvailableOptionGroups,

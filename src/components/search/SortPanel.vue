@@ -2,7 +2,7 @@
     <div :class="$style.root">
         <span :class="$style.title">{{ availableItemsCount }} movies found</span>
 
-        <Options
+        <button-group
             label="Sort By"
             :options="options"
             :selected-option="selectedOption"
@@ -12,10 +12,10 @@
 </template>
 
 <script lang="ts">
-import Options, { OptionGroup } from '@/components/common/Options.vue';
+import ButtonGroup, { ButtonGroupOption } from '@/components/common/ButtonGroup.vue';
 import Vue from 'vue';
 
-const AvailableOptionGroups: OptionGroup[] = [
+const AvailableOptionGroups: ButtonGroupOption[] = [
     { label: 'Release Date', name: 'rd' },
     { label: 'Rating', name: 'rt' },
 ];
@@ -26,7 +26,7 @@ export interface SortPanelProps {
 
 export default Vue.extend({
     name: 'SortPanel',
-    components: { Options },
+    components: { ButtonGroup },
     props: {
         availableItemsCount: {
             type: Number,
