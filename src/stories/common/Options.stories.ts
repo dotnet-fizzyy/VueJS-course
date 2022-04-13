@@ -10,7 +10,7 @@ const Template = (args, { argTypes }) => ({
     components: { Options },
     props: Object.keys(argTypes),
     template:
-        '<div style="max-width: 400px; width: 100%; background-color: #555555; padding: 10px"><Options :label="label" :options="options" :selected-option="selectedOption" @on-select-option="onSelectOption" /></div>',
+        '<div style="max-width: 400px; width: 100%; background-color: #555555; padding: 10px"><Options v-bind="$props" @on-select-option="onSelectOption" /></div>',
 });
 
 export const OptionsGroupWithLabel = Template.bind({});

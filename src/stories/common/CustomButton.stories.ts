@@ -11,7 +11,7 @@ const Template = (args, { argTypes }) => ({
     components: { CustomButton },
     props: Object.keys(argTypes),
     template:
-        '<div style="width: 120px; height: 30px"><CustomButton :font-style="$props.fontStyle" :type="$props.type" @on-click="$props.onClick">{{ $props.title }}</CustomButton></div>',
+        '<div style="width: 120px; height: 30px"><CustomButton v-bind="$props" @on-click="$props.onClick">{{ $props.title }}</CustomButton></div>',
 });
 
 export const Primary = Template.bind({});

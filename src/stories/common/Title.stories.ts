@@ -10,7 +10,7 @@ const Template = (args, { argTypes }) => ({
     components: { Title },
     props: Object.keys(argTypes),
     template:
-        '<div style="background-color: #555555; width: fit-content; padding: 10px"><Title :font-style="$props.fontStyle" :font-size="$props.fontSize">{{ $props.title }}</Title></div>',
+        '<div style="background-color: #555555; width: fit-content; padding: 10px"><Title v-bind="$props">{{ $props.title }}</Title></div>',
 });
 
 export const NormalFontStyle = Template.bind({});

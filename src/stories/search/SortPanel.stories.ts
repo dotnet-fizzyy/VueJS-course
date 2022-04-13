@@ -9,7 +9,7 @@ const Template = (args, { argTypes }) => ({
     components: { SortPanel },
     props: Object.keys(argTypes),
     template:
-        '<div style="background-color: #555555; padding: 30px; width: 600px;"><SortPanel :available-items-count="$props.availableItemsCount" /></div>',
+        '<div style="background-color: #555555; padding: 30px; width: 600px;"><SortPanel v-bind="$props" /></div>',
 });
 
 export const Default = Template.bind({});

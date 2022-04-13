@@ -8,11 +8,11 @@
                     :value="searchValue"
                     placeholder="Search"
                     :font-size="inputFontSize"
-                    @on-change="onChangeSearchValue"
+                    @on-change="onChangeSearchQuery"
                 />
             </div>
             <div :class="searchButtonContainerStyle">
-                <CustomButton :type="buttonType" @on-click="onClickSearch">Search</CustomButton>
+                <CustomButton :type="buttonType" @on-click="onSearch">Search</CustomButton>
             </div>
         </div>
 
@@ -40,7 +40,7 @@ const AvailableOptionGroups: OptionGroup[] = [
 ];
 
 export interface SearchPanelProps {
-    onClickSearch: (searchValue: string, selectedFilterOption: string) => void;
+    onSearch: (searchValue: string, selectedFilterOption: string) => void;
 }
 
 export default Vue.extend({
@@ -87,13 +87,13 @@ export default Vue.extend({
         },
     },
     methods: {
-        onClickSearch(): void {
-            this.$emit('on-click-search', this.searchValue, this.selectedFilterOption);
+        onSearch(): void {
+            this.$emit('on-search', this.searchValue, this.selectedFilterOption);
         },
         onChangeFilterOption(option: string): void {
             this.selectedFilterOption = option;
         },
-        onChangeSearchValue(value: string): void {
+        onChangeSearchQuery(value: string): void {
             this.searchValue = value;
         },
     },

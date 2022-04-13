@@ -11,7 +11,7 @@ const Template = (args, { argTypes }) => ({
     components: { CustomInput },
     props: Object.keys(argTypes),
     template:
-        '<div style="max-width: 200px; width: 100%; height: 90px; background-color: #555555; padding: 10px"><CustomInput :label="label" :value="value" :placeholder="placeholder" :error-message="errorMessage" :font-size="fontSize" @on-change="onChange" /></div>',
+        '<div style="max-width: 200px; width: 100%; height: 90px; background-color: #555555; padding: 10px"><CustomInput v-bind="$props" @on-change="onChange" /></div>',
 });
 
 export const InputWithLabelAndError = Template.bind({});
