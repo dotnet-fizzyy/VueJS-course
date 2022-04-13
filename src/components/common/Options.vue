@@ -1,10 +1,17 @@
 <template>
-    <div :class="rootStyle">
-        <span :class="labelStyle" v-if="!!label">{{ label }}</span>
+    <div :class="$style.root">
+        <span :class="$style.label" v-if="!!label">{{ label }}</span>
 
-        <div :class="optionsContainerStyle">
+        <div :class="$style['options-container']">
             <template v-for="(option, index) in options">
-                <button :class="getButtonStyle(option.name)" :key="index" v-on:click="onClick(option.name)">
+                <button
+                    :class="[
+                        isSelected(option.name) ? $style['selected-option'] : $style['non-selected-option'],
+                        $style.option,
+                    ]"
+                    :key="index"
+                    v-on:click="onClick(option.name)"
+                >
                     {{ option.label }}
                 </button>
             </template>
@@ -42,17 +49,6 @@ export default Vue.extend({
             required: true,
         },
     },
-    computed: {
-        rootStyle(): string {
-            return this.$style.root;
-        },
-        labelStyle(): string {
-            return this.$style.label;
-        },
-        optionsContainerStyle(): string {
-            return this.$style['options-container'];
-        },
-    },
     methods: {
         onClick(option: string): void {
             if (option === this.selectedOption) {
@@ -61,11 +57,8 @@ export default Vue.extend({
 
             this.$emit('on-select-option', option);
         },
-        getButtonStyle(optionName: string): string[] {
-            const buttonStyle: string =
-                optionName === this.selectedOption ? this.$style['primary-button'] : this.$style['secondary-button'];
-
-            return [buttonStyle, this.$style.option];
+        isSelected(optionName: string): boolean {
+            return optionName === this.selectedOption;
         },
     },
 });
@@ -93,6 +86,14 @@ export default Vue.extend({
     display: flex;
     flex-direction: row;
     height: 35px;
+}
+
+.selected-option {
+    @extend .primary-button;
+}
+
+.non-selected-option {
+    @extend .secondary-button;
 }
 
 .option {

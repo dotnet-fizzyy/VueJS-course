@@ -1,12 +1,17 @@
 <template>
-    <div :class="rootStyle">
-        <span v-if="!!label" :class="labelStyle">{{ label }}</span>
+    <div :class="$style.root">
+        <span v-if="!!label" :class="$style.label">{{ label }}</span>
 
-        <input :class="inputStyle" :placeholder="placeholder" :value="value" v-on:input="onChange" />
+        <input
+            :class="[$style.input, $style[fontSize]]"
+            :placeholder="placeholder"
+            :value="value"
+            v-on:input="onChange"
+        />
 
-        <div v-if="!!errorMessage" :class="errorMessageContainerStyle">
+        <div v-if="!!errorMessage" :class="$style['error-message-container']">
             <error-icon />
-            <span :class="errorMessageStyle">{{ errorMessage }}</span>
+            <span :class="$style['error-message']">{{ errorMessage }}</span>
         </div>
     </div>
 </template>
@@ -47,25 +52,6 @@ export default Vue.extend({
             type: String,
         },
     },
-    computed: {
-        rootStyle(): string {
-            return this.$style.root;
-        },
-        labelStyle(): string {
-            return this.$style.label;
-        },
-        inputStyle(): string[] {
-            const fontSizeStyle = this.$style[this.fontSize];
-
-            return [this.$style.input, fontSizeStyle];
-        },
-        errorMessageContainerStyle(): string {
-            return this.$style['error-message-container'];
-        },
-        errorMessageStyle(): string {
-            return this.$style['error-message'];
-        },
-    },
     methods: {
         onChange(event): void {
             const value: string = event.target.value;
@@ -89,6 +75,7 @@ export default Vue.extend({
 
 .label {
     @extend .font;
+
     color: getRgbaWhite($white-medium-opacity);
     margin-bottom: 15px;
 }

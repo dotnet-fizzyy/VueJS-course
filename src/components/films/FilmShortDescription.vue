@@ -1,14 +1,14 @@
 <template>
-    <div :class="rootStyle" v-on:click="onClick(id)">
-        <img :class="posterStyle" :src="posterUrl" :alt="posterAlt" />
+    <div :class="$style.root" v-on:click="onClick(id)">
+        <img :class="$style.poster" :src="posterUrl" :alt="posterAlt" />
 
-        <div :class="posterFooterStyle">
-            <div :class="posterFooterDescriptionContainerStyle">
-                <span :class="filmNameStyle">{{ name }}</span>
-                <span :class="filmShortInfoStyle">{{ shortDescription }}</span>
+        <div :class="$style['poster-footer']">
+            <div :class="$style['poster-footer-description-container']">
+                <span :class="$style['film-name']">{{ name }}</span>
+                <span :class="$style['film-short-info']">{{ shortDescription }}</span>
             </div>
-            <div :class="posterFooterYearReleaseContainerStyle">
-                <span :class="releaseYearPillStyle">{{ releaseYear }}</span>
+            <div :class="$style['poster-footer-year-release-container']">
+                <span :class="$style['release-year-pill']">{{ releaseYear }}</span>
             </div>
         </div>
     </div>
@@ -56,32 +56,6 @@ export default Vue.extend({
             required: true,
         },
     },
-    computed: {
-        rootStyle(): string {
-            return this.$style.root;
-        },
-        posterStyle(): string {
-            return this.$style.poster;
-        },
-        posterFooterStyle(): string {
-            return this.$style['poster-footer'];
-        },
-        posterFooterDescriptionContainerStyle(): string {
-            return this.$style['poster-footer-description-container'];
-        },
-        posterFooterYearReleaseContainerStyle(): string {
-            return this.$style['poster-footer-year-release-container'];
-        },
-        filmNameStyle(): string {
-            return this.$style['film-name'];
-        },
-        filmShortInfoStyle(): string {
-            return this.$style['film-short-info'];
-        },
-        releaseYearPillStyle(): string {
-            return this.$style['release-year-pill'];
-        },
-    },
     methods: {
         onClick(id: string): void {
             this.$emit('on-click', id);
@@ -123,11 +97,13 @@ export default Vue.extend({
 .film-name {
     @extend .font;
     @extend .bold;
+
     margin-bottom: 10px;
 }
 
 .release-year-pill {
     @extend .font;
+
     display: block;
     font-size: 12px;
     padding: 4px 20px;

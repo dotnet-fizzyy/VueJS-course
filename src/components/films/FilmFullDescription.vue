@@ -1,21 +1,21 @@
 <template>
-    <div :class="rootStyle">
-        <img :class="posterStyle" :src="posterUrl" :alt="posterAlt" />
+    <div :class="$style.root">
+        <img :class="$style.poster" :src="posterUrl" :alt="posterAlt" />
 
-        <div :class="filmDescriptionContainerStyle">
-            <div :class="nameContainerStyle">
-                <span :class="nameStyle">{{ name }}</span>
-                <span :class="ratingStyle">{{ formattedRating }}</span>
+        <div :class="$style['film-description-container']">
+            <div :class="$style['name-container']">
+                <span :class="$style.name">{{ name }}</span>
+                <span :class="$style.rating">{{ formattedRating }}</span>
             </div>
 
-            <span :class="shortInfoStyle">{{ shortDescription }}</span>
+            <span :class="$style['short-description']">{{ shortDescription }}</span>
 
-            <div :class="summaryContainer">
+            <div :class="$style['summary-container']">
                 <film-description-item :key-label="formattedReleaseYear" additional-label="year" />
                 <film-description-item :key-label="formattedRuntime" additional-label="min" />
             </div>
 
-            <span :class="descriptionStyle">
+            <span :class="$style.description">
                 {{ fullDescription }}
             </span>
         </div>
@@ -76,40 +76,6 @@ export default Vue.extend({
         },
     },
     computed: {
-        /**
-         *  styles
-         */
-        rootStyle(): string {
-            return this.$style.root;
-        },
-        posterStyle(): string {
-            return this.$style.poster;
-        },
-        filmDescriptionContainerStyle(): string {
-            return this.$style['film-description-container'];
-        },
-        nameContainerStyle(): string {
-            return this.$style['name-container'];
-        },
-        nameStyle(): string {
-            return this.$style.name;
-        },
-        ratingStyle(): string {
-            return this.$style.rating;
-        },
-        shortInfoStyle(): string {
-            return this.$style['short-info'];
-        },
-        summaryContainer(): string {
-            return this.$style['summary-container'];
-        },
-        descriptionStyle(): string {
-            return this.$style.description;
-        },
-
-        /**
-         *  properties
-         */
         formattedReleaseYear(): string {
             return this.releaseYear.toString();
         },
@@ -177,7 +143,7 @@ export default Vue.extend({
     width: 180px;
 }
 
-.short-info {
+.short-description {
     @extend .film-short-info;
 
     margin-top: 10px;

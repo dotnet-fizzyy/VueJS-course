@@ -1,9 +1,9 @@
 <template>
-    <div :class="rootStyle">
-        <span :class="mainLabelStyle">Find your movie</span>
+    <div :class="$style.root">
+        <span :class="$style['main-label']">Find your movie</span>
 
-        <div :class="searchContainerStyle">
-            <div :class="inputContainerStyle">
+        <div :class="$style['search-container']">
+            <div :class="$style['input-container']">
                 <CustomInput
                     :value="searchValue"
                     placeholder="Search"
@@ -11,12 +11,12 @@
                     @on-change="onChangeSearchQuery"
                 />
             </div>
-            <div :class="searchButtonContainerStyle">
+            <div :class="$style['search-button-container']">
                 <CustomButton :type="buttonType" @on-click="onSearch">Search</CustomButton>
             </div>
         </div>
 
-        <div :class="optionsContainerStyle">
+        <div :class="$style['options-container']">
             <Options
                 label="Search By"
                 :options="filterOptions"
@@ -54,34 +54,9 @@ export default Vue.extend({
         };
     },
     computed: {
-        /**
-         *  styles
-         */
-        rootStyle(): string {
-            return this.$style.root;
-        },
-        mainLabelStyle(): string {
-            return this.$style['main-label'];
-        },
-        searchContainerStyle(): string {
-            return this.$style['search-container'];
-        },
-        inputContainerStyle(): string {
-            return this.$style['input-container'];
-        },
         inputFontSize(): FontSize {
             return FontSize.Large;
         },
-        searchButtonContainerStyle(): string {
-            return this.$style['search-button-container'];
-        },
-        optionsContainerStyle(): string {
-            return this.$style['options-container'];
-        },
-
-        /**
-         *  values
-         */
         buttonType(): ButtonType {
             return ButtonType.Primary;
         },

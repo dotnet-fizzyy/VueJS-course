@@ -1,6 +1,6 @@
 <template>
-    <div :class="rootStyle">
-        <span :class="titleStyle">{{ availableItemsCount }} movies found</span>
+    <div :class="$style.root">
+        <span :class="$style.title">{{ availableItemsCount }} movies found</span>
 
         <Options
             label="Sort By"
@@ -38,14 +38,6 @@ export default Vue.extend({
             options: AvailableOptionGroups,
             selectedOption: AvailableOptionGroups[0].name,
         };
-    },
-    computed: {
-        rootStyle(): string {
-            return this.$style.root;
-        },
-        titleStyle(): string {
-            return this.$style.title;
-        },
     },
     methods: {
         onSelectOption(option: string): void {

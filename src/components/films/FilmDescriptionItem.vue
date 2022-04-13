@@ -1,8 +1,8 @@
 <template>
-    <div :class="rootStyle">
-        <span :class="keyLabelStyle">{{ keyLabel }}</span>
+    <div :class="$style.root">
+        <span :class="$style['key-label']">{{ keyLabel }}</span>
 
-        <span v-if="!!additionalLabel" :class="additionalLabelStyle">{{ additionalLabel }}</span>
+        <span v-if="!!additionalLabel" :class="$style['additional-label']">{{ additionalLabel }}</span>
     </div>
 </template>
 
@@ -18,17 +18,6 @@ export default Vue.extend({
         },
         additionalLabel: {
             type: String,
-        },
-    },
-    computed: {
-        rootStyle(): string {
-            return this.$style.root;
-        },
-        keyLabelStyle(): string {
-            return this.$style['key-label'];
-        },
-        additionalLabelStyle(): string {
-            return this.$style['additional-label'];
         },
     },
 });

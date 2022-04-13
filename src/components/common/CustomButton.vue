@@ -1,5 +1,14 @@
 <template>
-    <button :class="root" v-on:click="onClick"><slot /></button>
+    <button
+        :class="[
+            type === 'primary' ? $style['primary-button'] : $style['secondary-button'],
+            $style[fontSize],
+            $style[fontStyle],
+        ]"
+        v-on:click="onClick"
+    >
+        <slot />
+    </button>
 </template>
 
 <script lang="ts">
@@ -33,25 +42,6 @@ export default Vue.extend({
         fontStyle: {
             type: String,
             default: FontStyle.Normal,
-        },
-    },
-    computed: {
-        root(): string[] {
-            const fontStyle: string = this.$style[this.fontStyle];
-            const fontSize: string = this.$style[this.fontSize];
-
-            let buttonStyle: string;
-
-            switch (this.type) {
-                case ButtonType.Primary:
-                    buttonStyle = this.$style['primary-button'];
-                    break;
-                case ButtonType.Secondary:
-                    buttonStyle = this.$style['secondary-button'];
-                    break;
-            }
-
-            return [buttonStyle, fontStyle, fontSize];
         },
     },
     methods: {

@@ -1,5 +1,5 @@
 <template>
-    <span :class="style"><slot /></span>
+    <span :class="[$style.font, $style[fontStyle], $style[fontSize]]"><slot /></span>
 </template>
 
 <script lang="ts">
@@ -22,14 +22,6 @@ export default Vue.extend({
         fontSize: {
             type: String,
             default: FontSize.Medium,
-        },
-    },
-    computed: {
-        style(): string[] {
-            const fontStyle: string = this.$style[this.fontStyle];
-            const fontSize: string = this.$style[this.fontSize];
-
-            return [this.$style.font, fontStyle, fontSize];
         },
     },
 });
