@@ -30,3 +30,7 @@ $roboto-mono: 'Roboto Mono', monospace;
 @function getRgbaWhite($opacity) {
   @return rgba(255, 255, 255, $opacity);
 }
+
+@function getRgbaBlack($opacity) {
+  @return rgba(0, 0, 0, $opacity);
+}

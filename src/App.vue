@@ -1,29 +1,46 @@
 <template>
     <div id="app">
-        <img alt="Vue logo" src="./assets/logo.png" />
-        <HelloWorld msg="Hello world!" />
+        <div id="main">
+            <start-view />
+        </div>
     </div>
 </template>
 
 <script lang="ts">
-import HelloWorld from './components/HelloWorld.vue';
+import StartView from '@/components/views/StartView.vue';
 import Vue from 'vue';
 
 export default Vue.extend({
     name: 'App',
     components: {
-        HelloWorld,
+        StartView,
     },
 });
 </script>
 
-<style>
+<style lang="scss">
+@import '../src/styles/fonts';
+
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $light-grey;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 1200px;
+    height: 100%;
+    background-color: $dark-grey;
+    box-shadow: 0 0 30px getRgbaBlack(0.5);
 }
 </style>

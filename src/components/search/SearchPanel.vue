@@ -12,7 +12,7 @@
                 />
             </div>
             <div :class="$style['search-button-container']">
-                <PrimaryButton @on-click="onSearch">Search</PrimaryButton>
+                <PrimaryButton :font-size="inputFontSize" @on-click="onSearch">Search</PrimaryButton>
             </div>
         </div>
 
@@ -76,6 +76,7 @@ export default Vue.extend({
 @import '../../styles/fonts';
 
 .root {
+    width: 100%;
     display: flex;
     flex-direction: column;
 }

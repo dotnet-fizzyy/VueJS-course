@@ -51,10 +51,12 @@ export default Vue.extend({
 @import '../../styles/fonts';
 
 .root {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .title {

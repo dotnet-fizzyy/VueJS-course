@@ -1,6 +1,9 @@
 module.exports = {
     devServer: {
         open: true,
+        hot: true,
+        host: 'localhost',
+        port: 8080,
     },
     chainWebpack: config =>
         config.module
