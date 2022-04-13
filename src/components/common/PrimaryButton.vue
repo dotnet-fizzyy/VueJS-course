@@ -1,12 +1,5 @@
 <template>
-    <button
-        :class="[
-            type === 'primary' ? $style['primary-button'] : $style['secondary-button'],
-            $style[fontSize],
-            $style[fontStyle],
-        ]"
-        v-on:click="onClick"
-    >
+    <button :class="[$style['primary-button'], $style[fontSize], $style[fontStyle]]" v-on:click="onClick">
         <slot />
     </button>
 </template>
@@ -15,26 +8,16 @@
 import Vue from 'vue';
 import { FontSize, FontStyle } from '@/enums/styles';
 
-export enum ButtonType {
-    Primary = 'primary',
-    Secondary = 'secondary',
-}
-
-export interface CustomButtonProps {
+export interface PrimaryButtonProps {
     title: string;
-    type?: ButtonType;
     fontStyle?: FontStyle;
     fontSize?: FontSize;
     onClick: () => void;
 }
 
 export default Vue.extend({
-    name: 'CustomButton',
+    name: 'PrimaryButton',
     props: {
-        type: {
-            type: String,
-            default: ButtonType.Primary,
-        },
         fontSize: {
             type: String,
             default: FontSize.Medium,

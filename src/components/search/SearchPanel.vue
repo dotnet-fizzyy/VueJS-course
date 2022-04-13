@@ -12,7 +12,7 @@
                 />
             </div>
             <div :class="$style['search-button-container']">
-                <CustomButton :type="buttonType" @on-click="onSearch">Search</CustomButton>
+                <PrimaryButton @on-click="onSearch">Search</PrimaryButton>
             </div>
         </div>
 
@@ -28,9 +28,9 @@
 </template>
 
 <script lang="ts">
-import CustomButton, { ButtonType } from '@/components/common/CustomButton.vue';
 import CustomInput from '@/components/common/CustomInput.vue';
 import Options, { OptionGroup } from '@/components/common/Options.vue';
+import PrimaryButton from '@/components/common/PrimaryButton.vue';
 import Vue from 'vue';
 import { FontSize } from '@/enums/styles';
 
@@ -45,7 +45,7 @@ export interface SearchPanelProps {
 
 export default Vue.extend({
     name: 'SearchPanel',
-    components: { CustomButton, CustomInput, Options },
+    components: { PrimaryButton, CustomInput, Options },
     data() {
         return {
             filterOptions: AvailableOptionGroups,
@@ -56,9 +56,6 @@ export default Vue.extend({
     computed: {
         inputFontSize(): FontSize {
             return FontSize.Large;
-        },
-        buttonType(): ButtonType {
-            return ButtonType.Primary;
         },
     },
     methods: {
