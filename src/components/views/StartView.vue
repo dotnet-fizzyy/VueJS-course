@@ -16,7 +16,20 @@
             <div :class="$style['sort-panel-container']">
                 <sort-panel :available-items-count="7" />
             </div>
-            <div></div>
+
+            <div :class="$style['films-display']">
+                <div v-for="film in films" :key="film.id" :class="$style['film-container']">
+                    <film-short-description
+                        :id="film.id"
+                        :name="film.name"
+                        :short-description="film.shortDescription"
+                        :release-year="film.releaseYear"
+                        :poster-url="film.posterUrl"
+                        :poster-alt="film.posterAlt"
+                        @on-click="onSelectFilm"
+                    />
+                </div>
+            </div>
         </div>
 
         <div :class="$style.footer">
@@ -26,14 +39,27 @@
 </template>
 
 <script lang="ts">
-import Logo from '../../assets/icons/Logo.vue';
+import FilmShortDescription from '@/components/films/FilmShortDescription.vue';
+import Logo from '@/assets/icons/Logo.vue';
 import SearchPanel from '@/components/search/SearchPanel.vue';
 import SortPanel from '@/components/listing/SortPanel.vue';
 import Vue from 'vue';
+import { shortFilmsDescription } from '@/mocks/mockFilms';
 
 export default Vue.extend({
     name: 'StartView',
-    components: { SearchPanel, SortPanel, Logo },
+    components: { FilmShortDescription, SearchPanel, SortPanel, Logo },
+    data() {
+        return {
+            films: shortFilmsDescription,
+            selectedFilm: null,
+        };
+    },
+    methods: {
+        onSelectFilm(id: string): void {
+            this.selectedFilm = shortFilmsDescription.find(x => x.id === id);
+        },
+    },
 });
 </script>
 
@@ -79,6 +105,17 @@ export default Vue.extend({
 }
 
 .body {
+}
+
+.films-display {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 40px;
+}
+
+.film-container {
+    padding: 25px;
 }
 
 .sort-panel-container {

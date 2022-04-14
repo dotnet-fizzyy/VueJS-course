@@ -1,4 +1,4 @@
-import { AppSettings } from '@/components/types/appSettings';
+import { AppSettings } from '@/types/appSettings';
 
 let appSettings: undefined | AppSettings = undefined;
 

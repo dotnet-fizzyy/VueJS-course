@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { getAppSettings } from '@/components/utils/appSettings';
+import { getAppSettings } from '@/utils/appSettings';
 
 export interface FilmShortDescriptionProps {
     id: string;

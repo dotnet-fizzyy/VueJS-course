@@ -25,7 +25,7 @@
 <script lang="ts">
 import FilmDescriptionItem from '@/components/films/FilmDescriptionItem.vue';
 import Vue from 'vue';
-import { getAppSettings } from '@/components/utils/appSettings';
+import { getAppSettings } from '@/utils/appSettings';
 
 export interface FilmFullDescriptionProps {
     name: string;

@@ -29,7 +29,6 @@ export default Vue.extend({
     align-items: center;
     justify-content: center;
     background-color: $light-grey;
-    height: 100%;
     width: 100%;
     box-sizing: border-box;
 }
