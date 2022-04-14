@@ -7,7 +7,26 @@
                         <logo />
                     </div>
 
-                    <search-panel />
+                    <template v-if="!!selectedFilm">
+                        <div :class="$style['search-icon-container']" v-on:click="onBackToSearch">
+                            <search-icon />
+                        </div>
+
+                        <film-full-description
+                            :id="selectedFilm.id"
+                            :name="selectedFilm.name"
+                            :short-description="selectedFilm.shortDescription"
+                            :full-description="selectedFilm.fullDescription"
+                            :release-year="selectedFilm.releaseYear"
+                            :poster-url="selectedFilm.posterUrl"
+                            :poster-alt="selectedFilm.posterAlt"
+                            :rating="selectedFilm.rating"
+                            :runtime="selectedFilm.runtime"
+                        />
+                    </template>
+                    <template v-else>
+                        <search-panel />
+                    </template>
                 </div>
             </div>
         </div>
@@ -39,16 +58,18 @@
 </template>
 
 <script lang="ts">
+import FilmFullDescription from '@/components/films/FilmFullDescription.vue';
 import FilmShortDescription from '@/components/films/FilmShortDescription.vue';
 import Logo from '@/assets/icons/Logo.vue';
+import SearchIcon from '@/assets/icons/Search.vue';
 import SearchPanel from '@/components/search/SearchPanel.vue';
 import SortPanel from '@/components/listing/SortPanel.vue';
 import Vue from 'vue';
-import { shortFilmsDescription } from '@/mocks/mockFilms';
+import { fullFilmsDescription, shortFilmsDescription } from '@/mocks/mockFilms';
 
 export default Vue.extend({
     name: 'StartView',
-    components: { FilmShortDescription, SearchPanel, SortPanel, Logo },
+    components: { SearchIcon, FilmFullDescription, FilmShortDescription, SearchPanel, SortPanel, Logo },
     data() {
         return {
             films: shortFilmsDescription,
@@ -57,7 +78,10 @@ export default Vue.extend({
     },
     methods: {
         onSelectFilm(id: string): void {
-            this.selectedFilm = shortFilmsDescription.find(x => x.id === id);
+            this.selectedFilm = fullFilmsDescription.find(x => x.id === id);
+        },
+        onBackToSearch(): void {
+            this.selectedFilm = null;
         },
     },
 });
@@ -74,7 +98,6 @@ export default Vue.extend({
 }
 
 .header {
-    height: 400px;
     background-image: url('https://res.cloudinary.com/djlynoeio/image/upload/v1649880735/vue/film-posters.jpg');
     background-position: center;
     background-repeat: no-repeat;
@@ -101,7 +124,14 @@ export default Vue.extend({
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
-    padding: 0 120px;
+    padding: 100px 120px;
+}
+
+.search-icon-container {
+    position: absolute;
+    right: 60px;
+    top: 20px;
+    cursor: pointer;
 }
 
 .body {

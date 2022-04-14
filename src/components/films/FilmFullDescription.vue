@@ -93,6 +93,7 @@ export default Vue.extend({
 @import '../../styles/fonts';
 
 .root {
+    width: 100%;
     display: flex;
     flex-direction: row;
 }
@@ -103,6 +104,7 @@ export default Vue.extend({
 }
 
 .film-description-container {
+    width: 100%;
     margin-left: 60px;
     display: flex;
     flex-direction: column;
