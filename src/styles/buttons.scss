@@ -1,0 +1,27 @@
+@import './variables';
+@import "./fonts";
+
+.button {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  font-family: $roboto-mono;
+  white-space: nowrap;
+  padding: 0 15px;
+  text-transform: uppercase;
+}
+
+.primary-button {
+  @extend .button;
+  background-color: $dark-pink;
+  border: 1px solid $dark-pink;
+}
+
+.secondary-button {
+  @extend .button;
+  background-color: getRgbaGrey(0.5);
+  border: 1px solid getRgbaGrey(0);
+}
