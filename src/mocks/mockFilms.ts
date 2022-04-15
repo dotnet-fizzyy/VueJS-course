@@ -89,7 +89,7 @@ const fourRooms: Film = {
     posterAlt: 'four_rooms',
     shortDescription: 'Comedy',
     runtime: 98.3,
-    rating: 5,
+    rating: 3.74,
     fullDescription: "Four interlocking tales that take place in a fading hotel on New Year's Eve.",
 };
 

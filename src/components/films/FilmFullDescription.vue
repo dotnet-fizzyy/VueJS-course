@@ -75,17 +75,6 @@ export default Vue.extend({
             required: true,
         },
     },
-    filters: {
-        precision(value: number, digits = 1): string {
-            return value.toLocaleString('en-US', { useGrouping: false, minimumFractionDigits: digits });
-        },
-        round(value: number): string {
-            return Math.ceil(value).toString();
-        },
-        string(value: unknown): string {
-            return value.toString();
-        },
-    },
 });
 </script>
 
