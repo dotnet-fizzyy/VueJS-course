@@ -9,7 +9,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-    name: 'Logo',
+    name: 'LogoIcon',
 });
 </script>
 

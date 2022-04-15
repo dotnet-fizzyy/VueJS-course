@@ -7,7 +7,7 @@ export interface Film {
     shortDescription: string;
 }
 
-export interface FilmShortDescription extends Film {}
+export interface FilmPreview extends Film {}
 
 export interface FilmFullDescription extends Film {
     rating: number;

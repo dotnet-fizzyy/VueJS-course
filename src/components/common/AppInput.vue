@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import ErrorIcon from '@/assets/icons/Error.vue';
+import ErrorIcon from '@/components/icons/ErrorIcon.vue';
 import Vue from 'vue';
 import { FontSize } from '@/enums/styles';
 

@@ -4,11 +4,11 @@
             <div :class="$style['header-background']">
                 <div :class="$style['search-container']">
                     <div :class="$style['logo-container']">
-                        <logo />
+                        <logo-icon />
                     </div>
 
                     <template v-if="!!selectedFilm">
-                        <div :class="$style['search-icon-container']" v-on:click="onBackToSearch">
+                        <div :class="$style['search-icon-container']" @click="onBackToSearch">
                             <search-icon />
                         </div>
 
@@ -45,31 +45,31 @@
                         :release-year="film.releaseYear"
                         :poster-url="film.posterUrl"
                         :poster-alt="film.posterAlt"
-                        @on-click="onSelectFilm"
+                        @select="selectFilm"
                     />
                 </div>
             </div>
         </div>
 
         <div :class="$style.footer">
-            <logo />
+            <logo-icon />
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import FilmFullDescription from '@/components/films/FilmFullDescription.vue';
-import FilmShortDescription from '@/components/films/FilmShortDescription.vue';
-import Logo from '@/assets/icons/Logo.vue';
-import SearchIcon from '@/assets/icons/Search.vue';
+import FilmShortDescription from '@/components/films/FilmPreview.vue';
+import LogoIcon from '@/components/icons/LogoIcon.vue';
+import SearchIcon from '@/components/icons/SearchIcon.vue';
 import SearchPanel from '@/components/search/SearchPanel.vue';
 import SortPanel from '@/components/listing/SortPanel.vue';
 import Vue from 'vue';
 import { fullFilmsDescription, shortFilmsDescription } from '@/mocks/mockFilms';
 
 export default Vue.extend({
-    name: 'StartView',
-    components: { SearchIcon, FilmFullDescription, FilmShortDescription, SearchPanel, SortPanel, Logo },
+    name: 'StartPage',
+    components: { LogoIcon, SearchIcon, FilmFullDescription, FilmShortDescription, SearchPanel, SortPanel },
     data() {
         return {
             films: shortFilmsDescription,
@@ -77,7 +77,7 @@ export default Vue.extend({
         };
     },
     methods: {
-        onSelectFilm(id: string): void {
+        selectFilm(id: string): void {
             this.selectedFilm = fullFilmsDescription.find(x => x.id === id);
         },
         onBackToSearch(): void {
@@ -88,7 +88,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" module scoped>
-@import '../../styles/fonts';
+@import '../styles/fonts';
 
 .root {
     width: 100%;

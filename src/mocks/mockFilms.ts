@@ -1,4 +1,4 @@
-import { Film, FilmFullDescription, FilmShortDescription } from '@/types/films';
+import { Film, FilmFullDescription, FilmPreview } from '@/types/films';
 
 const reservoirDog: Film = {
     id: 'R_D',
@@ -45,7 +45,7 @@ const killBillVol2: Film = {
     shortDescription: 'Action & Adventure',
 };
 
-export const shortFilmsDescription: FilmShortDescription[] = [
+export const shortFilmsDescription: FilmPreview[] = [
     reservoirDog,
     jackieBrown,
     pulpFiction,

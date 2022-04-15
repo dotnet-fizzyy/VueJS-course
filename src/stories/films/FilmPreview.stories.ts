@@ -1,16 +1,16 @@
-import FilmShortDescription, { FilmShortDescriptionProps } from '@/components/films/FilmShortDescription.vue';
+import FilmPreview, { FilmPreviewProps } from '@/components/films/FilmPreview.vue';
 import { action } from '@storybook/addon-actions';
 
 export default {
-    title: 'films/FilmShortDescription',
-    component: FilmShortDescription,
+    title: 'films/FilmPreview',
+    component: FilmPreview,
 };
 
 const Template = (args, { argTypes }) => ({
-    components: { FilmShortDescription },
+    components: { FilmPreview },
     props: Object.keys(argTypes),
     template:
-        '<div style="background-color: #232323; padding: 30px; width: fit-content"><FilmShortDescription v-bind="$props" @on-click="$props.onClick" /></div>',
+        '<div style="background-color: #232323; padding: 30px; width: fit-content"><FilmPreview v-bind="$props" @on-click="$props.onClick" /></div>',
 });
 
 export const Default = Template.bind({});
@@ -22,11 +22,11 @@ Default.args = {
     shortDescription: 'Oscar winning movie',
     releaseYear: 1994,
     onClick: action('onClick'),
-} as FilmShortDescriptionProps;
+} as FilmPreviewProps;
 
 export const FilmWithoutPoster = Template.bind({});
 FilmWithoutPoster.args = {
     ...Default.args,
     posterUrl: undefined,
     posterAlt: undefined,
-} as FilmShortDescriptionProps;
+} as FilmPreviewProps;

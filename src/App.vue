@@ -1,19 +1,19 @@
 <template>
     <div id="app">
         <div id="main">
-            <start-view />
+            <start-page />
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import StartView from '@/components/views/StartView.vue';
+import StartPage from '@/pages/StartPage.vue';
 import Vue from 'vue';
 
 export default Vue.extend({
     name: 'App',
     components: {
-        StartView,
+        StartPage,
     },
 });
 </script>
