@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import StartPage from '@/pages/StartPage.vue';
+import StartPage from '@/pages/start-page/StartPage.vue';
 import Vue from 'vue';
 
 export default Vue.extend({

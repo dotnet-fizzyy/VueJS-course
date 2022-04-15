@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.root" v-on:click="onClick(id)">
+    <div :class="$style.root" @click="onClick(id)">
         <img :class="$style.poster" :src="posterUrl" :alt="posterAlt" />
 
         <div :class="$style['poster-footer']">

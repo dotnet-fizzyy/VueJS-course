@@ -2,12 +2,7 @@
     <div :class="$style.root">
         <span v-if="!!label" :class="$style.label">{{ label }}</span>
 
-        <input
-            :class="[$style.input, $style[fontSize]]"
-            :placeholder="placeholder"
-            :value="value"
-            v-on:input="onChange"
-        />
+        <input :class="[$style.input, $style[fontSize]]" :placeholder="placeholder" :value="value" @input="onChange" />
 
         <div v-if="!!errorMessage" :class="$style['error-message-container']">
             <error-icon />
