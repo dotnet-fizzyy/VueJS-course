@@ -5,12 +5,11 @@ export interface Film {
     posterUrl?: string;
     posterAlt?: string;
     shortDescription: string;
-}
-
-export interface FilmPreview extends Film {}
-
-export interface FilmFullDescription extends Film {
     rating: number;
     runtime: number;
     fullDescription: string;
 }
+
+export interface FilmPreview extends Omit<Film, 'rating' | 'runtime' | 'fullDescription'> {}
+
+export interface FilmFullDescription extends Film {}
