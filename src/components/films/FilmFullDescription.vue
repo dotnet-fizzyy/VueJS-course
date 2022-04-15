@@ -5,14 +5,14 @@
         <div :class="$style['film-description-container']">
             <div :class="$style['name-container']">
                 <span :class="$style.name">{{ name }}</span>
-                <span :class="$style.rating">{{ formattedRating }}</span>
+                <span :class="$style.rating">{{ rating | precision }}</span>
             </div>
 
             <span :class="$style['short-description']">{{ shortDescription }}</span>
 
             <div :class="$style['summary-container']">
-                <film-description-item :key-label="formattedReleaseYear" additional-label="year" />
-                <film-description-item :key-label="formattedRuntime" additional-label="min" />
+                <film-description-item :key-label="releaseYear | string" additional-label="year" />
+                <film-description-item :key-label="runtime | round" additional-label="min" />
             </div>
 
             <span :class="$style.description">
@@ -75,15 +75,15 @@ export default Vue.extend({
             required: true,
         },
     },
-    computed: {
-        formattedReleaseYear(): string {
-            return this.releaseYear.toString();
+    filters: {
+        precision(value: number, digits = 1): string {
+            return value.toLocaleString('en-US', { useGrouping: false, minimumFractionDigits: digits });
         },
-        formattedRuntime(): string {
-            return this.runtime.toString();
+        round(value: number): string {
+            return Math.ceil(value).toString();
         },
-        formattedRating(): string {
-            return this.rating.toLocaleString('en-US', { useGrouping: false, minimumFractionDigits: 1 });
+        string(value: unknown): string {
+            return value.toString();
         },
     },
 });

@@ -68,12 +68,39 @@ const killBillVol2: Film = {
         'The Bride continues her quest of vengeance against her former boss and lover Bill, the reclusive bouncer Budd, and the treacherous, one-eyed Elle.',
 };
 
+const inception: Film = {
+    id: 'I_N',
+    name: 'Inception',
+    releaseYear: 2010,
+    posterUrl: 'https://res.cloudinary.com/djlynoeio/image/upload/v1650052175/vue/Inception.png',
+    posterAlt: 'inception',
+    shortDescription: 'Action & Adventure',
+    runtime: 173.5,
+    rating: 5,
+    fullDescription:
+        'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.',
+};
+
+const fourRooms: Film = {
+    id: 'F_R',
+    name: 'Four Rooms',
+    releaseYear: 1995,
+    posterUrl: 'https://res.cloudinary.com/djlynoeio/image/upload/v1650052175/vue/FourRooms.png',
+    posterAlt: 'four_rooms',
+    shortDescription: 'Comedy',
+    runtime: 98.3,
+    rating: 5,
+    fullDescription: "Four interlocking tales that take place in a fading hotel on New Year's Eve.",
+};
+
 export const shortFilmsDescription: FilmPreview[] = [
     mapFilmToFilmPreview(reservoirDog),
     mapFilmToFilmPreview(jackieBrown),
     mapFilmToFilmPreview(pulpFiction),
     mapFilmToFilmPreview(killBillVol1),
     mapFilmToFilmPreview(killBillVol2),
+    mapFilmToFilmPreview(inception),
+    mapFilmToFilmPreview(fourRooms),
 ];
 
 export const fullFilmsDescription: FilmFullDescription[] = [
@@ -82,4 +109,6 @@ export const fullFilmsDescription: FilmFullDescription[] = [
     pulpFiction,
     killBillVol1,
     killBillVol2,
+    inception,
+    fourRooms,
 ];
