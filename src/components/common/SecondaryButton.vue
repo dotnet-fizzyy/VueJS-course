@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import ButtonMixin from '@/mixins/ButtonMixin';
+import ButtonMixin from '@/mixins/buttonMixin';
 import Vue from 'vue';
 import { BaseButtonProps } from '@/types/button';
 

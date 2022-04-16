@@ -1,5 +1,5 @@
 import App from './App.vue';
-import FiltersPlugin from '@/plugins/FiltersPlugin';
+import FiltersPlugin from '@/plugins/filtersPlugin';
 import Vue from 'vue';
 
 Vue.config.productionTip = false;

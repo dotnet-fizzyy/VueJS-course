@@ -1,27 +1,31 @@
 <template>
-    <span :class="[$style.font, $style[fontStyle], $style[fontSize]]"><slot /></span>
+    <span v-font-size="fontSize" :class="[$style.font, $style[fontStyle]]"><slot /></span>
 </template>
 
 <script lang="ts">
+import FontDirective from '@/directives/fontSizeDirective';
 import Vue from 'vue';
-import { FontSize, FontStyle } from '@/enums/styles';
+import { FontStyle } from '@/enums/styles';
 
 export interface TitleProps {
     fontStyle?: FontStyle;
-    fontSize?: FontSize;
+    fontSize?: 14;
     title: string;
 }
 
 export default Vue.extend({
     name: 'Title',
+    directives: {
+        'font-size': FontDirective,
+    },
     props: {
         fontStyle: {
             type: String,
             default: FontStyle.Normal,
         },
         fontSize: {
-            type: String,
-            default: FontSize.Medium,
+            type: Number,
+            default: 14,
         },
     },
 });
