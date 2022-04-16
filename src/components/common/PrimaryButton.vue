@@ -1,5 +1,5 @@
 <template>
-    <button :class="[$style['primary-button'], $style[fontSize], $style[fontStyle]]" @click="click">
+    <button v-font-size="fontSize" :class="[$style['primary-button'], $style[fontStyle]]" @click="click">
         <slot />
     </button>
 </template>

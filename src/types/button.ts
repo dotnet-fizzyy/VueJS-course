@@ -1,8 +1,8 @@
-import { FontSize, FontStyle } from '@/enums/styles';
+import { FontStyle } from '@/enums/styles';
 
 export interface BaseButtonProps {
     title: string;
     fontStyle?: FontStyle;
-    fontSize?: FontSize;
+    fontSize?: number;
     click: () => void;
 }

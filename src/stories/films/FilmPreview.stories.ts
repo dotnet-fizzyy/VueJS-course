@@ -10,7 +10,7 @@ const Template = (args, { argTypes }) => ({
     components: { FilmPreview },
     props: Object.keys(argTypes),
     template:
-        '<div style="background-color: #232323; padding: 30px; width: fit-content"><FilmPreview v-bind="$props" @on-click="$props.onClick" /></div>',
+        '<div style="background-color: #232323; padding: 30px; width: fit-content"><FilmPreview v-bind="$props" @click="$props.onClick" /></div>',
 });
 
 export const Default = Template.bind({});

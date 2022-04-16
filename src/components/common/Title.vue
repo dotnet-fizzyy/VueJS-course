@@ -5,18 +5,19 @@
 <script lang="ts">
 import FontDirective from '@/directives/fontSizeDirective';
 import Vue from 'vue';
+import { FontSizeDefaultValue, FontSizeDirectiveName } from '@/constants/styles';
 import { FontStyle } from '@/enums/styles';
 
 export interface TitleProps {
     fontStyle?: FontStyle;
-    fontSize?: 14;
+    fontSize?: number;
     title: string;
 }
 
 export default Vue.extend({
     name: 'Title',
     directives: {
-        'font-size': FontDirective,
+        [FontSizeDirectiveName]: FontDirective,
     },
     props: {
         fontStyle: {
@@ -25,7 +26,7 @@ export default Vue.extend({
         },
         fontSize: {
             type: Number,
-            default: 14,
+            default: FontSizeDefaultValue,
         },
     },
 });

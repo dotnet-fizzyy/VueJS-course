@@ -2,7 +2,7 @@
     <div :class="$style.root">
         <span v-if="!!label" :class="$style.label">{{ label }}</span>
 
-        <input :class="[$style.input, $style[fontSize]]" :placeholder="placeholder" :value="value" @input="onChange" />
+        <input :class="$style.input" v-font-size="fontSize" :placeholder="placeholder" :value="value" @input="change" />
 
         <div v-if="!!errorMessage" :class="$style['error-message-container']">
             <error-icon />
@@ -14,20 +14,24 @@
 <script lang="ts">
 import ErrorIcon from '@/components/icons/ErrorIcon.vue';
 import Vue from 'vue';
-import { FontSize } from '@/enums/styles';
+import fontSizeDirective from '@/directives/fontSizeDirective';
+import { FontSizeDefaultValue, FontSizeDirectiveName } from '@/constants/styles';
 
 export interface AppInputProps {
     value: string;
     label?: string;
     placeholder?: string;
     errorMessage?: string;
-    fontSize?: FontSize;
-    onChange: (value: string) => void;
+    fontSize?: number;
+    change: (value: string) => void;
 }
 
 export default Vue.extend({
     name: 'AppInput',
     components: { ErrorIcon },
+    directives: {
+        [FontSizeDirectiveName]: fontSizeDirective,
+    },
     props: {
         label: {
             type: String,
@@ -40,18 +44,18 @@ export default Vue.extend({
             required: true,
         },
         fontSize: {
-            type: String,
-            default: FontSize.Medium,
+            type: Number,
+            default: FontSizeDefaultValue,
         },
         errorMessage: {
             type: String,
         },
     },
     methods: {
-        onChange(event): void {
+        change(event): void {
             const value: string = event.target.value;
 
-            this.$emit('on-change', value);
+            this.$emit('change', value);
         },
     },
 });

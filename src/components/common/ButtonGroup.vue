@@ -10,7 +10,7 @@
                         $style.option,
                     ]"
                     :key="index"
-                    @click="onClick(option.name)"
+                    @click="selectOption(option.name)"
                 >
                     {{ option.label }}
                 </button>
@@ -31,7 +31,7 @@ export interface ButtonGroupProps {
     label: string;
     options: ButtonGroupOption[];
     selectedOption: string;
-    onSelectOption: (value: string) => void;
+    selectOption: (value: string) => void;
 }
 
 export default Vue.extend({
@@ -50,12 +50,12 @@ export default Vue.extend({
         },
     },
     methods: {
-        onClick(option: string): void {
+        selectOption(option: string): void {
             if (option === this.selectedOption) {
                 return;
             }
 
-            this.$emit('on-select-option', option);
+            this.$emit('select-option', option);
         },
         isSelected(optionName: string): boolean {
             return optionName === this.selectedOption;

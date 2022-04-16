@@ -1,9 +1,10 @@
 import { DirectiveBinding } from 'vue/types/options';
 import { DirectiveFunction, DirectiveOptions } from 'vue';
+import { FontSizeDefaultValue } from '@/constants/styles';
 
 const FontSizeDirectiveOptions: DirectiveOptions | DirectiveFunction = {
     bind(el: HTMLElement, binding: DirectiveBinding) {
-        let fontSize: number = 14;
+        let fontSize: number = FontSizeDefaultValue;
 
         if (binding.value) {
             if (binding.value === typeof 'number') {

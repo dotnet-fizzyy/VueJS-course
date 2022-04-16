@@ -3,9 +3,3 @@ export enum FontStyle {
     Bold = 'bold',
     Italic = 'italic',
 }
-
-export enum FontSize {
-    Small = 'small',
-    Medium = 'medium',
-    Large = 'large',
-}
