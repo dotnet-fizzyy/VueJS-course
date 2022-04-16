@@ -1,6 +1,7 @@
 <template>
     <div :class="$style.root" @click="onClick(id)">
-        <img :class="$style.poster" :src="posterUrl" :alt="posterAlt" />
+        <!--v-lazy is registered as plugin-->
+        <img v-lazy="posterUrl" :class="$style.poster" :alt="posterAlt" />
 
         <div :class="$style['poster-footer']">
             <div :class="$style['poster-footer-description-container']">
