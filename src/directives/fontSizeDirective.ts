@@ -1,6 +1,7 @@
 import { DefaultFontSize } from '@/constants/styles';
 import { DirectiveBinding } from 'vue/types/options';
 import { DirectiveFunction, DirectiveOptions } from 'vue';
+import { getAppSettings } from '@/utils/appSettings';
 
 export const FontSizeDirectiveName: string = 'font-size';
 
@@ -11,8 +12,12 @@ export const FontSizeDirective: DirectiveOptions | DirectiveFunction = {
         if (binding.value) {
             if (binding.value === typeof 'number') {
                 fontSize = binding.value;
-            } else {
+            } else if (!Number.isNaN(binding.value)) {
                 fontSize = Number(binding.value);
+            } else {
+                if (getAppSettings().isDevelopmentMode) {
+                    console.warn(`FontSizeDirective::bind: ${binding.value} cannot be converted to number`);
+                }
             }
         }
 
