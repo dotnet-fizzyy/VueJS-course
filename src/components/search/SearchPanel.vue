@@ -8,11 +8,11 @@
                     :value="searchValue"
                     placeholder="Search"
                     :font-size="inputFontSize"
-                    @on-change="onChangeSearchQuery"
+                    @change="onChangeSearchQuery"
                 />
             </div>
             <div :class="$style['search-button-container']">
-                <PrimaryButton :font-size="inputFontSize" @on-click="onSearch">Search</PrimaryButton>
+                <PrimaryButton :font-size="inputFontSize" @click="onSearch">Search</PrimaryButton>
             </div>
         </div>
 
@@ -21,7 +21,7 @@
                 label="Search By"
                 :options="filterOptions"
                 :selected-option="selectedFilterOption"
-                @on-select-option="onChangeFilterOption"
+                @select-option="onChangeFilterOption"
             />
         </div>
     </div>
@@ -32,7 +32,6 @@ import AppInput from '@/components/common/AppInput.vue';
 import ButtonGroup, { ButtonGroupOption } from '@/components/common/ButtonGroup.vue';
 import PrimaryButton from '@/components/common/PrimaryButton.vue';
 import Vue from 'vue';
-import { FontSize } from '@/enums/styles';
 
 const AvailableOptionGroups: ButtonGroupOption[] = [
     { label: 'Title', name: 'tl' },
@@ -51,16 +50,12 @@ export default Vue.extend({
             filterOptions: AvailableOptionGroups,
             selectedFilterOption: AvailableOptionGroups[0].name,
             searchValue: '',
+            inputFontSize: 24,
         };
-    },
-    computed: {
-        inputFontSize(): FontSize {
-            return FontSize.Large;
-        },
     },
     methods: {
         onSearch(): void {
-            this.$emit('on-search', this.searchValue, this.selectedFilterOption);
+            this.$emit('search', this.searchValue, this.selectedFilterOption);
         },
         onChangeFilterOption(option: string): void {
             this.selectedFilterOption = option;

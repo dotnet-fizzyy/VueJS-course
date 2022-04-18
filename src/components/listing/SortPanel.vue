@@ -6,7 +6,7 @@
             label="Sort By"
             :options="options"
             :selected-option="selectedOption"
-            @on-select-option="onSelectOption"
+            @select-option="onSelectOption"
         />
     </div>
 </template>

@@ -1,37 +1,19 @@
 <template>
-    <button :class="[$style['secondary-button'], $style[fontSize], $style[fontStyle]]" @click="onClick">
+    <button v-font-size="fontSize" :class="[$style['secondary-button'], $style[fontStyle]]" @click="click">
         <slot />
     </button>
 </template>
 
 <script lang="ts">
+import ButtonMixin from '@/mixins/buttonMixin';
 import Vue from 'vue';
-import { FontSize, FontStyle } from '@/enums/styles';
+import { BaseButtonProps } from '@/types/button';
 
-export interface SecondaryButtonProps {
-    title: string;
-    fontStyle?: FontStyle;
-    fontSize?: FontSize;
-    onClick: () => void;
-}
+export interface SecondaryButtonProps extends BaseButtonProps {}
 
 export default Vue.extend({
     name: 'SecondaryButton',
-    props: {
-        fontSize: {
-            type: String,
-            default: FontSize.Medium,
-        },
-        fontStyle: {
-            type: String,
-            default: FontStyle.Normal,
-        },
-    },
-    methods: {
-        onClick() {
-            this.$emit('on-click');
-        },
-    },
+    mixins: [ButtonMixin],
 });
 </script>
 

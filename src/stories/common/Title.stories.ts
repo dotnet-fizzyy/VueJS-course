@@ -1,5 +1,6 @@
 import Title, { TitleProps } from '@/components/common/Title.vue';
-import { FontSize, FontStyle } from '@/enums/styles';
+import { DefaultFontSize, DefaultFontStyle } from '@/constants/styles';
+import { FontStyle } from '@/enums/styles';
 
 export default {
     title: 'common/Title',
@@ -13,39 +14,33 @@ const Template = (args, { argTypes }) => ({
         '<div style="background-color: #555555; width: fit-content; padding: 10px"><Title v-bind="$props">{{ $props.title }}</Title></div>',
 });
 
-export const NormalFontStyle = Template.bind({});
-NormalFontStyle.args = {
+export const DefaultFontSizeAndStyle = Template.bind({});
+DefaultFontSizeAndStyle.args = {
     title: 'Hello world!',
-    fontStyle: FontStyle.Normal,
-    fontSize: FontSize.Medium,
+    fontStyle: DefaultFontStyle,
+    fontSize: DefaultFontSize,
 } as TitleProps;
 
 export const BoldFontStyle = Template.bind({});
 BoldFontStyle.args = {
-    ...NormalFontStyle.args,
+    ...DefaultFontSizeAndStyle.args,
     fontStyle: FontStyle.Bold,
 } as TitleProps;
 
 export const ItalicFontStyle = Template.bind({});
 ItalicFontStyle.args = {
-    ...NormalFontStyle.args,
+    ...DefaultFontSizeAndStyle.args,
     fontStyle: FontStyle.Italic,
 } as TitleProps;
 
 export const SmallFontSize = Template.bind({});
 SmallFontSize.args = {
-    ...NormalFontStyle.args,
-    fontSize: FontSize.Small,
-} as TitleProps;
-
-export const MediumFontSize = Template.bind({});
-MediumFontSize.args = {
-    ...NormalFontStyle.args,
-    fontSize: FontSize.Medium,
+    ...DefaultFontSizeAndStyle.args,
+    fontSize: 12,
 } as TitleProps;
 
 export const LargeFontSize = Template.bind({});
 LargeFontSize.args = {
-    ...NormalFontStyle.args,
-    fontSize: FontSize.Large,
+    ...DefaultFontSizeAndStyle.args,
+    fontSize: 20,
 } as TitleProps;

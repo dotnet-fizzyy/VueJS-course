@@ -36,14 +36,15 @@ export default Vue.extend({
             type: String,
             required: true,
         },
-        backToSearch: {
-            type: Function,
-            required: true,
-        },
     },
     computed: {
         selectedFilm() {
             return fullFilmsDescription.find(x => x.id === this.selectedFilmId);
+        },
+    },
+    methods: {
+        backToSearch(): void {
+            this.$emit('back-to-search');
         },
     },
 });

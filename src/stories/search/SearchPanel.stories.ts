@@ -10,7 +10,7 @@ const Template = (args, { argTypes }) => ({
     components: { SearchPanel },
     props: Object.keys(argTypes),
     template:
-        '<div style="background-color: #555555; padding: 30px; width: 700px;"><SearchPanel @on-search="$props.onSearch" /></div>',
+        '<div style="background-color: #555555; padding: 30px; width: 700px;"><SearchPanel @search="$props.onSearch" /></div>',
 });
 
 export const Default = Template.bind({});

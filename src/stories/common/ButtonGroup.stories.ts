@@ -10,7 +10,7 @@ const Template = (args, { argTypes }) => ({
     components: { ButtonGroup },
     props: Object.keys(argTypes),
     template:
-        '<div style="max-width: 400px; width: 100%; background-color: #555555; padding: 10px"><ButtonGroup v-bind="$props" @on-select-option="onSelectOption" /></div>',
+        '<div style="max-width: 400px; width: 100%; background-color: #555555; padding: 10px"><ButtonGroup v-bind="$props" @select-option="selectOption" /></div>',
 });
 
 export const OptionsGroupWithLabel = Template.bind({});
@@ -21,7 +21,7 @@ OptionsGroupWithLabel.args = {
         { label: 'Second', name: 'second' },
     ] as ButtonGroupOption[],
     selectedOption: 'first',
-    onSelectOption: action('selected-option'),
+    selectOption: action('selected-option'),
 } as ButtonGroupProps;
 
 export const OptionsGroupWithoutLabel = Template.bind({});
