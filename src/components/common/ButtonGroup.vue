@@ -10,7 +10,7 @@
                         $style.option,
                     ]"
                     :key="index"
-                    v-on:click="onClick(option.name)"
+                    @click="onClick(option.name)"
                 >
                     {{ option.label }}
                 </button>

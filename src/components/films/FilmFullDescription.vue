@@ -25,7 +25,7 @@
 <script lang="ts">
 import FilmDescriptionItem from '@/components/films/FilmDescriptionItem.vue';
 import Vue from 'vue';
-import { getAppSettings } from '@/components/utils/appSettings';
+import { getAppSettings } from '@/utils/appSettings';
 
 export interface FilmFullDescriptionProps {
     name: string;
@@ -93,6 +93,7 @@ export default Vue.extend({
 @import '../../styles/fonts';
 
 .root {
+    width: 100%;
     display: flex;
     flex-direction: row;
 }
@@ -103,6 +104,7 @@ export default Vue.extend({
 }
 
 .film-description-container {
+    width: 100%;
     margin-left: 60px;
     display: flex;
     flex-direction: column;

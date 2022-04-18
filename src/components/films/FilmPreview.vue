@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.root" v-on:click="onClick(id)">
+    <div :class="$style.root" @click="onClick(id)">
         <img :class="$style.poster" :src="posterUrl" :alt="posterAlt" />
 
         <div :class="$style['poster-footer']">
@@ -16,9 +16,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { getAppSettings } from '@/components/utils/appSettings';
+import { getAppSettings } from '@/utils/appSettings';
 
-export interface FilmShortDescriptionProps {
+export interface FilmPreviewProps {
     id: string;
     posterUrl?: string;
     posterAlt?: string;
@@ -29,7 +29,7 @@ export interface FilmShortDescriptionProps {
 }
 
 export default Vue.extend({
-    name: 'FilmShortDescription',
+    name: 'FilmPreview',
     props: {
         id: {
             type: String,
@@ -58,7 +58,7 @@ export default Vue.extend({
     },
     methods: {
         onClick(id: string): void {
-            this.$emit('on-click', id);
+            this.$emit('select', id);
         },
     },
 });
