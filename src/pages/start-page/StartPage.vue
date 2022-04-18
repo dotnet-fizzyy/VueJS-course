@@ -1,6 +1,6 @@
 <template>
     <div :class="$style.root">
-        <start-page-header :selected-film-id="selectedFilmId" :back-to-search="backToSearch" />
+        <start-page-header :selected-film-id="selectedFilmId" @back-to-search="backToSearch" />
 
         <start-page-body :select-film="selectFilm" />
 
