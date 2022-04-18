@@ -12,7 +12,7 @@
 
             <div :class="$style['summary-container']">
                 <film-description-item :key-label="releaseYear | string" additional-label="year" />
-                <film-description-item :key-label="runtime | round" additional-label="min" />
+                <film-description-item :key-label="runtime | round('up')" additional-label="min" />
             </div>
 
             <span :class="$style.description">

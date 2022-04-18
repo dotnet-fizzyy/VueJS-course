@@ -1,17 +1,12 @@
 import _Vue from 'vue';
 import { PluginObject } from '@/types/plugins';
+import { castNumberToStringWithPrecision, castNumberToStringWithRound, castToString } from '@/utils';
 
 const FiltersPlugin: PluginObject = {
     install: (Vue: typeof _Vue, options?: unknown) => {
-        Vue.filter('precision', (value: number, digits: number = 1): string =>
-            value.toLocaleString('en-US', {
-                useGrouping: false,
-                minimumFractionDigits: digits,
-                maximumFractionDigits: digits,
-            })
-        );
-        Vue.filter('round', (value: number): string => Math.ceil(value).toString());
-        Vue.filter('string', (value: unknown): string => value.toString());
+        Vue.filter('precision', castNumberToStringWithPrecision);
+        Vue.filter('round', castNumberToStringWithRound);
+        Vue.filter('string', castToString);
     },
 };
 
