@@ -15,6 +15,7 @@ const reservoirDog: Film = {
         ' A group of thieves assemble to pull of the perfect diamond heist. It turns into a bloody ambush when one\n' +
         "                of the men turns out to be a police informer. As the group begins to question each other's guilt, the\n" +
         '                heightening tensions threaten to explode the situation before the police step in.',
+    genres: ['Action', 'Thriller'],
 };
 
 const jackieBrown: Film = {
@@ -28,6 +29,7 @@ const jackieBrown: Film = {
     rating: 4,
     fullDescription:
         'A flight attendant with a criminal past gets nabbed by the FBI for smuggling. Under pressure to become an informant against the drug dealer she works for, she must find a way to secure her future without getting killed.',
+    genres: ['Action', 'Thriller'],
 };
 
 const pulpFiction: Film = {
@@ -41,6 +43,7 @@ const pulpFiction: Film = {
     rating: 5,
     fullDescription:
         'Pulp Fiction is a 1994 American black comedy crime film written and directed by Quentin Tarantino, who conceived it with Roger Avary. Starring John Travolta, Samuel L. Jackson, Bruce Willis, Tim Roth, Ving Rhames, and Uma Thurman, it tells several stories of criminal Los Angeles. The title refers to the pulp magazines and hardboiled crime novels popular during the mid-20th century, known for their graphic violence and punchy dialogue.',
+    genres: ['Action'],
 };
 
 const killBillVol1: Film = {
@@ -54,6 +57,7 @@ const killBillVol1: Film = {
     rating: 4.2,
     fullDescription:
         'After awakening from a four-year coma, a former assassin wreaks vengeance on the team of assassins who betrayed her.',
+    genres: ['Action', 'Thriller'],
 };
 
 const killBillVol2: Film = {
@@ -67,6 +71,7 @@ const killBillVol2: Film = {
     rating: 4.6,
     fullDescription:
         'The Bride continues her quest of vengeance against her former boss and lover Bill, the reclusive bouncer Budd, and the treacherous, one-eyed Elle.',
+    genres: ['Action', 'Thriller'],
 };
 
 const inception: Film = {
@@ -80,6 +85,7 @@ const inception: Film = {
     rating: 5,
     fullDescription:
         'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.',
+    genres: ['Action', 'Adventure'],
 };
 
 const fourRooms: Film = {
@@ -92,6 +98,7 @@ const fourRooms: Film = {
     runtime: 98.3,
     rating: 3.74,
     fullDescription: "Four interlocking tales that take place in a fading hotel on New Year's Eve.",
+    genres: ['Comedy'],
 };
 
 export const shortFilmsDescription: FilmPreview[] = [

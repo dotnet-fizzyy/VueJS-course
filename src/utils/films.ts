@@ -20,4 +20,5 @@ export const mapFilmResponseToFilm = (filmRes): Film => ({
     fullDescription: filmRes.overview ?? '',
     rating: filmRes.vote_average ?? 0,
     runtime: filmRes.runtime ?? 0,
+    genres: filmRes.genres,
 });
