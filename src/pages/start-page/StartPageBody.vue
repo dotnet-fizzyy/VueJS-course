@@ -1,12 +1,12 @@
 <template>
     <div :class="$style.body">
         <div :class="$style['sort-panel-container']">
-            <sort-panel :available-items-count="7" />
+            <sort-panel :available-items-count="availableItemsCount" />
         </div>
 
         <div :class="$style['films-display']">
             <div v-for="film in films" :key="film.id" :class="$style['film-container']">
-                <film-short-description
+                <film-preview
                     :id="film.id"
                     :name="film.name"
                     :short-description="film.shortDescription"
@@ -21,25 +21,27 @@
 </template>
 
 <script lang="ts">
-import FilmShortDescription from '@/components/films/FilmPreview.vue';
+import FilmPreview from '@/components/films/FilmPreview.vue';
 import SortPanel from '@/components/listing/SortPanel.vue';
 import Vue from 'vue';
-import { shortFilmsDescription } from '@/mocks/mockFilms';
+import { FilmPreview as FilmPreviewType } from '@/types/films';
 
 export default Vue.extend({
     name: 'StartPageBody',
-    components: { SortPanel, FilmShortDescription },
+    components: { FilmPreview, SortPanel },
     props: {
         selectFilm: {
             type: Function,
             required: true,
         },
     },
-    data() {
-        return {
-            availableItemsCount: shortFilmsDescription.length,
-            films: shortFilmsDescription,
-        };
+    computed: {
+        films(): FilmPreviewType[] {
+            return this.$store.getters['films/filmsPreview'];
+        },
+        availableItemsCount(): number {
+            return this.$store.getters['films/count'];
+        },
     },
 });
 </script>

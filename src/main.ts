@@ -2,6 +2,7 @@ import App from './App.vue';
 import FiltersPlugin from '@/plugins/filtersPlugin';
 import Vue from 'vue';
 import VueLazyload, { VueLazyloadOptions } from 'vue-lazyload';
+import store from '@/vuex/store';
 
 Vue.config.productionTip = false;
 
@@ -13,4 +14,5 @@ Vue.use(VueLazyload, {
 
 new Vue({
     render: h => h(App),
+    store,
 }).$mount('#app');
