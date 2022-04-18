@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.body">
+    <div :class="$style.root">
         <div :class="$style['sort-panel-container']">
             <sort-panel :available-items-count="availableItemsCount" />
         </div>

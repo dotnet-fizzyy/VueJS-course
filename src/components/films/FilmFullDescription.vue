@@ -111,6 +111,7 @@ export default Vue.extend({
     font-size: 46px;
     color: $white;
     margin-right: 30px;
+    width: fit-content;
 }
 
 .rating {

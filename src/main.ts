@@ -3,6 +3,7 @@ import FiltersPlugin from '@/plugins/filtersPlugin';
 import Vue from 'vue';
 import VueLazyload, { VueLazyloadOptions } from 'vue-lazyload';
 import store from '@/vuex/store';
+import { getAppSettings } from '@/utils/appSettings';
 
 Vue.config.productionTip = false;
 
@@ -11,7 +12,7 @@ Vue.use(VueLazyload, {
     preLoad: 1,
     lazyComponent: true,
     attempt: 1,
-    error: '/not-found.png',
+    error: getAppSettings().defaultPosterUrl,
 } as VueLazyloadOptions);
 
 new Vue({
