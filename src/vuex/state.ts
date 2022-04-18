@@ -1,9 +1,6 @@
 import { ActionContext, CommitOptions, DispatchOptions, Store as VuexStore } from 'vuex';
-import { Film, FilmFullDescription, FilmPreview } from '@/types/films';
+import { FilmsGetters, FilmsState } from '@/vuex/modules/films/types';
 
-/**
- *  Commonly used types
- */
 export interface State {
     films: FilmsState;
 }
@@ -39,17 +36,3 @@ export type Store = Omit<VuexStore<State>, 'getters' | 'commit' | 'dispatch'> & 
         [K in keyof Getters]: ReturnType<Getters[K]>;
     };
 };
-
-/**
- *  Entities types
- */
-export interface FilmsState {
-    items: Film[];
-    length: number;
-}
-
-export interface FilmsGetters {
-    filmsPreview: (state: FilmsState) => FilmPreview[];
-    count: (state: FilmsState) => number;
-    fullDescriptionFilmById: (state: FilmsState) => (id: string) => FilmFullDescription;
-}

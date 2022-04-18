@@ -1,6 +1,8 @@
 import { ActionTree, GetterTree, MutationTree } from 'vuex';
-import { Actions, FilmsGetters, FilmsState, Mutations } from '@/vuex/state';
+import { Actions, Mutations } from '@/vuex/state';
 import { FilmFullDescription, FilmPreview } from '@/types/films';
+import { FilmGetterKeys } from '@/enums/vuex';
+import { FilmsGetters, FilmsState } from '@/vuex/modules/films/types';
 import { fullFilmsDescription } from '@/mocks/mockFilms';
 import { mapFilmToFilmPreview } from '@/utils/films';
 
@@ -10,13 +12,13 @@ const state: FilmsState = {
 };
 
 const getters: GetterTree<FilmsState, FilmsState> & FilmsGetters = {
-    filmsPreview: (state: FilmsState): FilmPreview[] => {
+    [FilmGetterKeys.FilmsPreviews]: (state: FilmsState): FilmPreview[] => {
         return state.items.map(mapFilmToFilmPreview);
     },
-    count: (state: FilmsState): number => {
+    [FilmGetterKeys.AvailableCount]: (state: FilmsState): number => {
         return state.length;
     },
-    fullDescriptionFilmById:
+    [FilmGetterKeys.GetFilmFullDescriptionById]:
         (state: FilmsState) =>
         (id: string): FilmFullDescription => {
             return state.items.find(film => film.id === id);
