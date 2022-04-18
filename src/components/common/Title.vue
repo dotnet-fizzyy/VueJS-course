@@ -3,9 +3,9 @@
 </template>
 
 <script lang="ts">
-import FontDirective from '@/directives/fontSizeDirective';
 import Vue from 'vue';
-import { FontSizeDefaultValue, FontSizeDirectiveName } from '@/constants/styles';
+import { DefaultFontSize, DefaultFontStyle } from '@/constants/styles';
+import { FontSizeDirective, FontSizeDirectiveName } from '@/directives/fontSizeDirective';
 import { FontStyle } from '@/enums/styles';
 
 export interface TitleProps {
@@ -17,16 +17,16 @@ export interface TitleProps {
 export default Vue.extend({
     name: 'Title',
     directives: {
-        [FontSizeDirectiveName]: FontDirective,
+        [FontSizeDirectiveName]: FontSizeDirective,
     },
     props: {
         fontStyle: {
             type: String,
-            default: FontStyle.Normal,
+            default: DefaultFontStyle,
         },
         fontSize: {
             type: Number,
-            default: FontSizeDefaultValue,
+            default: DefaultFontSize,
         },
     },
 });

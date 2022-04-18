@@ -1,10 +1,12 @@
+import { DefaultFontSize } from '@/constants/styles';
 import { DirectiveBinding } from 'vue/types/options';
 import { DirectiveFunction, DirectiveOptions } from 'vue';
-import { FontSizeDefaultValue } from '@/constants/styles';
 
-const FontSizeDirectiveOptions: DirectiveOptions | DirectiveFunction = {
+export const FontSizeDirectiveName: string = 'font-size';
+
+export const FontSizeDirective: DirectiveOptions | DirectiveFunction = {
     bind(el: HTMLElement, binding: DirectiveBinding) {
-        let fontSize: number = FontSizeDefaultValue;
+        let fontSize: number = DefaultFontSize;
 
         if (binding.value) {
             if (binding.value === typeof 'number') {
@@ -17,5 +19,3 @@ const FontSizeDirectiveOptions: DirectiveOptions | DirectiveFunction = {
         el.style.fontSize = `${fontSize}px`;
     },
 };
-
-export default FontSizeDirectiveOptions;

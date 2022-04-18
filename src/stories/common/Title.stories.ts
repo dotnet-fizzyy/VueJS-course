@@ -1,5 +1,5 @@
 import Title, { TitleProps } from '@/components/common/Title.vue';
-import { FontSizeDefaultValue } from '@/constants/styles';
+import { DefaultFontSize, DefaultFontStyle } from '@/constants/styles';
 import { FontStyle } from '@/enums/styles';
 
 export default {
@@ -17,8 +17,8 @@ const Template = (args, { argTypes }) => ({
 export const DefaultFontSizeAndStyle = Template.bind({});
 DefaultFontSizeAndStyle.args = {
     title: 'Hello world!',
-    fontStyle: FontStyle.Normal,
-    fontSize: FontSizeDefaultValue,
+    fontStyle: DefaultFontStyle,
+    fontSize: DefaultFontSize,
 } as TitleProps;
 
 export const BoldFontStyle = Template.bind({});

@@ -1,6 +1,5 @@
 import PrimaryButton, { PrimaryButtonProps } from '@/components/common/PrimaryButton.vue';
-import { FontSizeDefaultValue } from '@/constants/styles';
-import { FontStyle } from '@/enums/styles';
+import { DefaultFontSize, DefaultFontStyle } from '@/constants/styles';
 import { action } from '@storybook/addon-actions';
 
 export default {
@@ -18,7 +17,7 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
     title: 'Hello world!',
-    fontStyle: FontStyle.Normal,
-    fontSize: FontSizeDefaultValue,
+    fontStyle: DefaultFontStyle,
+    fontSize: DefaultFontSize,
     click: action('clicked'),
 } as PrimaryButtonProps;

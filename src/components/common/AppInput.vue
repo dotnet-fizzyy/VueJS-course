@@ -14,8 +14,8 @@
 <script lang="ts">
 import ErrorIcon from '@/components/icons/ErrorIcon.vue';
 import Vue from 'vue';
-import fontSizeDirective from '@/directives/fontSizeDirective';
-import { FontSizeDefaultValue, FontSizeDirectiveName } from '@/constants/styles';
+import { DefaultFontSize } from '@/constants/styles';
+import { FontSizeDirective, FontSizeDirectiveName } from '@/directives/fontSizeDirective';
 
 export interface AppInputProps {
     value: string;
@@ -30,7 +30,7 @@ export default Vue.extend({
     name: 'AppInput',
     components: { ErrorIcon },
     directives: {
-        [FontSizeDirectiveName]: fontSizeDirective,
+        [FontSizeDirectiveName]: FontSizeDirective,
     },
     props: {
         label: {
@@ -45,7 +45,7 @@ export default Vue.extend({
         },
         fontSize: {
             type: Number,
-            default: FontSizeDefaultValue,
+            default: DefaultFontSize,
         },
         errorMessage: {
             type: String,
