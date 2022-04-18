@@ -11,6 +11,7 @@ Vue.use(VueLazyload, {
     preLoad: 1,
     lazyComponent: true,
     attempt: 1,
+    error: '/not-found.png',
 } as VueLazyloadOptions);
 
 new Vue({
