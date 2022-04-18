@@ -64,6 +64,8 @@ export default Vue.extend({
 
 .film-container {
     padding: 25px;
+    max-width: 370px;
+    box-sizing: border-box;
 }
 
 .sort-panel-container {

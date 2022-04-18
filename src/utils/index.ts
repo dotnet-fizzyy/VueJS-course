@@ -21,3 +21,16 @@ export const castNumberToStringWithRound = (value: number, direction: 'up' | 'do
 };
 
 export const getGetterKey = (module: string, key: FilmGetterKeys): string => `${module}/${key}`;
+
+export const getYearFromStringDate = (value: string): number => {
+    if (!value) {
+        return 0;
+    }
+
+    const date = new Date(value);
+    if (!date) {
+        return 0;
+    }
+
+    return date.getFullYear();
+};

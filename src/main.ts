@@ -10,6 +10,7 @@ Vue.use(FiltersPlugin);
 Vue.use(VueLazyload, {
     preLoad: 1,
     lazyComponent: true,
+    attempt: 1,
 } as VueLazyloadOptions);
 
 new Vue({

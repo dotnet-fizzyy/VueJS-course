@@ -3,12 +3,14 @@ import { Actions, Mutations } from '@/vuex/state';
 import { FilmFullDescription, FilmPreview } from '@/types/films';
 import { FilmGetterKeys } from '@/enums/vuex';
 import { FilmsGetters, FilmsState } from '@/vuex/modules/films/types';
-import { fullFilmsDescription } from '@/mocks/mockFilms';
+import { getMockedFilmsFromJson } from '@/mocks/mockFilms';
 import { mapFilmToFilmPreview } from '@/utils/films';
 
+const mockedFilms = getMockedFilmsFromJson();
+
 const state: FilmsState = {
-    items: fullFilmsDescription,
-    length: fullFilmsDescription.length,
+    items: mockedFilms,
+    length: mockedFilms.length,
 };
 
 const getters: GetterTree<FilmsState, FilmsState> & FilmsGetters = {

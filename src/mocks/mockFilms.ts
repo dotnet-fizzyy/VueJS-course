@@ -1,5 +1,6 @@
+import MoviesJson from './movies.json';
 import { Film, FilmFullDescription, FilmPreview } from '@/types/films';
-import { mapFilmToFilmPreview } from '@/utils/films';
+import { mapFilmResponseToFilm, mapFilmToFilmPreview } from '@/utils/films';
 
 const reservoirDog: Film = {
     id: 'R_D',
@@ -112,3 +113,11 @@ export const fullFilmsDescription: FilmFullDescription[] = [
     inception,
     fourRooms,
 ];
+
+export const getMockedFilmsFromJson = (): Film[] => {
+    if (!Array.isArray(MoviesJson)) {
+        return [];
+    }
+
+    return MoviesJson.map(mapFilmResponseToFilm);
+};
