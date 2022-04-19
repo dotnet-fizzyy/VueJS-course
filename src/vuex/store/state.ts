@@ -1,8 +1,5 @@
 import { ActionContext, CommitOptions, DispatchOptions, Store as VuexStore } from 'vuex';
-import { FilmsGetters } from '@/vuex/modules/films/getters';
 import { FilmsState } from '@/vuex/modules/films/state';
-
-export interface BaseState {}
 
 export interface BaseAction {
     type: string;
@@ -12,19 +9,17 @@ export interface State {
     films: FilmsState;
 }
 
-export interface Mutations<S = BaseState> {
-    [key: string]: (state: S, payload: unknown) => void;
+export interface Mutations {
+    [key: string]: (state: unknown, payload: unknown) => void;
 }
 
 type AugmentedActionContext = {
     commit<K extends keyof Mutations>(BaseAction): ReturnType<Mutations[K]>;
-} & Omit<ActionContext<BaseState, BaseState>, 'commit'>;
+} & Omit<ActionContext<unknown, unknown>, 'commit'>;
 
 export interface Actions {
     [key: string]: ({ commit }: AugmentedActionContext, payload: unknown) => Promise<void> | void;
 }
-
-type Getters = FilmsGetters;
 
 export type Store = Omit<VuexStore<State>, 'getters' | 'commit' | 'dispatch'> & {
     commit<K extends keyof Mutations, P extends Parameters<Mutations[K]>[1]>(
@@ -40,6 +35,6 @@ export type Store = Omit<VuexStore<State>, 'getters' | 'commit' | 'dispatch'> & 
     ): ReturnType<Actions[K]>;
 } & {
     getters: {
-        [K in keyof Getters]: ReturnType<Getters[K]>;
+        [K in keyof Record<string, unknown>]: ReturnType<Record<string, any>[K]>;
     };
 };

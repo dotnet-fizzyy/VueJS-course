@@ -26,7 +26,8 @@ import LogoIcon from '@/components/icons/LogoIcon.vue';
 import SearchIcon from '@/components/icons/SearchIcon.vue';
 import SearchPanel from '@/components/search/SearchPanel.vue';
 import Vue from 'vue';
-import { FilmGetterProps, FilmsGetterModuleProps } from '@/vuex/modules/films/getters';
+import { FilmGetterProps } from '@/vuex/modules/films/getters';
+import { getFilmGetter } from '@/vuex/store';
 
 export default Vue.extend({
     name: 'StartPageHeader',
@@ -39,9 +40,7 @@ export default Vue.extend({
     },
     computed: {
         selectedFilm() {
-            return this.$store.getters[FilmsGetterModuleProps[FilmGetterProps.GetFilmFullDescriptionById]](
-                this.selectedFilmId
-            );
+            return this.$store.getters[getFilmGetter(FilmGetterProps.GetFilmFullDescriptionById)](this.selectedFilmId);
         },
     },
     methods: {

@@ -1,8 +1,8 @@
 import { ActionTree } from 'vuex';
 import { Actions, BaseAction } from '@/vuex/store/state';
-import { FilmsModuleName, FilmsState } from '@/vuex/modules/films/state';
+import { FilmsState } from '@/vuex/modules/films/state';
 import { changeFilmSearchMutationPayload } from '@/vuex/modules/films/mutations';
-import { getModuleKey } from '@/utils';
+import { getFilmGetter } from '@/vuex/store';
 
 /**
  *  Actions Types
@@ -22,7 +22,7 @@ export interface ChangeSearchActionPayload extends BaseAction {
  *  Payloads
  */
 export const changeSearchActionPayload = (value: string): ChangeSearchActionPayload => ({
-    type: getModuleKey(FilmsModuleName, FilmActionTypes.ChangeSearch),
+    type: getFilmGetter(FilmActionTypes.ChangeSearch),
     value,
 });
 

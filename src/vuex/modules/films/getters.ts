@@ -1,7 +1,6 @@
 import { FilmFullDescription, FilmPreview } from '@/types/films';
-import { FilmsModuleName, FilmsState } from '@/vuex/modules/films/state';
+import { FilmsState } from '@/vuex/modules/films/state';
 import { GetterTree } from 'vuex';
-import { getModuleKey } from '@/utils';
 import { mapFilmToFilmPreview } from '@/utils/films';
 
 /**
@@ -17,28 +16,9 @@ export enum FilmGetterProps {
 }
 
 /**
- *  Getter Module Props
- */
-export const FilmsGetterModuleProps = {
-    [FilmGetterProps.FilmsPreviews]: getModuleKey(FilmsModuleName, FilmGetterProps.FilmsPreviews),
-    [FilmGetterProps.AvailableCount]: getModuleKey(FilmsModuleName, FilmGetterProps.AvailableCount),
-    [FilmGetterProps.GetFilmFullDescriptionById]: getModuleKey(
-        FilmsModuleName,
-        FilmGetterProps.GetFilmFullDescriptionById
-    ),
-    [FilmGetterProps.SearchTerm]: getModuleKey(FilmsModuleName, FilmGetterProps.SearchTerm),
-};
-
-/**
  *  Getters
  */
-export interface FilmsGetters {
-    [FilmGetterProps.FilmsPreviews]: (state: FilmsState) => FilmPreview[];
-    [FilmGetterProps.AvailableCount]: (state: FilmsState) => number;
-    [FilmGetterProps.GetFilmFullDescriptionById]: (state: FilmsState) => (id: string) => FilmFullDescription;
-}
-
-export const getters: GetterTree<FilmsState, FilmsState> & FilmsGetters = {
+export const getters: GetterTree<FilmsState, FilmsState> = {
     [FilmGetterProps.FilmsPreviews]: (state: FilmsState): FilmPreview[] => {
         return state.items.map(mapFilmToFilmPreview);
     },

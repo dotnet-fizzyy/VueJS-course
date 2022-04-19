@@ -32,9 +32,10 @@ import AppInput from '@/components/common/AppInput.vue';
 import ButtonGroup from '@/components/common/ButtonGroup.vue';
 import PrimaryButton from '@/components/common/PrimaryButton.vue';
 import Vue from 'vue';
-import { FilmGetterProps, FilmsGetterModuleProps } from '@/vuex/modules/films/getters';
+import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { SearchByOptions } from '@/constants/search';
 import { changeSearchActionPayload } from '@/vuex/modules/films/actions';
+import { getFilmGetter } from '@/vuex/store';
 
 export interface SearchPanelProps {
     onSearch: (searchValue: string, selectedFilterOption: string) => void;
@@ -52,7 +53,7 @@ export default Vue.extend({
     },
     computed: {
         searchTerm(): string {
-            return this.$store.getters[FilmsGetterModuleProps[FilmGetterProps.SearchTerm]];
+            return this.$store.getters[getFilmGetter(FilmGetterProps.SearchTerm)];
         },
     },
     methods: {
