@@ -1,4 +1,4 @@
-import { BaseAction, Mutations } from '@/vuex/state';
+import { BaseAction, Mutations } from '@/vuex/store/state';
 import { FilmsState } from '@/vuex/modules/films/state';
 import { MutationTree } from 'vuex';
 

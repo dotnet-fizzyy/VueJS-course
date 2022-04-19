@@ -1,7 +1,6 @@
 import { ActionTree } from 'vuex';
-import { Actions, BaseAction } from '@/vuex/state';
-import { FilmsModuleName } from '@/constants/vuex';
-import { FilmsState } from '@/vuex/modules/films/state';
+import { Actions, BaseAction } from '@/vuex/store/state';
+import { FilmsModuleName, FilmsState } from '@/vuex/modules/films/state';
 import { changeFilmSearchMutationPayload } from '@/vuex/modules/films/mutations';
 import { getModuleKey } from '@/utils';
 

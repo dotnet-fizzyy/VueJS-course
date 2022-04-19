@@ -1,4 +1,4 @@
-import { Store } from '@/vuex/state';
+import { Store } from '@/vuex/store/state';
 
 declare module '@vue/runtime-core' {
     interface ComponentCustomProperties {

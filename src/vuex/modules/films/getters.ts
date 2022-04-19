@@ -1,6 +1,5 @@
 import { FilmFullDescription, FilmPreview } from '@/types/films';
-import { FilmsModuleName } from '@/constants/vuex';
-import { FilmsState } from '@/vuex/modules/films/state';
+import { FilmsModuleName, FilmsState } from '@/vuex/modules/films/state';
 import { GetterTree } from 'vuex';
 import { getModuleKey } from '@/utils';
 import { mapFilmToFilmPreview } from '@/utils/films';

@@ -1,4 +1,4 @@
-import { BaseState } from '@/vuex/state';
+import { BaseState } from '@/vuex/store/state';
 import { Film } from '@/types/films';
 import { SearchOptionNames, SortOptionsNames } from '@/enums/search';
 import { actions } from '@/vuex/modules/films/actions';
@@ -13,6 +13,8 @@ export interface FilmsState extends BaseState {
     searchBy: string;
     sortBy: string;
 }
+
+export const FilmsModuleName: string = 'films';
 
 const mockedFilms = getMockedFilmsFromJson();
 
