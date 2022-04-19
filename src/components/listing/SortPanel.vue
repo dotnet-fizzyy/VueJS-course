@@ -12,13 +12,9 @@
 </template>
 
 <script lang="ts">
-import ButtonGroup, { ButtonGroupOption } from '@/components/common/ButtonGroup.vue';
+import ButtonGroup from '@/components/common/ButtonGroup.vue';
 import Vue from 'vue';
-
-const AvailableOptionGroups: ButtonGroupOption[] = [
-    { label: 'Release Date', name: 'rd' },
-    { label: 'Rating', name: 'rt' },
-];
+import { SortByOptions } from '@/constants/search';
 
 export interface SortPanelProps {
     availableItemsCount: number;
@@ -35,8 +31,8 @@ export default Vue.extend({
     },
     data() {
         return {
-            options: AvailableOptionGroups,
-            selectedOption: AvailableOptionGroups[0].name,
+            options: SortByOptions,
+            selectedOption: SortByOptions[0].name,
         };
     },
     methods: {

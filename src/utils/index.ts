@@ -1,5 +1,3 @@
-import { FilmGetterKeys } from '@/enums/vuex';
-
 export const castToString = (value: unknown): string => value?.toString() ?? '';
 
 export const castNumberToStringWithPrecision = (value: number, digits: number = 1): string =>
@@ -20,7 +18,7 @@ export const castNumberToStringWithRound = (value: number, direction: 'up' | 'do
     }
 };
 
-export const getGetterKey = (module: string, key: FilmGetterKeys): string => `${module}/${key}`;
+export const getModuleKey = (module: string, key: string): string => `${module}/${key}`;
 
 export const getYearFromStringDate = (value: string): number => {
     if (!value) {

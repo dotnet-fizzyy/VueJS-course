@@ -24,10 +24,8 @@
 import FilmPreview from '@/components/films/FilmPreview.vue';
 import SortPanel from '@/components/listing/SortPanel.vue';
 import Vue from 'vue';
-import { FilmGetterKeys } from '@/enums/vuex';
+import { FilmGetterProps, FilmsGetterModuleProps } from '@/vuex/modules/films/getters';
 import { FilmPreview as FilmPreviewType } from '@/types/films';
-import { FilmsModuleName } from '@/constants/vuex';
-import { getGetterKey } from '@/utils';
 
 export default Vue.extend({
     name: 'StartPageBody',
@@ -40,10 +38,10 @@ export default Vue.extend({
     },
     computed: {
         films(): FilmPreviewType[] {
-            return this.$store.getters[getGetterKey(FilmsModuleName, FilmGetterKeys.FilmsPreviews)];
+            return this.$store.getters[FilmsGetterModuleProps[FilmGetterProps.FilmsPreviews]];
         },
         availableItemsCount(): number {
-            return this.$store.getters[getGetterKey(FilmsModuleName, FilmGetterKeys.AvailableCount)];
+            return this.$store.getters[FilmsGetterModuleProps[FilmGetterProps.AvailableCount]];
         },
     },
 });

@@ -1,4 +1,4 @@
-import Films from './modules/films';
+import Films from './modules/films/state';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { FilmsModuleName } from '@/constants/vuex';

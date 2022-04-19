@@ -1,17 +1,24 @@
 import { ActionContext, CommitOptions, DispatchOptions, Store as VuexStore } from 'vuex';
-import { FilmsGetters, FilmsState } from '@/vuex/modules/films/types';
+import { FilmsGetters } from '@/vuex/modules/films/getters';
+import { FilmsState } from '@/vuex/modules/films/state';
+
+export interface BaseState {}
+
+export interface BaseAction {
+    type: string;
+}
 
 export interface State {
     films: FilmsState;
 }
 
-export interface Mutations<S = State> {
+export interface Mutations<S = BaseState> {
     [key: string]: (state: S, payload: unknown) => void;
 }
 
 type AugmentedActionContext = {
-    commit<K extends keyof Mutations>(key: K, payload: Parameters<Mutations[K]>[1]): ReturnType<Mutations[K]>;
-} & Omit<ActionContext<State, State>, 'commit'>;
+    commit<K extends keyof Mutations>(BaseAction): ReturnType<Mutations[K]>;
+} & Omit<ActionContext<BaseState, BaseState>, 'commit'>;
 
 export interface Actions {
     [key: string]: ({ commit }: AugmentedActionContext, payload: unknown) => Promise<void> | void;

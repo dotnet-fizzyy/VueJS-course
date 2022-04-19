@@ -5,7 +5,7 @@
         <div :class="$style['search-container']">
             <div :class="$style['input-container']">
                 <app-input
-                    :value="searchValue"
+                    :value="searchTerm"
                     placeholder="Search"
                     :font-size="inputFontSize"
                     @change="onChangeSearchQuery"
@@ -29,14 +29,12 @@
 
 <script lang="ts">
 import AppInput from '@/components/common/AppInput.vue';
-import ButtonGroup, { ButtonGroupOption } from '@/components/common/ButtonGroup.vue';
+import ButtonGroup from '@/components/common/ButtonGroup.vue';
 import PrimaryButton from '@/components/common/PrimaryButton.vue';
 import Vue from 'vue';
-
-const AvailableOptionGroups: ButtonGroupOption[] = [
-    { label: 'Title', name: 'tl' },
-    { label: 'Genre', name: 'gr' },
-];
+import { FilmGetterProps, FilmsGetterModuleProps } from '@/vuex/modules/films/getters';
+import { SearchByOptions } from '@/constants/search';
+import { changeSearchActionPayload } from '@/vuex/modules/films/actions';
 
 export interface SearchPanelProps {
     onSearch: (searchValue: string, selectedFilterOption: string) => void;
@@ -47,21 +45,25 @@ export default Vue.extend({
     components: { AppInput, PrimaryButton, ButtonGroup },
     data() {
         return {
-            filterOptions: AvailableOptionGroups,
-            selectedFilterOption: AvailableOptionGroups[0].name,
-            searchValue: '',
+            filterOptions: SearchByOptions,
+            selectedFilterOption: SearchByOptions[0].name,
             inputFontSize: 24,
         };
     },
+    computed: {
+        searchTerm(): string {
+            return this.$store.getters[FilmsGetterModuleProps[FilmGetterProps.SearchTerm]];
+        },
+    },
     methods: {
         onSearch(): void {
-            this.$emit('search', this.searchValue, this.selectedFilterOption);
+            this.$emit('search', this.searchTerm, this.selectedFilterOption);
         },
         onChangeFilterOption(option: string): void {
             this.selectedFilterOption = option;
         },
         onChangeSearchQuery(value: string): void {
-            this.searchValue = value;
+            this.$store.dispatch(changeSearchActionPayload(value));
         },
     },
 });
