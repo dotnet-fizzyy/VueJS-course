@@ -27,7 +27,7 @@ import SearchIcon from '@/components/icons/SearchIcon.vue';
 import SearchPanel from '@/components/search/SearchPanel.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
-import { getFilmModuleType } from '@/vuex/store/constants';
+import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
 import { setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 

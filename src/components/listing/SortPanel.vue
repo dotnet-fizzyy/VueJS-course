@@ -18,7 +18,7 @@ import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { SortByOptions } from '@/constants/search';
 import { SortByOptionsNames } from '@/enums/search';
 import { changeSortByActionPayload } from '@/vuex/modules/films/actions';
-import { getFilmModuleType } from '@/vuex/store/constants';
+import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
 
 export interface SortPanelProps {}

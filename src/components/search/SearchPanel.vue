@@ -40,7 +40,7 @@ import {
     changeSearchByActionPayload,
     searchFilmsActionPayload,
 } from '@/vuex/modules/films/actions';
-import { getFilmModuleType } from '@/vuex/store/constants';
+import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
 
 export interface SearchPanelProps {

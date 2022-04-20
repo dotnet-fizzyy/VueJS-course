@@ -10,7 +10,7 @@ import {
     setItemsMutationPayload,
     setSelectedItemMutationPayload,
 } from '@/vuex/modules/films/mutations';
-import { getFilmModuleType } from '@/vuex/store/constants';
+import { getFilmModuleType } from '@/vuex/store/utils';
 import { getMockedFilmsFromJson } from '@/mocks/mockFilms';
 
 /**

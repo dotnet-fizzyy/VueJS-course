@@ -25,7 +25,7 @@ import FilmPreview from '@/components/films/FilmPreview.vue';
 import SortPanel from '@/components/listing/SortPanel.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
-import { getFilmModuleType } from '@/vuex/store/constants';
+import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
 import { setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 
