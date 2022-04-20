@@ -26,18 +26,18 @@ import LogoIcon from '@/components/icons/LogoIcon.vue';
 import SearchIcon from '@/components/icons/SearchIcon.vue';
 import SearchPanel from '@/components/search/SearchPanel.vue';
 import Vue from 'vue';
-import { FilmFullDescription as FilmFullDescriptionType } from '@/types/films';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { getFilmModuleType } from '@/vuex/store/constants';
+import { mapGetters } from 'vuex';
 import { setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 
 export default Vue.extend({
     name: 'StartPageHeader',
     components: { SearchIcon, LogoIcon, SearchPanel, FilmFullDescription },
     computed: {
-        selectedFilm(): FilmFullDescriptionType | undefined {
-            return this.$store.getters[getFilmModuleType(FilmGetterProps.GetSelectedFilmWithFullDescription)];
-        },
+        ...mapGetters({
+            selectedFilm: getFilmModuleType(FilmGetterProps.GetSelectedFilmWithFullDescription),
+        }),
     },
     methods: {
         backToSearch(): void {

@@ -19,6 +19,7 @@ import { SortByOptions } from '@/constants/search';
 import { SortByOptionsNames } from '@/enums/search';
 import { changeSortByActionPayload } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/constants';
+import { mapGetters } from 'vuex';
 
 export interface SortPanelProps {}
 
@@ -31,12 +32,10 @@ export default Vue.extend({
         };
     },
     computed: {
-        selectedOption(): string {
-            return this.$store.getters[getFilmModuleType(FilmGetterProps.SortBy)];
-        },
-        availableItemsCount(): number {
-            return this.$store.getters[getFilmModuleType(FilmGetterProps.AvailableCount)];
-        },
+        ...mapGetters({
+            selectedOption: getFilmModuleType(FilmGetterProps.SortBy),
+            availableItemsCount: getFilmModuleType(FilmGetterProps.AvailableCount),
+        }),
     },
     methods: {
         onSelectOption(option: string): void {

@@ -25,17 +25,17 @@ import FilmPreview from '@/components/films/FilmPreview.vue';
 import SortPanel from '@/components/listing/SortPanel.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
-import { FilmPreview as FilmPreviewType } from '@/types/films';
 import { getFilmModuleType } from '@/vuex/store/constants';
+import { mapGetters } from 'vuex';
 import { setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 
 export default Vue.extend({
     name: 'StartPageBody',
     components: { FilmPreview, SortPanel },
     computed: {
-        films(): FilmPreviewType[] {
-            return this.$store.getters[getFilmModuleType(FilmGetterProps.FilmsPreviews)];
-        },
+        ...mapGetters({
+            films: getFilmModuleType(FilmGetterProps.FilmsPreviews),
+        }),
     },
     methods: {
         selectFilm(id: string): void {

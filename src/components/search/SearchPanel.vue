@@ -41,6 +41,7 @@ import {
     searchFilmsActionPayload,
 } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/constants';
+import { mapGetters } from 'vuex';
 
 export interface SearchPanelProps {
     onSearch: (searchValue: string, selectedFilterOption: string) => void;
@@ -56,12 +57,10 @@ export default Vue.extend({
         };
     },
     computed: {
-        searchTerm(): string {
-            return this.$store.getters[getFilmModuleType(FilmGetterProps.SearchTerm)];
-        },
-        selectedSearchByOption(): string {
-            return this.$store.getters[getFilmModuleType(FilmGetterProps.SearchBy)];
-        },
+        ...mapGetters({
+            searchTerm: getFilmModuleType(FilmGetterProps.SearchTerm),
+            selectedSearchByOption: getFilmModuleType(FilmGetterProps.SearchBy),
+        }),
     },
     methods: {
         onSearch(): void {
