@@ -14,30 +14,33 @@
 <script lang="ts">
 import ButtonGroup from '@/components/common/ButtonGroup.vue';
 import Vue from 'vue';
+import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { SortByOptions } from '@/constants/search';
+import { SortByOptionsNames } from '@/enums/search';
+import { changeSortByActionPayload } from '@/vuex/modules/films/actions';
+import { getFilmModuleType } from '@/vuex/store/constants';
 
-export interface SortPanelProps {
-    availableItemsCount: number;
-}
+export interface SortPanelProps {}
 
 export default Vue.extend({
     name: 'SortPanel',
     components: { ButtonGroup },
-    props: {
-        availableItemsCount: {
-            type: Number,
-            required: true,
-        },
-    },
     data() {
         return {
             options: SortByOptions,
-            selectedOption: SortByOptions[0].name,
         };
+    },
+    computed: {
+        selectedOption(): string {
+            return this.$store.getters[getFilmModuleType(FilmGetterProps.SortBy)];
+        },
+        availableItemsCount(): number {
+            return this.$store.getters[getFilmModuleType(FilmGetterProps.AvailableCount)];
+        },
     },
     methods: {
         onSelectOption(option: string): void {
-            this.selectedOption = option;
+            this.$store.dispatch(changeSortByActionPayload(option as SortByOptionsNames));
         },
     },
 });

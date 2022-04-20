@@ -5,7 +5,7 @@
                 <logo-icon />
             </div>
 
-            <template v-if="selectedFilmId && selectedFilm">
+            <template v-if="selectedFilm">
                 <div :class="$style['search-icon-container']" @click="backToSearch">
                     <search-icon />
                 </div>
@@ -26,26 +26,22 @@ import LogoIcon from '@/components/icons/LogoIcon.vue';
 import SearchIcon from '@/components/icons/SearchIcon.vue';
 import SearchPanel from '@/components/search/SearchPanel.vue';
 import Vue from 'vue';
+import { FilmFullDescription as FilmFullDescriptionType } from '@/types/films';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
-import { getFilmGetter } from '@/vuex/store';
+import { getFilmModuleType } from '@/vuex/store/constants';
+import { setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 
 export default Vue.extend({
     name: 'StartPageHeader',
     components: { SearchIcon, LogoIcon, SearchPanel, FilmFullDescription },
-    props: {
-        selectedFilmId: {
-            type: String,
-            required: true,
-        },
-    },
     computed: {
-        selectedFilm() {
-            return this.$store.getters[getFilmGetter(FilmGetterProps.GetFilmFullDescriptionById)](this.selectedFilmId);
+        selectedFilm(): FilmFullDescriptionType | undefined {
+            return this.$store.getters[getFilmModuleType(FilmGetterProps.GetSelectedFilmWithFullDescription)];
         },
     },
     methods: {
         backToSearch(): void {
-            this.$emit('back-to-search');
+            this.$store.dispatch(setSelectedFilmActionPayload(''));
         },
     },
 });

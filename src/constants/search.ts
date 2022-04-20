@@ -1,12 +1,12 @@
 import { ButtonGroupOption } from '@/components/common/ButtonGroup.vue';
-import { SearchOptionNames, SortOptionsNames } from '@/enums/search';
+import { SearchByOptionNames, SortByOptionsNames } from '@/enums/search';
 
 export const SortByOptions: ButtonGroupOption[] = [
-    { label: 'Release Date', name: SortOptionsNames.ReleaseDate },
-    { label: 'Rating', name: SortOptionsNames.Rating },
+    { label: 'Release Date', name: SortByOptionsNames.ReleaseDate },
+    { label: 'Rating', name: SortByOptionsNames.Rating },
 ];
 
 export const SearchByOptions: ButtonGroupOption[] = [
-    { label: 'Title', name: SearchOptionNames.Title },
-    { label: 'Genre', name: SearchOptionNames.Genre },
+    { label: 'Title', name: SearchByOptionNames.Title },
+    { label: 'Genre', name: SearchByOptionNames.Genre },
 ];

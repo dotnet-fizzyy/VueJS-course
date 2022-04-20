@@ -1,7 +1,7 @@
 <template>
     <div :class="$style.root">
         <div :class="$style['sort-panel-container']">
-            <sort-panel :available-items-count="availableItemsCount" />
+            <sort-panel />
         </div>
 
         <div :class="$style['films-display']">
@@ -26,23 +26,20 @@ import SortPanel from '@/components/listing/SortPanel.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { FilmPreview as FilmPreviewType } from '@/types/films';
-import { getFilmGetter } from '@/vuex/store';
+import { getFilmModuleType } from '@/vuex/store/constants';
+import { setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 
 export default Vue.extend({
     name: 'StartPageBody',
     components: { FilmPreview, SortPanel },
-    props: {
-        selectFilm: {
-            type: Function,
-            required: true,
-        },
-    },
     computed: {
         films(): FilmPreviewType[] {
-            return this.$store.getters[getFilmGetter(FilmGetterProps.FilmsPreviews)];
+            return this.$store.getters[getFilmModuleType(FilmGetterProps.FilmsPreviews)];
         },
-        availableItemsCount(): number {
-            return this.$store.getters[getFilmGetter(FilmGetterProps.AvailableCount)];
+    },
+    methods: {
+        selectFilm(id: string): void {
+            this.$store.dispatch(setSelectedFilmActionPayload(id));
         },
     },
 });
