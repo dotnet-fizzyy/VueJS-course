@@ -5,6 +5,7 @@
         <div :class="$style['options-container']">
             <template v-for="(option, index) in options">
                 <button
+                    :id="option.name"
                     :class="[
                         isSelected(option.name) ? $style['selected-option'] : $style['non-selected-option'],
                         $style.option,

@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppInput.vue Tests Should not render "error" block if it was not provided via props 1`] = `
+<div
+  class="root"
+>
+  <span
+    class="label"
+  >
+    Label
+  </span>
+   
+  <input
+    class="input"
+    placeholder="Placeholder"
+    style="font-size: 16px;"
+  />
+   
+  <!---->
+</div>
+`;
+
+exports[`AppInput.vue Tests Should not render "label" block if it was not provided via props 1`] = `
+<div
+  class="root"
+>
+  <!---->
+   
+  <input
+    class="input"
+    placeholder="Placeholder"
+    style="font-size: 16px;"
+  />
+   
+  <div
+    class="error-message-container"
+  >
+    <error-icon-stub />
+     
+    <span
+      class="error-message"
+    >
+      Error message
+    </span>
+  </div>
+</div>
+`;
+
+exports[`AppInput.vue Tests Should render 1`] = `
+<div
+  class="root"
+>
+  <span
+    class="label"
+  >
+    Label
+  </span>
+   
+  <input
+    class="input"
+    placeholder="Placeholder"
+    style="font-size: 16px;"
+  />
+   
+  <div
+    class="error-message-container"
+  >
+    <error-icon-stub />
+     
+    <span
+      class="error-message"
+    >
+      Error message
+    </span>
+  </div>
+</div>
+`;
