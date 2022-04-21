@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmFullDescription.vue Tests Should render 1`] = `
+<div
+  class="root"
+>
+  <img
+    alt="posterAlt"
+    class="poster"
+  />
+   
+  <div
+    class="film-description-container"
+  >
+    <div
+      class="name-container"
+    >
+      <span
+        class="name"
+        id="selected-film-name"
+      >
+        Film Name
+      </span>
+       
+      <span
+        class="rating"
+        id="selected-film-rating"
+      >
+        4.2
+      </span>
+    </div>
+     
+    <span
+      class="short-description"
+    >
+      Short Description
+    </span>
+     
+    <div
+      class="summary-container"
+    >
+      <film-description-item-stub
+        additionallabel="year"
+        keylabel="2022"
+      />
+       
+      <film-description-item-stub
+        additionallabel="min"
+        keylabel="120"
+      />
+    </div>
+     
+    <span
+      class="description"
+    >
+      Some Long Film Description
+    </span>
+  </div>
+</div>
+`;

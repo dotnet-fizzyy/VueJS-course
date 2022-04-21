@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmDescriptionItem.vue Tests Should render 1`] = `
+<div
+  class="root"
+>
+  <span
+    class="key-label"
+  >
+    Key Label
+  </span>
+   
+  <span
+    class="additional-label"
+  >
+    Addit Label
+  </span>
+</div>
+`;

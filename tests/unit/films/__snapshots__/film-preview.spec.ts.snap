@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmPreview.vue Tests Should render 1`] = `
+<div
+  class="root"
+>
+  <img
+    alt="poster_alt"
+    class="poster"
+  />
+   
+  <div
+    class="poster-footer"
+  >
+    <div
+      class="poster-footer-description-container"
+    >
+      <span
+        class="film-name"
+      >
+        Film Name
+      </span>
+       
+      <span
+        class="film-short-info"
+      >
+        Short Description
+      </span>
+    </div>
+     
+    <div
+      class="poster-footer-year-release-container"
+    >
+      <span
+        class="release-year-pill"
+      >
+        2022
+      </span>
+    </div>
+  </div>
+</div>
+`;

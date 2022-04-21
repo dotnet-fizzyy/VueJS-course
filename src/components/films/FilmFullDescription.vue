@@ -5,8 +5,8 @@
 
         <div :class="$style['film-description-container']">
             <div :class="$style['name-container']">
-                <span :class="$style.name">{{ name }}</span>
-                <span :class="$style.rating">{{ rating | precision }}</span>
+                <span id="selected-film-name" :class="$style.name">{{ name }}</span>
+                <span id="selected-film-rating" :class="$style.rating">{{ rating | precision }}</span>
             </div>
 
             <span :class="$style['short-description']">{{ shortDescription }}</span>
@@ -16,9 +16,7 @@
                 <film-description-item :key-label="runtime | round('up')" additional-label="min" />
             </div>
 
-            <span :class="$style.description">
-                {{ fullDescription }}
-            </span>
+            <span :class="$style.description">{{ fullDescription }}</span>
         </div>
     </div>
 </template>
