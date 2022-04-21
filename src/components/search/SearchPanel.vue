@@ -5,7 +5,7 @@
         <div :class="$style['search-container']">
             <div :class="$style['input-container']">
                 <app-input
-                    :value="searchValue"
+                    :value="searchTerm"
                     placeholder="Search"
                     :font-size="inputFontSize"
                     @change="onChangeSearchQuery"
@@ -20,8 +20,8 @@
             <button-group
                 label="Search By"
                 :options="filterOptions"
-                :selected-option="selectedFilterOption"
-                @select-option="onChangeFilterOption"
+                :selected-option="selectedSearchByOption"
+                @select-option="onChangeSearchByOption"
             />
         </div>
     </div>
@@ -29,14 +29,19 @@
 
 <script lang="ts">
 import AppInput from '@/components/common/AppInput.vue';
-import ButtonGroup, { ButtonGroupOption } from '@/components/common/ButtonGroup.vue';
+import ButtonGroup from '@/components/common/ButtonGroup.vue';
 import PrimaryButton from '@/components/common/PrimaryButton.vue';
 import Vue from 'vue';
-
-const AvailableOptionGroups: ButtonGroupOption[] = [
-    { label: 'Title', name: 'tl' },
-    { label: 'Genre', name: 'gr' },
-];
+import { FilmGetterProps } from '@/vuex/modules/films/getters';
+import { SearchByOptionNames } from '@/enums/search';
+import { SearchByOptions } from '@/constants/search';
+import {
+    changeSearchActionPayload,
+    changeSearchByActionPayload,
+    searchFilmsActionPayload,
+} from '@/vuex/modules/films/actions';
+import { getFilmModuleType } from '@/vuex/store/utils';
+import { mapGetters } from 'vuex';
 
 export interface SearchPanelProps {
     onSearch: (searchValue: string, selectedFilterOption: string) => void;
@@ -47,21 +52,25 @@ export default Vue.extend({
     components: { AppInput, PrimaryButton, ButtonGroup },
     data() {
         return {
-            filterOptions: AvailableOptionGroups,
-            selectedFilterOption: AvailableOptionGroups[0].name,
-            searchValue: '',
+            filterOptions: SearchByOptions,
             inputFontSize: 24,
         };
     },
+    computed: {
+        ...mapGetters({
+            searchTerm: getFilmModuleType(FilmGetterProps.SearchTerm),
+            selectedSearchByOption: getFilmModuleType(FilmGetterProps.SearchBy),
+        }),
+    },
     methods: {
         onSearch(): void {
-            this.$emit('search', this.searchValue, this.selectedFilterOption);
+            this.$store.dispatch(searchFilmsActionPayload());
         },
-        onChangeFilterOption(option: string): void {
-            this.selectedFilterOption = option;
+        onChangeSearchByOption(option: string): void {
+            this.$store.dispatch(changeSearchByActionPayload(option as SearchByOptionNames));
         },
         onChangeSearchQuery(value: string): void {
-            this.searchValue = value;
+            this.$store.dispatch(changeSearchActionPayload(value));
         },
     },
 });

@@ -1,12 +1,12 @@
 <template>
-    <div :class="$style.body">
+    <div :class="$style.root">
         <div :class="$style['sort-panel-container']">
-            <sort-panel :available-items-count="7" />
+            <sort-panel />
         </div>
 
         <div :class="$style['films-display']">
             <div v-for="film in films" :key="film.id" :class="$style['film-container']">
-                <film-short-description
+                <film-preview
                     :id="film.id"
                     :name="film.name"
                     :short-description="film.shortDescription"
@@ -21,25 +21,26 @@
 </template>
 
 <script lang="ts">
-import FilmShortDescription from '@/components/films/FilmPreview.vue';
+import FilmPreview from '@/components/films/FilmPreview.vue';
 import SortPanel from '@/components/listing/SortPanel.vue';
 import Vue from 'vue';
-import { shortFilmsDescription } from '@/mocks/mockFilms';
+import { FilmGetterProps } from '@/vuex/modules/films/getters';
+import { getFilmModuleType } from '@/vuex/store/utils';
+import { mapGetters } from 'vuex';
+import { setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 
 export default Vue.extend({
     name: 'StartPageBody',
-    components: { SortPanel, FilmShortDescription },
-    props: {
-        selectFilm: {
-            type: Function,
-            required: true,
-        },
+    components: { FilmPreview, SortPanel },
+    computed: {
+        ...mapGetters({
+            films: getFilmModuleType(FilmGetterProps.FilmsPreviews),
+        }),
     },
-    data() {
-        return {
-            availableItemsCount: shortFilmsDescription.length,
-            films: shortFilmsDescription,
-        };
+    methods: {
+        selectFilm(id: string): void {
+            this.$store.dispatch(setSelectedFilmActionPayload(id));
+        },
     },
 });
 </script>
@@ -59,6 +60,8 @@ export default Vue.extend({
 
 .film-container {
     padding: 25px;
+    max-width: 370px;
+    box-sizing: border-box;
 }
 
 .sort-panel-container {

@@ -1,8 +1,8 @@
 <template>
     <div :class="$style.root">
-        <start-page-header :selected-film-id="selectedFilmId" @back-to-search="backToSearch" />
+        <start-page-header />
 
-        <start-page-body :select-film="selectFilm" />
+        <start-page-body />
 
         <start-page-footer />
     </div>
@@ -20,19 +20,6 @@ export default Vue.extend({
         StartPageFooter,
         StartPageHeader,
         StartPageBody,
-    },
-    data() {
-        return {
-            selectedFilmId: '',
-        };
-    },
-    methods: {
-        selectFilm(id: string): void {
-            this.selectedFilmId = id;
-        },
-        backToSearch(): void {
-            this.selectedFilmId = '';
-        },
     },
 });
 </script>

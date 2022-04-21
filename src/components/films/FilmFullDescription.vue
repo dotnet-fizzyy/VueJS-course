@@ -1,6 +1,7 @@
 <template>
     <div :class="$style.root">
-        <img :class="$style.poster" :src="posterUrl" :alt="posterAlt" />
+        <!--v-lazy is registered as plugin-->
+        <img v-lazy="posterUrl" :class="$style.poster" :alt="posterAlt" />
 
         <div :class="$style['film-description-container']">
             <div :class="$style['name-container']">
@@ -110,6 +111,7 @@ export default Vue.extend({
     font-size: 46px;
     color: $white;
     margin-right: 30px;
+    width: fit-content;
 }
 
 .rating {

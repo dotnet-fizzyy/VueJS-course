@@ -12,36 +12,34 @@
 </template>
 
 <script lang="ts">
-import ButtonGroup, { ButtonGroupOption } from '@/components/common/ButtonGroup.vue';
+import ButtonGroup from '@/components/common/ButtonGroup.vue';
 import Vue from 'vue';
+import { FilmGetterProps } from '@/vuex/modules/films/getters';
+import { SortByOptions } from '@/constants/search';
+import { SortByOptionsNames } from '@/enums/search';
+import { changeSortByActionPayload } from '@/vuex/modules/films/actions';
+import { getFilmModuleType } from '@/vuex/store/utils';
+import { mapGetters } from 'vuex';
 
-const AvailableOptionGroups: ButtonGroupOption[] = [
-    { label: 'Release Date', name: 'rd' },
-    { label: 'Rating', name: 'rt' },
-];
-
-export interface SortPanelProps {
-    availableItemsCount: number;
-}
+export interface SortPanelProps {}
 
 export default Vue.extend({
     name: 'SortPanel',
     components: { ButtonGroup },
-    props: {
-        availableItemsCount: {
-            type: Number,
-            required: true,
-        },
-    },
     data() {
         return {
-            options: AvailableOptionGroups,
-            selectedOption: AvailableOptionGroups[0].name,
+            options: SortByOptions,
         };
+    },
+    computed: {
+        ...mapGetters({
+            selectedOption: getFilmModuleType(FilmGetterProps.SortBy),
+            availableItemsCount: getFilmModuleType(FilmGetterProps.AvailableCount),
+        }),
     },
     methods: {
         onSelectOption(option: string): void {
-            this.selectedOption = option;
+            this.$store.dispatch(changeSortByActionPayload(option as SortByOptionsNames));
         },
     },
 });

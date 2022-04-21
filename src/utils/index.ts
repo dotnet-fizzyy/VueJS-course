@@ -17,3 +17,18 @@ export const castNumberToStringWithRound = (value: number, direction: 'up' | 'do
             return value.toString();
     }
 };
+
+export const getModuleKey = (module: string, key: string): string => `${module}/${key}`;
+
+export const getYearFromStringDate = (value: string): number => {
+    if (!value) {
+        return 0;
+    }
+
+    const date = new Date(value);
+    if (!date) {
+        return 0;
+    }
+
+    return date.getFullYear();
+};
