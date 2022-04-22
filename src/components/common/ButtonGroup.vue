@@ -22,11 +22,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-
-export interface ButtonGroupOption {
-    label: string;
-    name: string;
-}
+import { ButtonGroupOption } from '@/types/button';
 
 export interface ButtonGroupProps {
     label: string;

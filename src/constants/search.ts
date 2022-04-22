@@ -1,4 +1,4 @@
-import { ButtonGroupOption } from '@/components/common/ButtonGroup.vue';
+import { ButtonGroupOption } from '@/types/button';
 import { SearchByOptionNames, SortByOptionsNames } from '@/enums/search';
 
 export const SortByOptions: ButtonGroupOption[] = [
