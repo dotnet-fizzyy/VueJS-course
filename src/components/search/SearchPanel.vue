@@ -12,7 +12,7 @@
                 />
             </div>
             <div :class="$style['search-button-container']">
-                <PrimaryButton :font-size="inputFontSize" @click="onSearch">Search</PrimaryButton>
+                <primary-button :font-size="inputFontSize" @click="onSearch">Search</primary-button>
             </div>
         </div>
 

@@ -44,7 +44,7 @@ describe('SortPanel.vue Tests', () => {
         expect(wrapper.element).toMatchSnapshot();
     });
 
-    test('Should render exact "availableItemsCount" qwe', () => {
+    test('Should render exact "availableItemsCount" passed from getter', () => {
         //Arrange
         const wrapper = shallowMount(SortPanel, {
             store,
