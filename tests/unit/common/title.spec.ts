@@ -1,8 +1,8 @@
-import Title from '@/components/common/Title.vue';
+import Title from '@/components/common/AppTitle.vue';
 import { FontStyle } from '@/enums/styles';
 import { shallowMount } from '@vue/test-utils';
 
-describe('Title.vue Tests', () => {
+describe('AppTitle.vue Tests', () => {
     test('Should render', () => {
         //Arrange
         const wrapper = shallowMount(Title, {

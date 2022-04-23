@@ -38,7 +38,7 @@ describe('FilmPreview.vue Tests', () => {
         wrapper.trigger('click');
 
         //Arrange
-        expect(wrapper.emitted().select).toBeTruthy();
-        expect(wrapper.emitted().select[0][0]).toEqual(id);
+        expect(wrapper.emitted('select')).toBeTruthy();
+        expect(wrapper.emitted('select')[0][0]).toEqual(id);
     });
 });

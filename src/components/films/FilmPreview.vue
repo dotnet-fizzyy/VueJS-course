@@ -1,15 +1,15 @@
 <template>
-    <div :class="$style.root" @click="onClick(id)">
+    <div data-aqa-preview :class="$style.root" @click="onClick(id)">
         <!--v-lazy is registered as plugin-->
         <img v-lazy="posterUrl" :class="$style.poster" :alt="posterAlt" />
 
         <div :class="$style['poster-footer']">
             <div :class="$style['poster-footer-description-container']">
-                <span :class="$style['film-name']">{{ name }}</span>
-                <span :class="$style['film-short-info']">{{ shortDescription }}</span>
+                <span data-aqa-film-preview-name :class="$style['film-name']">{{ name }}</span>
+                <span data-aqa-film-preview-short-desc :class="$style['film-short-info']">{{ shortDescription }}</span>
             </div>
             <div :class="$style['poster-footer-year-release-container']">
-                <span :class="$style['release-year-pill']">{{ releaseYear }}</span>
+                <span data-aqa-film-preview-release-year :class="$style['release-year-pill']">{{ releaseYear }}</span>
             </div>
         </div>
     </div>

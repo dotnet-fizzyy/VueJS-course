@@ -15,7 +15,7 @@ export interface TitleProps {
 }
 
 export default Vue.extend({
-    name: 'Title',
+    name: 'AppTitle',
     directives: {
         [FontSizeDirectiveName]: FontSizeDirective,
     },

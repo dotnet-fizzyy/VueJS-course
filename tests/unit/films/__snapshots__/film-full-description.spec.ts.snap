@@ -3,6 +3,7 @@
 exports[`FilmFullDescription.vue Tests Should render 1`] = `
 <div
   class="root"
+  data-aqa-full-description=""
 >
   <img
     alt="posterAlt"
@@ -17,14 +18,14 @@ exports[`FilmFullDescription.vue Tests Should render 1`] = `
     >
       <span
         class="name"
-        id="selected-film-name"
+        data-aqa-full-desc-name=""
       >
         Film Name
       </span>
        
       <span
         class="rating"
-        id="selected-film-rating"
+        data-aqa-full-rating=""
       >
         4.2
       </span>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Title.vue Tests Should render 1`] = `
+exports[`AppTitle.vue Tests Should render 1`] = `
 <span
   class="font italic"
   style="font-size: 20px;"

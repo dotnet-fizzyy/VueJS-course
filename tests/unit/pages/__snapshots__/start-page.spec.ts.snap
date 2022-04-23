@@ -1,0 +1,642 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StartPage.vue Should render 1`] = `
+<div
+  class="root"
+>
+  <div
+    class="root"
+  >
+    <div
+      class="background"
+    >
+      <div
+        class="logo-icon-container"
+      >
+        <div>
+          <span
+            class="first-logo-part"
+          >
+            Netflix
+          </span>
+           
+          <span
+            class="second-logo-part"
+          >
+            Roulette
+          </span>
+        </div>
+      </div>
+       
+      <div
+        class="root"
+      >
+        <span
+          class="main-label"
+        >
+          Find your movie
+        </span>
+         
+        <div
+          class="search-container"
+        >
+          <div
+            class="input-container"
+          >
+            <div
+              class="root"
+            >
+              <!---->
+               
+              <input
+                class="input"
+                placeholder="Search"
+                style="font-size: 24px;"
+              />
+               
+              <!---->
+            </div>
+          </div>
+           
+          <div
+            class="search-button-container"
+          >
+            <button
+              class="primary-button normal"
+              style="font-size: 24px;"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+         
+        <div
+          class="options-container"
+        >
+          <div
+            class="root"
+          >
+            <span
+              class="label"
+            >
+              Search By
+            </span>
+             
+            <div
+              class="options-container"
+            >
+              <button
+                class="selected-option option"
+                id="t_e"
+              >
+                
+                Title
+            
+              </button>
+              <button
+                class="non-selected-option option"
+                id="g_e"
+              >
+                
+                Genre
+            
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+  <div>
+    <div
+      class="sort-panel-container"
+    >
+      <div
+        class="root"
+      >
+        <span
+          class="title"
+          id="available-items-count"
+        >
+          10 movies found
+        </span>
+         
+        <div
+          class="root"
+        >
+          <span
+            class="label"
+          >
+            Sort By
+          </span>
+           
+          <div
+            class="options-container"
+          >
+            <button
+              class="selected-option option"
+              id="r_d"
+            >
+              
+                Release Date
+            
+            </button>
+            <button
+              class="non-selected-option option"
+              id="r_g"
+            >
+              
+                Rating
+            
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="films-display"
+    >
+      <div
+        class="film-container"
+      >
+        <div
+          class="root"
+          data-aqa-preview=""
+        >
+          <img
+            alt="guardians of the galaxy vol. 3"
+            class="poster"
+          />
+           
+          <div
+            class="poster-footer"
+          >
+            <div
+              class="poster-footer-description-container"
+            >
+              <span
+                class="film-name"
+                data-aqa-film-preview-name=""
+              >
+                Guardians of the Galaxy Vol. 3
+              </span>
+               
+              <span
+                class="film-short-info"
+                data-aqa-film-preview-short-desc=""
+              >
+                Action & Comedy
+              </span>
+            </div>
+             
+            <div
+              class="poster-footer-year-release-container"
+            >
+              <span
+                class="release-year-pill"
+                data-aqa-film-preview-release-year=""
+              >
+                2020
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="film-container"
+      >
+        <div
+          class="root"
+          data-aqa-preview=""
+        >
+          <img
+            alt="transformers 7"
+            class="poster"
+          />
+           
+          <div
+            class="poster-footer"
+          >
+            <div
+              class="poster-footer-description-container"
+            >
+              <span
+                class="film-name"
+                data-aqa-film-preview-name=""
+              >
+                Transformers 7
+              </span>
+               
+              <span
+                class="film-short-info"
+                data-aqa-film-preview-short-desc=""
+              >
+                Action & Cartoon
+              </span>
+            </div>
+             
+            <div
+              class="poster-footer-year-release-container"
+            >
+              <span
+                class="release-year-pill"
+                data-aqa-film-preview-release-year=""
+              >
+                2019
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="film-container"
+      >
+        <div
+          class="root"
+          data-aqa-preview=""
+        >
+          <img
+            alt="untitled avengers"
+            class="poster"
+          />
+           
+          <div
+            class="poster-footer"
+          >
+            <div
+              class="poster-footer-description-container"
+            >
+              <span
+                class="film-name"
+                data-aqa-film-preview-name=""
+              >
+                Untitled Avengers
+              </span>
+               
+              <span
+                class="film-short-info"
+                data-aqa-film-preview-short-desc=""
+              >
+                Oscar movie
+              </span>
+            </div>
+             
+            <div
+              class="poster-footer-year-release-container"
+            >
+              <span
+                class="release-year-pill"
+                data-aqa-film-preview-release-year=""
+              >
+                2019
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="film-container"
+      >
+        <div
+          class="root"
+          data-aqa-preview=""
+        >
+          <img
+            alt="shazam!"
+            class="poster"
+          />
+           
+          <div
+            class="poster-footer"
+          >
+            <div
+              class="poster-footer-description-container"
+            >
+              <span
+                class="film-name"
+                data-aqa-film-preview-name=""
+              >
+                Shazam!
+              </span>
+               
+              <span
+                class="film-short-info"
+                data-aqa-film-preview-short-desc=""
+              >
+                Adventure & Fantasy
+              </span>
+            </div>
+             
+            <div
+              class="poster-footer-year-release-container"
+            >
+              <span
+                class="release-year-pill"
+                data-aqa-film-preview-release-year=""
+              >
+                2019
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="film-container"
+      >
+        <div
+          class="root"
+          data-aqa-preview=""
+        >
+          <img
+            alt="x-men: dark phoenix"
+            class="poster"
+          />
+           
+          <div
+            class="poster-footer"
+          >
+            <div
+              class="poster-footer-description-container"
+            >
+              <span
+                class="film-name"
+                data-aqa-film-preview-name=""
+              >
+                X-Men: Dark Phoenix
+              </span>
+               
+              <span
+                class="film-short-info"
+                data-aqa-film-preview-short-desc=""
+              >
+                
+              </span>
+            </div>
+             
+            <div
+              class="poster-footer-year-release-container"
+            >
+              <span
+                class="release-year-pill"
+                data-aqa-film-preview-release-year=""
+              >
+                2019
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="film-container"
+      >
+        <div
+          class="root"
+          data-aqa-preview=""
+        >
+          <img
+            alt="journey 3: from the earth to the moon"
+            class="poster"
+          />
+           
+          <div
+            class="poster-footer"
+          >
+            <div
+              class="poster-footer-description-container"
+            >
+              <span
+                class="film-name"
+                data-aqa-film-preview-name=""
+              >
+                Journey 3: From the Earth to the Moon
+              </span>
+               
+              <span
+                class="film-short-info"
+                data-aqa-film-preview-short-desc=""
+              >
+                
+              </span>
+            </div>
+             
+            <div
+              class="poster-footer-year-release-container"
+            >
+              <span
+                class="release-year-pill"
+                data-aqa-film-preview-release-year=""
+              >
+                2018
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="film-container"
+      >
+        <div
+          class="root"
+          data-aqa-preview=""
+        >
+          <img
+            alt="aquaman"
+            class="poster"
+          />
+           
+          <div
+            class="poster-footer"
+          >
+            <div
+              class="poster-footer-description-container"
+            >
+              <span
+                class="film-name"
+                data-aqa-film-preview-name=""
+              >
+                Aquaman
+              </span>
+               
+              <span
+                class="film-short-info"
+                data-aqa-film-preview-short-desc=""
+              >
+                
+              </span>
+            </div>
+             
+            <div
+              class="poster-footer-year-release-container"
+            >
+              <span
+                class="release-year-pill"
+                data-aqa-film-preview-release-year=""
+              >
+                2018
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="film-container"
+      >
+        <div
+          class="root"
+          data-aqa-preview=""
+        >
+          <img
+            alt="mission: impossible - fallout"
+            class="poster"
+          />
+           
+          <div
+            class="poster-footer"
+          >
+            <div
+              class="poster-footer-description-container"
+            >
+              <span
+                class="film-name"
+                data-aqa-film-preview-name=""
+              >
+                Mission: Impossible - Fallout
+              </span>
+               
+              <span
+                class="film-short-info"
+                data-aqa-film-preview-short-desc=""
+              >
+                
+              </span>
+            </div>
+             
+            <div
+              class="poster-footer-year-release-container"
+            >
+              <span
+                class="release-year-pill"
+                data-aqa-film-preview-release-year=""
+              >
+                2018
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="film-container"
+      >
+        <div
+          class="root"
+          data-aqa-preview=""
+        >
+          <img
+            alt="jurassic world: fallen kingdom"
+            class="poster"
+          />
+           
+          <div
+            class="poster-footer"
+          >
+            <div
+              class="poster-footer-description-container"
+            >
+              <span
+                class="film-name"
+                data-aqa-film-preview-name=""
+              >
+                Jurassic World: Fallen Kingdom
+              </span>
+               
+              <span
+                class="film-short-info"
+                data-aqa-film-preview-short-desc=""
+              >
+                
+              </span>
+            </div>
+             
+            <div
+              class="poster-footer-year-release-container"
+            >
+              <span
+                class="release-year-pill"
+                data-aqa-film-preview-release-year=""
+              >
+                2018
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="film-container"
+      >
+        <div
+          class="root"
+          data-aqa-preview=""
+        >
+          <img
+            alt="solo: a star wars story"
+            class="poster"
+          />
+           
+          <div
+            class="poster-footer"
+          >
+            <div
+              class="poster-footer-description-container"
+            >
+              <span
+                class="film-name"
+                data-aqa-film-preview-name=""
+              >
+                Solo: A Star Wars Story
+              </span>
+               
+              <span
+                class="film-short-info"
+                data-aqa-film-preview-short-desc=""
+              >
+                
+              </span>
+            </div>
+             
+            <div
+              class="poster-footer-year-release-container"
+            >
+              <span
+                class="release-year-pill"
+                data-aqa-film-preview-release-year=""
+              >
+                2018
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+  <div
+    class="root"
+  >
+    <div>
+      <span
+        class="first-logo-part"
+      >
+        Netflix
+      </span>
+       
+      <span
+        class="second-logo-part"
+      >
+        Roulette
+      </span>
+    </div>
+  </div>
+</div>
+`;

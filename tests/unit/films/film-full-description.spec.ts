@@ -47,7 +47,7 @@ describe('FilmFullDescription.vue Tests', () => {
         });
 
         //Act
-        const ratingWrapper = wrapper.find('#selected-film-rating');
+        const ratingWrapper = wrapper.find('[data-aqa-full-rating]');
 
         //Assert
         expect(ratingWrapper.element).toBeTruthy();

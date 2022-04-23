@@ -1,12 +1,12 @@
 <template>
-    <div :class="$style.root">
+    <div data-aqa-full-description :class="$style.root">
         <!--v-lazy is registered as plugin-->
         <img v-lazy="posterUrl" :class="$style.poster" :alt="posterAlt" />
 
         <div :class="$style['film-description-container']">
             <div :class="$style['name-container']">
-                <span id="selected-film-name" :class="$style.name">{{ name }}</span>
-                <span id="selected-film-rating" :class="$style.rating">{{ rating | precision }}</span>
+                <span data-aqa-full-desc-name :class="$style.name">{{ name }}</span>
+                <span data-aqa-full-rating :class="$style.rating">{{ rating | precision }}</span>
             </div>
 
             <span :class="$style['short-description']">{{ shortDescription }}</span>

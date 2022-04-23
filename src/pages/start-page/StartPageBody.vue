@@ -4,34 +4,49 @@
             <sort-panel />
         </div>
 
-        <div :class="$style['films-display']">
-            <div v-for="film in films" :key="film.id" :class="$style['film-container']">
-                <film-preview
-                    :id="film.id"
-                    :name="film.name"
-                    :short-description="film.shortDescription"
-                    :release-year="film.releaseYear"
-                    :poster-url="film.posterUrl"
-                    :poster-alt="film.posterAlt"
-                    @select="selectFilm"
-                />
+        <template v-if="!!films.length">
+            <div :class="$style['films-display']">
+                <div v-for="film in films" :key="film.id" :class="$style['film-container']">
+                    <film-preview
+                        :id="film.id"
+                        :name="film.name"
+                        :short-description="film.shortDescription"
+                        :release-year="film.releaseYear"
+                        :poster-url="film.posterUrl"
+                        :poster-alt="film.posterAlt"
+                        @select="selectFilm"
+                    />
+                </div>
             </div>
-        </div>
+        </template>
+
+        <template v-else>
+            <div id="no-films-message-container" :class="$style['no-films-found-container']">
+                <app-title :font-size="30" :font-style="noFoundTitleFontStyle">{{ noFilmsFoundMessage }}</app-title>
+            </div>
+        </template>
     </div>
 </template>
 
 <script lang="ts">
+import AppTitle from '@/components/common/AppTitle.vue';
 import FilmPreview from '@/components/films/FilmPreview.vue';
 import SortPanel from '@/components/listing/SortPanel.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
+import { FontStyle } from '@/enums/styles';
+import { NoFilmsFoundMessage } from '@/constants/search';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
 import { setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 
 export default Vue.extend({
     name: 'StartPageBody',
-    components: { FilmPreview, SortPanel },
+    components: { FilmPreview, SortPanel, AppTitle },
+    data: () => ({
+        noFoundTitleFontStyle: FontStyle.Bold,
+        noFilmsFoundMessage: NoFilmsFoundMessage,
+    }),
     computed: {
         ...mapGetters({
             films: getFilmModuleType(FilmGetterProps.FilmsPreviews),
@@ -71,5 +86,13 @@ export default Vue.extend({
     align-items: center;
     flex-direction: row;
     padding: 0 120px;
+}
+
+.no-films-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    height: 100%;
 }
 </style>

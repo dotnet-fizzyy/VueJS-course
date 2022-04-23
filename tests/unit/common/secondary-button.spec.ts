@@ -53,6 +53,6 @@ describe('SecondaryButton.vue Tests', () => {
         wrapper.trigger('click');
 
         //Assert
-        expect(wrapper.emitted().click).toBeTruthy();
+        expect(wrapper.emitted('click')).toBeTruthy();
     });
 });
