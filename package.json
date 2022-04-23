@@ -70,6 +70,9 @@
     "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel",
     "snapshotSerializers": [
       "jest-serializer-vue"
+    ],
+    "testMatch": [
+      "**/tests/(unit|integration)/**/*.spec.[jt]s?(x)"
     ]
   },
   "bugs": {
