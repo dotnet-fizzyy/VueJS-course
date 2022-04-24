@@ -1,5 +1,5 @@
 <template>
-    <div data-aqa-preview :class="$style.root" @click="onClick(id)">
+    <div data-aqa-preview :class="$style.root" @click="click(id)">
         <!--v-lazy is registered as plugin-->
         <img v-lazy="posterUrl" :class="$style.poster" :alt="posterAlt" />
 
@@ -26,7 +26,7 @@ export interface FilmPreviewProps {
     name: string;
     shortDescription: string;
     releaseYear: number;
-    onClick: (id: string) => void;
+    onSelect: (id: string) => void;
 }
 
 export default Vue.extend({
@@ -58,7 +58,7 @@ export default Vue.extend({
         },
     },
     methods: {
-        onClick(id: string): void {
+        click(id: string): void {
             this.$emit('select', id);
         },
     },
