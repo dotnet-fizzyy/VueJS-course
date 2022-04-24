@@ -6,6 +6,7 @@ exports[`StartPage.vue Should render 1`] = `
 >
   <div
     class="root"
+    data-aqa-start-header=""
   >
     <div
       class="background"
@@ -30,6 +31,7 @@ exports[`StartPage.vue Should render 1`] = `
        
       <div
         class="root"
+        data-aqa-search-panel=""
       >
         <span
           class="main-label"
@@ -108,7 +110,9 @@ exports[`StartPage.vue Should render 1`] = `
     </div>
   </div>
    
-  <div>
+  <div
+    data-aqa-start-body=""
+  >
     <div
       class="sort-panel-container"
     >
@@ -623,6 +627,7 @@ exports[`StartPage.vue Should render 1`] = `
    
   <div
     class="root"
+    data-aqa-start-footer=""
   >
     <div>
       <span

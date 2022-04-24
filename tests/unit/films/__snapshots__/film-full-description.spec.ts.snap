@@ -8,6 +8,7 @@ exports[`FilmFullDescription.vue Tests Should render 1`] = `
   <img
     alt="posterAlt"
     class="poster"
+    data-aqa-full-poster=""
   />
    
   <div
@@ -33,6 +34,7 @@ exports[`FilmFullDescription.vue Tests Should render 1`] = `
      
     <span
       class="short-description"
+      data-aqa-full-short-desc=""
     >
       Short Description
     </span>
@@ -53,6 +55,7 @@ exports[`FilmFullDescription.vue Tests Should render 1`] = `
      
     <span
       class="description"
+      data-aqa-full-full-desc=""
     >
       Some Long Film Description
     </span>

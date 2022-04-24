@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
     "module": "esnext",
     "strict": false,
     "jsx": "preserve",
@@ -14,7 +14,8 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "jest"
+      "jest",
+      "cypress"
     ],
     "paths": {
       "@/*": [
@@ -22,6 +23,7 @@
       ]
     },
     "lib": [
+      "es5",
       "esnext",
       "dom",
       "dom.iterable",

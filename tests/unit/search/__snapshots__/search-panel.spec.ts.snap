@@ -3,6 +3,7 @@
 exports[`SearchPanel.vue Tests Should render 1`] = `
 <div
   class="root"
+  data-aqa-search-panel=""
 >
   <span
     class="main-label"

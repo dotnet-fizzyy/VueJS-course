@@ -1,12 +1,12 @@
 <template>
-    <div :class="$style.root">
+    <div data-aqa-start-header :class="$style.root">
         <div :class="$style.background">
             <div :class="$style['logo-icon-container']">
                 <logo-icon />
             </div>
 
             <template v-if="selectedFilm">
-                <div :class="$style['search-icon-container']" @click="backToSearch">
+                <div data-aqa-back-to-search :class="$style['search-icon-container']" @click="backToSearch">
                     <search-icon />
                 </div>
 

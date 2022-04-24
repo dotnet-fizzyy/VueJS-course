@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.root">
+    <div data-aqa-search-panel :class="$style.root">
         <span :class="$style['main-label']">Find your movie</span>
 
         <div :class="$style['search-container']">

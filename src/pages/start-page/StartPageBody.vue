@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.root">
+    <div data-aqa-start-body :class="$style.root">
         <div :class="$style['sort-panel-container']">
             <sort-panel />
         </div>
