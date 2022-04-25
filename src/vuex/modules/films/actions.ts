@@ -91,16 +91,17 @@ export const backToSearchActionPayload = (): BackToSearchActionPayload => ({
 export const actions: ActionTree<FilmsState, FilmsState> & Actions = {
     [FilmActionTypes.GetFilmsRequest]: async ({ getters, commit }): Promise<void> => {
         try {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const searchTerm: string = getters[FilmGetterProps.SearchTerm];
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const searchByOption: SearchByOptionNames = getters[FilmGetterProps.SearchBy];
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const sortByOption: SortByOptionsNames = getters[FilmGetterProps.SortBy];
 
             commit(getFilmsRequestMutationPayload());
 
-            const { data, limit }: CollectionResponse<Film> = await FilmsApi.getFilms();
+            const { data, limit }: CollectionResponse<Film> = await FilmsApi.getFilms(
+                searchTerm,
+                searchByOption,
+                sortByOption
+            );
 
             commit(getFilmsRequestSuccessMutationPayload(data, limit));
         } catch (e) {

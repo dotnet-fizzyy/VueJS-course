@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
 import { CollectionResponse, Film, FilmResponse } from '@/types/films';
+import { SearchByOptionNames, SortByOptionsNames } from '@/enums/search';
 import { mapFilmApiResponseToFilm } from '@/utils/films';
 
 export default class FilmsApi {
@@ -9,8 +10,18 @@ export default class FilmsApi {
         'Content-Type': 'application/json',
     };
 
-    public static async getFilms(): Promise<CollectionResponse<Film>> {
-        const response: VueResource.HttpResponse = await Vue.http.get(`${FilmsApi.getBaseUrl()}/movies`, {
+    public static async getFilms(
+        searchTerm: string,
+        searchByOption: SearchByOptionNames,
+        sortByOption: SortByOptionsNames
+    ): Promise<CollectionResponse<Film>> {
+        let url: string = `${FilmsApi.getBaseUrl()}/movies?sortBy=${sortByOption}&sortOrder=asc`;
+
+        if (searchTerm) {
+            url += `&search=${searchTerm}&searchBy=${searchByOption}`;
+        }
+
+        const response: VueResource.HttpResponse = await Vue.http.get(url, {
             headers: FilmsApi.Headers,
         });
         const responseBody: CollectionResponse<FilmResponse> = await response.json();
