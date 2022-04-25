@@ -1,6 +1,6 @@
 import MoviesJson from './movies.json';
-import { Film, FilmFullDescription, FilmPreview } from '@/types/films';
-import { mapFilmApiResponseToFilm, mapFilmToFilmPreview } from '@/utils/films';
+import { Film, FilmFullDescription, FilmPreview, FilmResponse } from '@/types/films';
+import { mapFilmToFilmPreview } from '@/utils/films';
 
 const reservoirDog: Film = {
     id: 'R_D',
@@ -121,10 +121,10 @@ export const fullFilmsDescription: FilmFullDescription[] = [
     fourRooms,
 ];
 
-export const getMockedFilmsFromJson = (): Film[] => {
+export const getMockedFilmsFromJson = (): FilmResponse[] => {
     if (!Array.isArray(MoviesJson)) {
         return [];
     }
 
-    return MoviesJson.map(mapFilmApiResponseToFilm);
+    return MoviesJson as FilmResponse[];
 };

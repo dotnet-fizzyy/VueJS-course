@@ -74,7 +74,8 @@
     ],
     "testMatch": [
       "**/tests/(unit|integration)/**/*.spec.[jt]s?(x)"
-    ]
+    ],
+    "setupFiles": ["<rootDir>/.jest/setupEnvVariables.js"]
   },
   "bugs": {
     "url": "https://github.com/dotnet-fizzyy/VueJS-course/issues"

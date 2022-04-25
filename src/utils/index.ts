@@ -32,3 +32,5 @@ export const getYearFromStringDate = (value: string): number => {
 
     return date.getFullYear();
 };
+
+export const delay = (milliseconds: number): Promise<void> => new Promise<void>(r => setTimeout(r, milliseconds));

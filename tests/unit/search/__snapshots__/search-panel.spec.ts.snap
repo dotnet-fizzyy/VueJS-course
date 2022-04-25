@@ -42,7 +42,7 @@ exports[`SearchPanel.vue Tests Should render 1`] = `
     <button-group-stub
       label="Search By"
       options="[object Object],[object Object]"
-      selectedoption="g_e"
+      selectedoption="genres"
     />
   </div>
 </div>

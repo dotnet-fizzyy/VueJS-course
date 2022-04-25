@@ -1,18 +1,41 @@
 import Films from '@/vuex/modules/films/state';
 import FiltersPlugin from '@/plugins/filtersPlugin';
+import MockRoutes from '@/mocks/mockEndpoints';
 import StartPage from '@/pages/start-page/StartPage.vue';
+import Vue from 'vue';
 import VueLazyload from 'vue-lazyload';
+import VueResource from 'vue-resource';
 import Vuex from 'vuex';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { FilmsModuleName } from '@/vuex/store/constants';
 import { NoFilmsFoundMessage } from '@/constants/search';
 import { State } from '@/vuex/store/state';
 import { createLocalVue, mount } from '@vue/test-utils';
+import { delay } from '@/utils';
+import { getAppSettings } from '@/utils/appSettings';
 
 const localVue = createLocalVue();
+localVue.use(VueResource);
 localVue.use(Vuex);
 localVue.use(FiltersPlugin);
 localVue.use(VueLazyload);
+
+localVue.http.options.root = getAppSettings().apiUrl;
+
+// todo: try to find the other way to set "http" to global Vue
+Vue.http = localVue.http;
+
+localVue.http.interceptors.push(((request, next) => {
+    const route = MockRoutes.find(item => {
+        return request.method === item.method && request.url === item.url;
+    });
+
+    if (route) {
+        next(request.respondWith(JSON.stringify(route.response), { status: 200 }));
+    } else {
+        next(request.respondWith({ status: 404, statusText: 'Oh no! Not found!' }));
+    }
+}) as VueResource.HttpInterceptor);
 
 describe('StartPage.vue', () => {
     test('Should render', () => {
@@ -81,6 +104,8 @@ describe('StartPage.vue', () => {
 
     test(`Should display film full description if it was selected from previews`, async () => {
         //Arrange
+        const requestDelay: number = 100;
+
         const store = new Vuex.Store({
             modules: { [FilmsModuleName]: Films },
         });
@@ -91,8 +116,10 @@ describe('StartPage.vue', () => {
         });
 
         //Act & Assert
-        const filmPreviewWrapper = wrapper.find('[data-aqa-preview]');
+        await delay(requestDelay);
+        await wrapper.vm.$nextTick();
 
+        const filmPreviewWrapper = wrapper.find('[data-aqa-preview]');
         expect(filmPreviewWrapper.element).toBeTruthy();
 
         const filmId = filmPreviewWrapper.props('id');
@@ -100,6 +127,7 @@ describe('StartPage.vue', () => {
 
         expect(filmPreviewWrapper.emitted('select')).toBeTruthy();
 
+        await delay(requestDelay);
         await wrapper.vm.$nextTick();
 
         const filmFullDescriptionWrapper = wrapper.find('[data-aqa-full-description]');
