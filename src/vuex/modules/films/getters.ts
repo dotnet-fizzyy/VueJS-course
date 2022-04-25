@@ -26,7 +26,7 @@ export const getters: GetterTree<FilmsState, FilmsState> = {
         return state.length;
     },
     [FilmGetterProps.GetSelectedFilmWithFullDescription]: (state: FilmsState): FilmFullDescription => {
-        return state.items.find(film => film.id === state.selectedItem);
+        return state.selectedItem;
     },
     [FilmGetterProps.SearchTerm]: (state: FilmsState): string => {
         return state.searchTerm;

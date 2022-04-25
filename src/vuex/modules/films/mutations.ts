@@ -1,5 +1,5 @@
 import { BaseAction, Mutations } from '@/vuex/store/state';
-import { Film, FilmFullDescription } from '@/types/films';
+import { Film } from '@/types/films';
 import { FilmsState } from '@/vuex/modules/films/state';
 import { MutationTree } from 'vuex';
 import { SearchByOptionNames, SortByOptionsNames } from '@/enums/search';
@@ -17,8 +17,7 @@ export enum FilmMutationTypes {
     ChangeSearchTerm = 'CHANGE_SEARCH_TERM',
     ChangeSearchBy = 'CHANGE_SEARCH_BY',
     ChangeSortBy = 'CHANGE_SORT_BY',
-    SetSelectedItem = 'SET_SELECTED_ITEM',
-    SetItems = 'SET_ITEMS',
+    BackToSearch = 'BACK_TO_SEARCH',
 }
 
 /**
@@ -55,13 +54,7 @@ export interface ChangeSortByMutationPayload extends BaseAction {
     value: SortByOptionsNames;
 }
 
-export interface SetSelectedItemMutationPayload extends BaseAction {
-    value: string;
-}
-
-export interface SetItemsMutationPayload extends BaseAction {
-    items: FilmFullDescription[];
-}
+export interface BackToSearchMutationPayload extends BaseAction {}
 
 /**
  *  Payloads
@@ -86,7 +79,7 @@ export const getFilmsRequestFailureMutationPayload = (): GetFilmsRequestFailureM
 });
 
 export const getFilmByIdRequestSuccessMutationPayload = (value: Film): GetFilmByIdRequestSuccessMutationPayload => ({
-    type: FilmMutationTypes.GetFilmsRequestSuccess,
+    type: FilmMutationTypes.GetFilmByIdRequestSuccess,
     value,
 });
 
@@ -113,14 +106,8 @@ export const changeSearchByMutationPayload = (value: SearchByOptionNames): Chang
     value: value,
 });
 
-export const setSelectedItemMutationPayload = (value: string): SetSelectedItemMutationPayload => ({
-    type: FilmMutationTypes.SetSelectedItem,
-    value,
-});
-
-export const setItemsMutationPayload = (items: FilmFullDescription[]): SetItemsMutationPayload => ({
-    type: FilmMutationTypes.SetItems,
-    items,
+export const backToSearchMutationPayload = (): BackToSearchMutationPayload => ({
+    type: FilmMutationTypes.BackToSearch,
 });
 
 /**
@@ -144,12 +131,12 @@ export const mutations: MutationTree<FilmsState> & Mutations = {
     [FilmMutationTypes.GetFilmByIdRequest]: (state: FilmsState): void => {
         state.isLoadingSelectedItem = true;
     },
-    // todo: update with real logic
     [FilmMutationTypes.GetFilmByIdRequestSuccess]: (
         state: FilmsState,
         payload: GetFilmByIdRequestSuccessMutationPayload
     ): void => {
-        console.log(payload);
+        state.isLoadingSelectedItem = false;
+        state.selectedItem = payload.value;
     },
     [FilmMutationTypes.GetFilmByIdRequestFailure]: (state: FilmsState): void => {
         state.isLoadingSelectedItem = false;
@@ -163,10 +150,7 @@ export const mutations: MutationTree<FilmsState> & Mutations = {
     [FilmMutationTypes.ChangeSortBy]: (state: FilmsState, payload: ChangeSortByMutationPayload): void => {
         state.sortBy = payload.value;
     },
-    [FilmMutationTypes.SetSelectedItem]: (state: FilmsState, payload: SetSelectedItemMutationPayload): void => {
-        state.selectedItem = payload.value;
-    },
-    [FilmMutationTypes.SetItems]: (state: FilmsState, payload: SetItemsMutationPayload): void => {
-        state.items = payload.items;
+    [FilmMutationTypes.BackToSearch]: (state: FilmsState): void => {
+        state.selectedItem = null;
     },
 };

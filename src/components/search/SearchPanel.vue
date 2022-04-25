@@ -38,7 +38,7 @@ import { SearchByOptions } from '@/constants/search';
 import {
     changeSearchActionPayload,
     changeSearchByActionPayload,
-    searchFilmsActionPayload,
+    getFilmsRequestActionPayload,
 } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
@@ -64,7 +64,7 @@ export default Vue.extend({
     },
     methods: {
         onSearch(): void {
-            this.$store.dispatch(searchFilmsActionPayload());
+            this.$store.dispatch(getFilmsRequestActionPayload());
         },
         onChangeSearchByOption(option: string): void {
             this.$store.dispatch(changeSearchByActionPayload(option as SearchByOptionNames));

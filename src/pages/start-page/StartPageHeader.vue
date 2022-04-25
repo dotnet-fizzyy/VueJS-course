@@ -27,9 +27,9 @@ import SearchIcon from '@/components/icons/SearchIcon.vue';
 import SearchPanel from '@/components/search/SearchPanel.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
+import { backToSearchActionPayload } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
-import { setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 
 export default Vue.extend({
     name: 'StartPageHeader',
@@ -41,7 +41,7 @@ export default Vue.extend({
     },
     methods: {
         backToSearch(): void {
-            this.$store.dispatch(setSelectedFilmActionPayload(''));
+            this.$store.dispatch(backToSearchActionPayload());
         },
     },
 });

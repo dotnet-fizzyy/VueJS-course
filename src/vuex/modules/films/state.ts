@@ -9,7 +9,7 @@ export interface FilmsState {
     items: Film[];
     length: number;
     isLoadingSelectedItem: boolean;
-    selectedItem: string;
+    selectedItem: Film | null;
     searchTerm: string;
     searchBy: SearchByOptionNames;
     sortBy: SortByOptionsNames;
@@ -20,7 +20,7 @@ const state: FilmsState = {
     items: [],
     length: 0,
     isLoadingSelectedItem: false,
-    selectedItem: '',
+    selectedItem: null,
     searchTerm: '',
     searchBy: SearchByOptionNames.Title,
     sortBy: SortByOptionsNames.ReleaseDate,

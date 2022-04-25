@@ -36,8 +36,8 @@ import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { FontStyle } from '@/enums/styles';
 import { NoFilmsFoundMessage } from '@/constants/search';
+import { getFilmByIdRequestActionPayload, getFilmsRequestActionPayload } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
-import { getFilmsRequestActionPayload, setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 import { mapGetters } from 'vuex';
 
 export default Vue.extend({
@@ -54,7 +54,7 @@ export default Vue.extend({
     },
     methods: {
         selectFilm(id: string): void {
-            this.$store.dispatch(setSelectedFilmActionPayload(id));
+            this.$store.dispatch(getFilmByIdRequestActionPayload(id));
         },
     },
     created(): void {
