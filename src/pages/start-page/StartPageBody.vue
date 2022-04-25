@@ -37,8 +37,8 @@ import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { FontStyle } from '@/enums/styles';
 import { NoFilmsFoundMessage } from '@/constants/search';
 import { getFilmModuleType } from '@/vuex/store/utils';
+import { getFilmsRequestActionPayload, setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 import { mapGetters } from 'vuex';
-import { setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 
 export default Vue.extend({
     name: 'StartPageBody',
@@ -56,6 +56,9 @@ export default Vue.extend({
         selectFilm(id: string): void {
             this.$store.dispatch(setSelectedFilmActionPayload(id));
         },
+    },
+    created(): void {
+        this.$store.dispatch(getFilmsRequestActionPayload());
     },
 });
 </script>

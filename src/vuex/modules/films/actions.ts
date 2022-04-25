@@ -1,5 +1,7 @@
+import FilmsApi from '@/api/films';
 import { ActionTree } from 'vuex';
 import { Actions, BaseAction } from '@/vuex/store/state';
+import { CollectionResponse, Film } from '@/types/films';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { FilmsState } from '@/vuex/modules/films/state';
 import { SearchByOptionNames, SortByOptionsNames } from '@/enums/search';
@@ -7,6 +9,12 @@ import {
     changeSearchByMutationPayload,
     changeSearchTermMutationPayload,
     changeSortByMutationPayload,
+    getFilmByIdRequestFailureMutationPayload,
+    getFilmByIdRequestMutationPayload,
+    getFilmByIdRequestSuccessMutationPayload,
+    getFilmsRequestFailureMutationPayload,
+    getFilmsRequestMutationPayload,
+    getFilmsRequestSuccessMutationPayload,
     setItemsMutationPayload,
     setSelectedItemMutationPayload,
 } from '@/vuex/modules/films/mutations';
@@ -17,6 +25,8 @@ import { getMockedFilmsFromJson } from '@/mocks/mockFilms';
  *  Actions Types
  */
 export enum FilmActionTypes {
+    GetFilmsRequest = 'GET_FILMS_REQUEST',
+    GetFilmByIdRequest = 'GET_FILM_BY_ID_REQUEST',
     ChangeSearchTerm = 'CHANGE_SEARCH_TERM',
     ChangeSortBy = 'CHANGE_SORT_BY',
     ChangeSearchBy = 'CHANGE_SEARCH_BY',
@@ -27,6 +37,12 @@ export enum FilmActionTypes {
 /**
  *  Payload Interfaces
  */
+export interface GetFilmsRequestActionPayload extends BaseAction {}
+
+export interface GetFilmByIdRequestActionPayload extends BaseAction {
+    value: string;
+}
+
 export interface ChangeSearchTermActionPayload extends BaseAction {
     value: string;
 }
@@ -48,6 +64,10 @@ export interface SearchFilmsActionPayload extends BaseAction {}
 /**
  *  Payloads
  */
+export const getFilmsRequestActionPayload = (): GetFilmsRequestActionPayload => ({
+    type: getFilmModuleType(FilmActionTypes.GetFilmsRequest),
+});
+
 export const changeSearchActionPayload = (value: string): ChangeSearchTermActionPayload => ({
     type: getFilmModuleType(FilmActionTypes.ChangeSearchTerm),
     value,
@@ -76,6 +96,32 @@ export const searchFilmsActionPayload = (): SearchFilmsActionPayload => ({
  *  Actions
  */
 export const actions: ActionTree<FilmsState, FilmsState> & Actions = {
+    [FilmActionTypes.GetFilmsRequest]: async (state): Promise<void> => {
+        try {
+            state.commit(getFilmsRequestMutationPayload());
+
+            const { data, limit }: CollectionResponse<Film> = await FilmsApi.getFilms();
+
+            state.commit(getFilmsRequestSuccessMutationPayload(data, limit));
+        } catch (e) {
+            console.error(e);
+
+            state.commit(getFilmsRequestFailureMutationPayload());
+        }
+    },
+    [FilmActionTypes.GetFilmByIdRequest]: async (state, payload: GetFilmByIdRequestActionPayload): Promise<void> => {
+        try {
+            state.commit(getFilmByIdRequestMutationPayload());
+
+            const film: Film = await FilmsApi.getFilmById(payload.value);
+
+            state.commit(getFilmByIdRequestSuccessMutationPayload(film));
+        } catch (e) {
+            console.error(e);
+
+            state.commit(getFilmByIdRequestFailureMutationPayload());
+        }
+    },
     [FilmActionTypes.ChangeSearchTerm]: (state, payload: ChangeSearchTermActionPayload): void => {
         state.commit(changeSearchTermMutationPayload(payload.value));
     },

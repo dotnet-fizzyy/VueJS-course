@@ -1,6 +1,6 @@
 import MoviesJson from './movies.json';
 import { Film, FilmFullDescription, FilmPreview } from '@/types/films';
-import { mapFilmResponseToFilm, mapFilmToFilmPreview } from '@/utils/films';
+import { mapFilmApiResponseToFilm, mapFilmToFilmPreview } from '@/utils/films';
 
 const reservoirDog: Film = {
     id: 'R_D',
@@ -126,5 +126,5 @@ export const getMockedFilmsFromJson = (): Film[] => {
         return [];
     }
 
-    return MoviesJson.map(mapFilmResponseToFilm);
+    return MoviesJson.map(mapFilmApiResponseToFilm);
 };
