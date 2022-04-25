@@ -22,7 +22,13 @@
 
         <template v-else>
             <div id="no-films-message-container" :class="$style['no-films-found-container']">
-                <app-title :font-size="30" :font-style="noFoundTitleFontStyle">{{ noFilmsFoundMessage }}</app-title>
+                <template v-if="isLoadingItems">
+                    <loading-icon />
+                </template>
+
+                <template v-else>
+                    <app-title :font-size="30" :font-style="noFoundTitleFontStyle">{{ noFilmsFoundMessage }}</app-title>
+                </template>
             </div>
         </template>
     </div>
@@ -31,6 +37,7 @@
 <script lang="ts">
 import AppTitle from '@/components/common/AppTitle.vue';
 import FilmPreview from '@/components/films/FilmPreview.vue';
+import LoadingIcon from '@/components/icons/LoadingIcon.vue';
 import SortPanel from '@/components/listing/SortPanel.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
@@ -42,7 +49,7 @@ import { mapGetters } from 'vuex';
 
 export default Vue.extend({
     name: 'StartPageBody',
-    components: { FilmPreview, SortPanel, AppTitle },
+    components: { LoadingIcon, FilmPreview, SortPanel, AppTitle },
     data: () => ({
         noFoundTitleFontStyle: FontStyle.Bold,
         noFilmsFoundMessage: NoFilmsFoundMessage,
@@ -50,6 +57,7 @@ export default Vue.extend({
     computed: {
         ...mapGetters({
             films: getFilmModuleType(FilmGetterProps.FilmsPreviews),
+            isLoadingItems: getFilmModuleType(FilmGetterProps.IsLoadingItems),
         }),
     },
     methods: {

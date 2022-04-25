@@ -82,6 +82,7 @@ describe('StartPage.vue', () => {
                     getters: {
                         ...Films.getters,
                         [FilmGetterProps.FilmsPreviews]: () => [],
+                        [FilmGetterProps.IsLoadingItems]: () => false,
                     },
                 },
             },

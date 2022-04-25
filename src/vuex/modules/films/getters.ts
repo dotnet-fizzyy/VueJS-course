@@ -9,7 +9,9 @@ import { mapFilmToFilmPreview } from '@/utils/films';
 export enum FilmGetterProps {
     FilmsPreviews = 'filmsPreviews',
     AvailableCount = 'availableCount',
+    IsLoadingItems = 'isLoadingItems',
     GetSelectedFilmWithFullDescription = 'getSelectedFilmWithFullDescription',
+    IsLoadingSelectedItem = 'isLoadingSelectedItem',
     SearchTerm = 'searchTerm',
     SearchBy = 'searchBy',
     SortBy = 'sortBy',
@@ -21,6 +23,12 @@ export enum FilmGetterProps {
 export const getters: GetterTree<FilmsState, FilmsState> = {
     [FilmGetterProps.FilmsPreviews]: (state: FilmsState): FilmPreview[] => {
         return state.items.map(mapFilmToFilmPreview);
+    },
+    [FilmGetterProps.IsLoadingItems]: (state: FilmsState): boolean => {
+        return state.isLoadingItems;
+    },
+    [FilmGetterProps.IsLoadingSelectedItem]: (state: FilmsState): boolean => {
+        return state.isLoadingSelectedItem;
     },
     [FilmGetterProps.AvailableCount]: (state: FilmsState): number => {
         return state.length;
