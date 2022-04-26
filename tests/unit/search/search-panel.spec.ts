@@ -4,7 +4,7 @@ import {
     FilmActionTypes,
     changeSearchActionPayload,
     changeSearchByActionPayload,
-    searchFilmsActionPayload,
+    getFilmsRequestActionPayload,
 } from '@/vuex/modules/films/actions';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { SearchByOptionNames } from '@/enums/search';
@@ -41,7 +41,7 @@ describe('SearchPanel.vue Tests', () => {
         expect(wrapper.element).toMatchSnapshot();
     });
 
-    test('Should dispatch "searchFilmsActionPayload" action on clicking search button', () => {
+    test('Should dispatch "getFilmsRequestActionPayload" action on clicking search button', () => {
         //Arrange
         const actions = {
             [getFilmModuleType(FilmActionTypes.ChangeSortBy)]: jest.fn(),
@@ -70,7 +70,7 @@ describe('SearchPanel.vue Tests', () => {
 
         searchButtonWrapper.vm.$emit('click');
 
-        expect(store.dispatch).toHaveBeenCalledWith(searchFilmsActionPayload());
+        expect(store.dispatch).toHaveBeenCalledWith(getFilmsRequestActionPayload());
     });
 
     test('Should dispatch "onChangeSearchQuery" action on changing search input', () => {

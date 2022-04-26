@@ -1,32 +1,45 @@
+import FilmsApi from '@/api/films';
 import { ActionTree } from 'vuex';
 import { Actions, BaseAction } from '@/vuex/store/state';
+import { CollectionResponse, Film } from '@/types/films';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { FilmsState } from '@/vuex/modules/films/state';
 import { SearchByOptionNames, SortByOptionsNames } from '@/enums/search';
 import {
+    backToSearchMutationPayload,
     changeSearchByMutationPayload,
     changeSearchTermMutationPayload,
     changeSortByMutationPayload,
-    setItemsMutationPayload,
-    setSelectedItemMutationPayload,
+    getFilmByIdRequestFailureMutationPayload,
+    getFilmByIdRequestMutationPayload,
+    getFilmByIdRequestSuccessMutationPayload,
+    getFilmsRequestFailureMutationPayload,
+    getFilmsRequestMutationPayload,
+    getFilmsRequestSuccessMutationPayload,
 } from '@/vuex/modules/films/mutations';
 import { getFilmModuleType } from '@/vuex/store/utils';
-import { getMockedFilmsFromJson } from '@/mocks/mockFilms';
 
 /**
  *  Actions Types
  */
 export enum FilmActionTypes {
+    GetFilmsRequest = 'GET_FILMS_REQUEST',
+    GetFilmByIdRequest = 'GET_FILM_BY_ID_REQUEST',
     ChangeSearchTerm = 'CHANGE_SEARCH_TERM',
     ChangeSortBy = 'CHANGE_SORT_BY',
     ChangeSearchBy = 'CHANGE_SEARCH_BY',
-    SetSelectedFilm = 'SET_SELECTED_FILM',
-    SearchFilms = 'SEARCH_FILMS',
+    BackToSearch = 'BACK_TO_SEARCH',
 }
 
 /**
  *  Payload Interfaces
  */
+export interface GetFilmsRequestActionPayload extends BaseAction {}
+
+export interface GetFilmByIdRequestActionPayload extends BaseAction {
+    value: string;
+}
+
 export interface ChangeSearchTermActionPayload extends BaseAction {
     value: string;
 }
@@ -39,15 +52,20 @@ export interface ChangeSearchByActionPayload extends BaseAction {
     value: SearchByOptionNames;
 }
 
-export interface SetSelectedFilmActionPayload extends BaseAction {
-    value: string;
-}
-
-export interface SearchFilmsActionPayload extends BaseAction {}
+export interface BackToSearchActionPayload extends BaseAction {}
 
 /**
  *  Payloads
  */
+export const getFilmsRequestActionPayload = (): GetFilmsRequestActionPayload => ({
+    type: getFilmModuleType(FilmActionTypes.GetFilmsRequest),
+});
+
+export const getFilmByIdRequestActionPayload = (value: string): GetFilmByIdRequestActionPayload => ({
+    type: getFilmModuleType(FilmActionTypes.GetFilmByIdRequest),
+    value,
+});
+
 export const changeSearchActionPayload = (value: string): ChangeSearchTermActionPayload => ({
     type: getFilmModuleType(FilmActionTypes.ChangeSearchTerm),
     value,
@@ -63,19 +81,48 @@ export const changeSearchByActionPayload = (value: SearchByOptionNames): ChangeS
     value,
 });
 
-export const setSelectedFilmActionPayload = (value: string): SetSelectedFilmActionPayload => ({
-    type: getFilmModuleType(FilmActionTypes.SetSelectedFilm),
-    value,
-});
-
-export const searchFilmsActionPayload = (): SearchFilmsActionPayload => ({
-    type: getFilmModuleType(FilmActionTypes.SearchFilms),
+export const backToSearchActionPayload = (): BackToSearchActionPayload => ({
+    type: getFilmModuleType(FilmActionTypes.BackToSearch),
 });
 
 /**
  *  Actions
  */
 export const actions: ActionTree<FilmsState, FilmsState> & Actions = {
+    [FilmActionTypes.GetFilmsRequest]: async ({ getters, commit }): Promise<void> => {
+        try {
+            const searchTerm: string = getters[FilmGetterProps.SearchTerm];
+            const searchByOption: SearchByOptionNames = getters[FilmGetterProps.SearchBy];
+            const sortByOption: SortByOptionsNames = getters[FilmGetterProps.SortBy];
+
+            commit(getFilmsRequestMutationPayload());
+
+            const { data, limit }: CollectionResponse<Film> = await FilmsApi.getFilms(
+                searchTerm,
+                searchByOption,
+                sortByOption
+            );
+
+            commit(getFilmsRequestSuccessMutationPayload(data, limit));
+        } catch (e) {
+            console.error(e);
+
+            commit(getFilmsRequestFailureMutationPayload());
+        }
+    },
+    [FilmActionTypes.GetFilmByIdRequest]: async (state, payload: GetFilmByIdRequestActionPayload): Promise<void> => {
+        try {
+            state.commit(getFilmByIdRequestMutationPayload());
+
+            const film: Film = await FilmsApi.getFilmById(payload.value);
+
+            state.commit(getFilmByIdRequestSuccessMutationPayload(film));
+        } catch (e) {
+            console.error(e);
+
+            state.commit(getFilmByIdRequestFailureMutationPayload());
+        }
+    },
     [FilmActionTypes.ChangeSearchTerm]: (state, payload: ChangeSearchTermActionPayload): void => {
         state.commit(changeSearchTermMutationPayload(payload.value));
     },
@@ -85,58 +132,7 @@ export const actions: ActionTree<FilmsState, FilmsState> & Actions = {
     [FilmActionTypes.ChangeSearchBy]: (state, payload: ChangeSearchByActionPayload): void => {
         state.commit(changeSearchByMutationPayload(payload.value));
     },
-    [FilmActionTypes.SetSelectedFilm]: (state, payload: SetSelectedFilmActionPayload): void => {
-        state.commit(setSelectedItemMutationPayload(payload.value));
-    },
-    [FilmActionTypes.SearchFilms]: ({ getters, commit }): void => {
-        const searchTerm: string = getters[FilmGetterProps.SearchTerm];
-        const searchByOption: SearchByOptionNames = getters[FilmGetterProps.SearchBy];
-        const sortByOption: SortByOptionsNames = getters[FilmGetterProps.SortBy];
-
-        let responseItems = getMockedFilmsFromJson();
-
-        switch (searchByOption) {
-            case SearchByOptionNames.Genre:
-                responseItems = searchTerm ? responseItems.filter(x => x.genres.includes(searchTerm)) : responseItems;
-                break;
-            case SearchByOptionNames.Title:
-                responseItems = searchTerm ? responseItems.filter(x => x.name.includes(searchTerm)) : responseItems;
-                break;
-            default:
-                break;
-        }
-
-        switch (sortByOption) {
-            case SortByOptionsNames.Rating:
-                responseItems = responseItems.sort((a, b) => {
-                    if (a.rating > b.rating) {
-                        return 1;
-                    }
-
-                    if (a.rating < b.rating) {
-                        return -1;
-                    }
-
-                    return 0;
-                });
-                break;
-            case SortByOptionsNames.ReleaseDate:
-                responseItems = responseItems.sort((a, b) => {
-                    if (a.releaseYear > b.releaseYear) {
-                        return 1;
-                    }
-
-                    if (a.releaseYear < b.releaseYear) {
-                        return -1;
-                    }
-
-                    return 0;
-                });
-                break;
-            default:
-                break;
-        }
-
-        commit(setItemsMutationPayload(responseItems));
+    [FilmActionTypes.BackToSearch]: (state): void => {
+        state.commit(backToSearchMutationPayload());
     },
 };

@@ -22,7 +22,13 @@
 
         <template v-else>
             <div id="no-films-message-container" :class="$style['no-films-found-container']">
-                <app-title :font-size="30" :font-style="noFoundTitleFontStyle">{{ noFilmsFoundMessage }}</app-title>
+                <template v-if="isLoadingItems">
+                    <loading-icon />
+                </template>
+
+                <template v-else>
+                    <app-title :font-size="30" :font-style="noFoundTitleFontStyle">{{ noFilmsFoundMessage }}</app-title>
+                </template>
             </div>
         </template>
     </div>
@@ -31,18 +37,19 @@
 <script lang="ts">
 import AppTitle from '@/components/common/AppTitle.vue';
 import FilmPreview from '@/components/films/FilmPreview.vue';
+import LoadingIcon from '@/components/icons/LoadingIcon.vue';
 import SortPanel from '@/components/listing/SortPanel.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { FontStyle } from '@/enums/styles';
 import { NoFilmsFoundMessage } from '@/constants/search';
+import { getFilmByIdRequestActionPayload, getFilmsRequestActionPayload } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
-import { setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 
 export default Vue.extend({
     name: 'StartPageBody',
-    components: { FilmPreview, SortPanel, AppTitle },
+    components: { LoadingIcon, FilmPreview, SortPanel, AppTitle },
     data: () => ({
         noFoundTitleFontStyle: FontStyle.Bold,
         noFilmsFoundMessage: NoFilmsFoundMessage,
@@ -50,12 +57,16 @@ export default Vue.extend({
     computed: {
         ...mapGetters({
             films: getFilmModuleType(FilmGetterProps.FilmsPreviews),
+            isLoadingItems: getFilmModuleType(FilmGetterProps.IsLoadingItems),
         }),
     },
     methods: {
         selectFilm(id: string): void {
-            this.$store.dispatch(setSelectedFilmActionPayload(id));
+            this.$store.dispatch(getFilmByIdRequestActionPayload(id));
         },
+    },
+    created(): void {
+        this.$store.dispatch(getFilmsRequestActionPayload());
     },
 });
 </script>

@@ -1,5 +1,6 @@
 export interface AppSettings {
+    isDevelopmentMode: boolean;
     defaultPosterUrl: string;
     defaultPosterAlt: string;
-    isDevelopmentMode: boolean;
+    apiUrl: string;
 }

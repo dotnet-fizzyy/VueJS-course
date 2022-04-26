@@ -1,4 +1,4 @@
-import { Film, FilmPreview } from '@/types/films';
+import { Film, FilmPreview, FilmResponse } from '@/types/films';
 import { castToString, getYearFromStringDate } from '@/utils/index';
 
 export const mapFilmToFilmPreview = (film: Film): FilmPreview => ({
@@ -10,14 +10,14 @@ export const mapFilmToFilmPreview = (film: Film): FilmPreview => ({
     shortDescription: film.shortDescription,
 });
 
-export const mapFilmResponseToFilm = (filmRes): Film => ({
+export const mapFilmApiResponseToFilm = (filmRes: FilmResponse): Film => ({
     id: castToString(filmRes.id),
     name: filmRes.title,
     releaseYear: getYearFromStringDate(filmRes.release_date),
     posterUrl: filmRes.poster_path,
-    posterAlt: filmRes.poster_alt ?? filmRes.title.toLowerCase(),
-    shortDescription: filmRes.label,
-    fullDescription: filmRes.overview ?? '',
+    posterAlt: filmRes.title.toLowerCase(),
+    shortDescription: filmRes.label ?? 'Unspecified',
+    fullDescription: filmRes.overview ?? 'Unspecified',
     rating: filmRes.vote_average ?? 0,
     runtime: filmRes.runtime ?? 0,
     genres: filmRes.genres,

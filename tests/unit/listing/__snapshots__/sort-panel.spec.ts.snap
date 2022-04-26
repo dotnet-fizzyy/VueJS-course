@@ -14,7 +14,7 @@ exports[`SortPanel.vue Tests Should render 1`] = `
   <button-group-stub
     label="Sort By"
     options="[object Object],[object Object]"
-    selectedoption="r_d"
+    selectedoption="release_date"
   />
 </div>
 `;
