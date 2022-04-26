@@ -21,7 +21,7 @@
         </template>
 
         <template v-else>
-            <div id="no-films-message-container" :class="$style['no-films-found-container']">
+            <div data-aqa-no-films-message-container :class="$style['no-films-found-container']">
                 <template v-if="isLoadingItems">
                     <loading-icon />
                 </template>

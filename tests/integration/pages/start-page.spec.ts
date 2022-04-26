@@ -73,7 +73,7 @@ describe('StartPage.vue', () => {
         expect(filmPreviewsWrappers.length).toEqual(expectedItemsCount);
     });
 
-    it(`Should display "${NoFilmsFoundMessage}" label if film previews empty array was provided from store`, () => {
+    it(`Should display "No films found" label if film previews empty array was provided from store`, () => {
         //Arrange
         const store = new Vuex.Store({
             modules: {
@@ -94,7 +94,7 @@ describe('StartPage.vue', () => {
         });
 
         //Act & Assert
-        const noFilmsMessageContainerWrapper = wrapper.find('#no-films-message-container');
+        const noFilmsMessageContainerWrapper = wrapper.find('[data-aqa-no-films-message-container]');
 
         expect(noFilmsMessageContainerWrapper.element).toBeTruthy();
 

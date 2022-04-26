@@ -6,7 +6,7 @@ exports[`SortPanel.vue Tests Should render 1`] = `
 >
   <span
     class="title"
-    id="available-items-count"
+    data-aqa-available-items-count=""
   >
     5 movies found
   </span>

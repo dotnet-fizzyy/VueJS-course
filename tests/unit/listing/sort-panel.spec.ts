@@ -52,7 +52,7 @@ describe('SortPanel.vue Tests', () => {
         });
 
         //Act & Assert
-        const availableItemsCountLabelWrapper = wrapper.find('#available-items-count');
+        const availableItemsCountLabelWrapper = wrapper.find('[data-aqa-available-items-count]');
 
         expect(availableItemsCountLabelWrapper.text()).toEqual(`${availableItemsCount} movies found`);
     });

@@ -56,7 +56,7 @@ describe('ButtonGroup.vue Tests', () => {
         });
 
         //Act & Assert
-        const nonSelectedButtonWrapper = wrapper.find(`#${nonSelectedOption}`);
+        const nonSelectedButtonWrapper = wrapper.find(`[data-aqa-button-name=${nonSelectedOption}]`);
 
         expect(nonSelectedButtonWrapper.element).toBeTruthy();
 
@@ -83,7 +83,7 @@ describe('ButtonGroup.vue Tests', () => {
         });
 
         //Act & Assert
-        const selectedButtonWrapper = wrapper.find(`#${selectedOption}`);
+        const selectedButtonWrapper = wrapper.find(`[data-aqa-button-name=${selectedOption}]`);
 
         expect(selectedButtonWrapper.element).toBeTruthy();
 

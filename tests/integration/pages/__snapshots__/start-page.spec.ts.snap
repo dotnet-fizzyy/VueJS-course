@@ -89,7 +89,7 @@ exports[`StartPage.vue Should render 1`] = `
             >
               <button
                 class="selected-option option"
-                id="title"
+                data-aqa-button-name="title"
               >
                 
                 Title
@@ -97,7 +97,7 @@ exports[`StartPage.vue Should render 1`] = `
               </button>
               <button
                 class="non-selected-option option"
-                id="genres"
+                data-aqa-button-name="genres"
               >
                 
                 Genre
@@ -121,7 +121,7 @@ exports[`StartPage.vue Should render 1`] = `
       >
         <span
           class="title"
-          id="available-items-count"
+          data-aqa-available-items-count=""
         >
           0 movies found
         </span>
@@ -140,7 +140,7 @@ exports[`StartPage.vue Should render 1`] = `
           >
             <button
               class="selected-option option"
-              id="release_date"
+              data-aqa-button-name="release_date"
             >
               
                 Release Date
@@ -148,7 +148,7 @@ exports[`StartPage.vue Should render 1`] = `
             </button>
             <button
               class="non-selected-option option"
-              id="rating"
+              data-aqa-button-name="rating"
             >
               
                 Rating
@@ -161,7 +161,7 @@ exports[`StartPage.vue Should render 1`] = `
      
     <div
       class="no-films-found-container"
-      id="no-films-message-container"
+      data-aqa-no-films-message-container=""
     >
       <svg
         class="root"
