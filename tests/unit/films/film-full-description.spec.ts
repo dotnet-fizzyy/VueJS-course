@@ -1,11 +1,8 @@
 import FilmFullDescription from '@/components/films/FilmFullDescription.vue';
-import FiltersPlugin from '@/plugins/filtersPlugin';
-import VueLazyload from 'vue-lazyload';
-import { createLocalVue, shallowMount } from '@vue/test-utils';
+import { createDefaultVueInstance } from '../../setup';
+import { shallowMount } from '@vue/test-utils';
 
-const localVue = createLocalVue();
-localVue.use(FiltersPlugin);
-localVue.use(VueLazyload);
+const localVue = createDefaultVueInstance();
 
 describe('FilmFullDescription.vue Tests', () => {
     it('Should render', () => {

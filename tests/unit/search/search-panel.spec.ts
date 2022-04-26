@@ -8,11 +8,11 @@ import {
 } from '@/vuex/modules/films/actions';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { SearchByOptionNames } from '@/enums/search';
-import { createLocalVue, shallowMount } from '@vue/test-utils';
+import { createDefaultVueInstance } from '../../setup';
 import { getFilmModuleType } from '@/vuex/store/utils';
+import { shallowMount } from '@vue/test-utils';
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
+const localVue = createDefaultVueInstance();
 
 describe('SearchPanel.vue Tests', () => {
     it('Should render', () => {

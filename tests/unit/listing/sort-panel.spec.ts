@@ -3,11 +3,11 @@ import Vuex from 'vuex';
 import { FilmActionTypes, changeSortByActionPayload } from '@/vuex/modules/films/actions';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { SortByOptionsNames } from '@/enums/search';
-import { createLocalVue, shallowMount } from '@vue/test-utils';
+import { createDefaultVueInstance } from '../../setup';
 import { getFilmModuleType } from '@/vuex/store/utils';
+import { shallowMount } from '@vue/test-utils';
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
+const localVue = createDefaultVueInstance();
 
 describe('SortPanel.vue Tests', () => {
     const availableItemsCount: number = 5;
