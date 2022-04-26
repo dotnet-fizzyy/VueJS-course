@@ -8,7 +8,7 @@ localVue.use(FiltersPlugin);
 localVue.use(VueLazyload);
 
 describe('FilmFullDescription.vue Tests', () => {
-    test('Should render', () => {
+    it('Should render', () => {
         //Arrange
         const wrapper = shallowMount(FilmFullDescription, {
             localVue,
@@ -28,7 +28,7 @@ describe('FilmFullDescription.vue Tests', () => {
         expect(wrapper.element).toMatchSnapshot();
     });
 
-    test('Should add precision to rating if it is numeral', () => {
+    it('Should add precision to rating if it is numeral', () => {
         //Arrange
         const numeralRating = 4;
 
@@ -54,7 +54,7 @@ describe('FilmFullDescription.vue Tests', () => {
         expect(ratingWrapper.text()).toEqual(`${numeralRating}.0`);
     });
 
-    test('Should round to up film runtime if it is digit', () => {
+    it('Should round to up film runtime if it is digit', () => {
         //Arrange
         const originalRuntime = 121.4;
         const expectedRuntime = 122;

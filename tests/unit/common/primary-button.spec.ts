@@ -3,7 +3,7 @@ import { FontStyle } from '@/enums/styles';
 import { shallowMount } from '@vue/test-utils';
 
 describe('PrimaryButton.vue Tests', () => {
-    test('Should render', () => {
+    it('Should render', () => {
         //Arrange
         const wrapper = shallowMount(PrimaryButton, {
             propsData: {
@@ -19,7 +19,7 @@ describe('PrimaryButton.vue Tests', () => {
         expect(wrapper.element).toMatchSnapshot();
     });
 
-    test('Should contain correct text message', () => {
+    it('Should contain correct text message', () => {
         //Arrange
         const message = 'Hello world!';
 
@@ -37,7 +37,7 @@ describe('PrimaryButton.vue Tests', () => {
         expect(wrapper.text()).toEqual(message);
     });
 
-    test('Should emit event on click', () => {
+    it('Should emit event on click', () => {
         //Arrange
         const wrapper = shallowMount(PrimaryButton, {
             propsData: {

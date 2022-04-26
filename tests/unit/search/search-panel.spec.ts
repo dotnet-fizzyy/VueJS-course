@@ -15,7 +15,7 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe('SearchPanel.vue Tests', () => {
-    test('Should render', () => {
+    it('Should render', () => {
         //Arrange
         const actions = {
             [getFilmModuleType(FilmActionTypes.ChangeSortBy)]: jest.fn(),
@@ -41,7 +41,7 @@ describe('SearchPanel.vue Tests', () => {
         expect(wrapper.element).toMatchSnapshot();
     });
 
-    test('Should dispatch "getFilmsRequestActionPayload" action on clicking search button', () => {
+    it('Should dispatch "getFilmsRequestActionPayload" action on clicking search button', () => {
         //Arrange
         const actions = {
             [getFilmModuleType(FilmActionTypes.ChangeSortBy)]: jest.fn(),
@@ -73,7 +73,7 @@ describe('SearchPanel.vue Tests', () => {
         expect(store.dispatch).toHaveBeenCalledWith(getFilmsRequestActionPayload());
     });
 
-    test('Should dispatch "onChangeSearchQuery" action on changing search input', () => {
+    it('Should dispatch "onChangeSearchQuery" action on changing search input', () => {
         //Arrange
         const actions = {
             [getFilmModuleType(FilmActionTypes.ChangeSortBy)]: jest.fn(),
@@ -107,7 +107,7 @@ describe('SearchPanel.vue Tests', () => {
         expect(store.dispatch).toHaveBeenCalledWith(changeSearchActionPayload(expectedSearchValue));
     });
 
-    test('Should dispatch "onChangeSearchByOption" action on changing search by option', () => {
+    it('Should dispatch "onChangeSearchByOption" action on changing search by option', () => {
         //Arrange
         const actions = {
             [getFilmModuleType(FilmActionTypes.ChangeSortBy)]: jest.fn(),
@@ -141,7 +141,7 @@ describe('SearchPanel.vue Tests', () => {
         expect(store.dispatch).toHaveBeenCalledWith(changeSearchByActionPayload(expectedSearchByValue));
     });
 
-    test('Should bind "searchTerm" getter to search input value', () => {
+    it('Should bind "searchTerm" getter to search input value', () => {
         //Arrange
         const searchTerm: string = 'SomeNewAwesomeValue';
 
@@ -166,7 +166,7 @@ describe('SearchPanel.vue Tests', () => {
         expect(searchAppInputWrapper.attributes('value')).toEqual(searchTerm);
     });
 
-    test('Should bind "selectedSearchByOption" getter to search by options', () => {
+    it('Should bind "selectedSearchByOption" getter to search by options', () => {
         //Arrange
         const selectedSearchByOption: SearchByOptionNames = SearchByOptionNames.Genre;
 

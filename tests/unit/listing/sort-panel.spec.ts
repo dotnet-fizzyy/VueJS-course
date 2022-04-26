@@ -33,7 +33,7 @@ describe('SortPanel.vue Tests', () => {
         store.dispatch = jest.fn();
     });
 
-    test('Should render', () => {
+    it('Should render', () => {
         //Arrange
         const wrapper = shallowMount(SortPanel, {
             store,
@@ -44,7 +44,7 @@ describe('SortPanel.vue Tests', () => {
         expect(wrapper.element).toMatchSnapshot();
     });
 
-    test('Should render exact "availableItemsCount" passed from getter', () => {
+    it('Should render exact "availableItemsCount" passed from getter', () => {
         //Arrange
         const wrapper = shallowMount(SortPanel, {
             store,
@@ -57,7 +57,7 @@ describe('SortPanel.vue Tests', () => {
         expect(availableItemsCountLabelWrapper.text()).toEqual(`${availableItemsCount} movies found`);
     });
 
-    test('Should dispatch action on select different sort option', () => {
+    it('Should dispatch action on select different sort option', () => {
         //Arrange
         const sortOptionEventName: string = 'select-option';
 

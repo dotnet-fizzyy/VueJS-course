@@ -2,7 +2,7 @@ import AppInput from '@/components/common/AppInput.vue';
 import { shallowMount } from '@vue/test-utils';
 
 describe('AppInput.vue Tests', () => {
-    test('Should render', () => {
+    it('Should render', () => {
         //Arrange
         const wrapper = shallowMount(AppInput, {
             propsData: {
@@ -18,7 +18,7 @@ describe('AppInput.vue Tests', () => {
         expect(wrapper.element).toMatchSnapshot();
     });
 
-    test('Should not render "label" block if it was not provided via props', () => {
+    it('Should not render "label" block if it was not provided via props', () => {
         //Arrange
         const wrapper = shallowMount(AppInput, {
             propsData: {
@@ -33,7 +33,7 @@ describe('AppInput.vue Tests', () => {
         expect(wrapper.element).toMatchSnapshot();
     });
 
-    test('Should not render "error" block if it was not provided via props', () => {
+    it('Should not render "error" block if it was not provided via props', () => {
         //Arrange
         const wrapper = shallowMount(AppInput, {
             propsData: {
@@ -48,7 +48,7 @@ describe('AppInput.vue Tests', () => {
         expect(wrapper.element).toMatchSnapshot();
     });
 
-    test('Should emit event with changed value in input', () => {
+    it('Should emit event with changed value in input', () => {
         //Arrange
         const wrapper = shallowMount(AppInput, {
             propsData: {

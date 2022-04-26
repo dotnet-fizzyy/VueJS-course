@@ -3,7 +3,7 @@ import { FontStyle } from '@/enums/styles';
 import { shallowMount } from '@vue/test-utils';
 
 describe('AppTitle.vue Tests', () => {
-    test('Should render', () => {
+    it('Should render', () => {
         //Arrange
         const wrapper = shallowMount(Title, {
             slots: {
@@ -19,7 +19,7 @@ describe('AppTitle.vue Tests', () => {
         expect(wrapper.element).toMatchSnapshot();
     });
 
-    test('Should contain correct text message', () => {
+    it('Should contain correct text message', () => {
         //Arrange
         const message = 'Some message';
 

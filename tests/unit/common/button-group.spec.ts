@@ -2,7 +2,7 @@ import ButtonGroup from '@/components/common/ButtonGroup.vue';
 import { shallowMount } from '@vue/test-utils';
 
 describe('ButtonGroup.vue Tests', () => {
-    test('Should render', () => {
+    it('Should render', () => {
         //Arrange
         const selectedOption = 'btn2';
 
@@ -21,7 +21,7 @@ describe('ButtonGroup.vue Tests', () => {
         expect(wrapper).toMatchSnapshot();
     });
 
-    test('Should not render "label" block if it was not provided via props', () => {
+    it('Should not render "label" block if it was not provided via props', () => {
         //Arrange
         const selectedOption = 'btn2';
 
@@ -39,7 +39,7 @@ describe('ButtonGroup.vue Tests', () => {
         expect(wrapper).toMatchSnapshot();
     });
 
-    test('Should emit event if non-selected button was clicked', () => {
+    it('Should emit event if non-selected button was clicked', () => {
         //Arrange
         const nonSelectedOption = 'bt1';
         const selectedOption = 'btn2';
@@ -66,7 +66,7 @@ describe('ButtonGroup.vue Tests', () => {
         expect(wrapper.emitted()['select-option'][0][0]).toEqual(nonSelectedOption);
     });
 
-    test('Should not emit event if selected button was clicked', () => {
+    it('Should not emit event if selected button was clicked', () => {
         //Arrange
         const nonSelectedOption = 'bt1';
         const selectedOption = 'btn2';

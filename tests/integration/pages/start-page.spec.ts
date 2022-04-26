@@ -38,7 +38,7 @@ localVue.http.interceptors.push(((request, next) => {
 }) as VueResource.HttpInterceptor);
 
 describe('StartPage.vue', () => {
-    test('Should render', () => {
+    it('Should render', () => {
         //Arrange
         const store = new Vuex.Store({
             modules: { [FilmsModuleName]: Films },
@@ -53,7 +53,7 @@ describe('StartPage.vue', () => {
         expect(wrapper.element).toMatchSnapshot();
     });
 
-    test('Should display all available films previews in body section from store', () => {
+    it('Should display all available films previews in body section from store', () => {
         //Arrange
         const store = new Vuex.Store({
             modules: { [FilmsModuleName]: Films },
@@ -73,7 +73,7 @@ describe('StartPage.vue', () => {
         expect(filmPreviewsWrappers.length).toEqual(expectedItemsCount);
     });
 
-    test(`Should display "${NoFilmsFoundMessage}" label if film previews empty array was provided from store`, () => {
+    it(`Should display "${NoFilmsFoundMessage}" label if film previews empty array was provided from store`, () => {
         //Arrange
         const store = new Vuex.Store({
             modules: {
@@ -103,7 +103,7 @@ describe('StartPage.vue', () => {
         expect(noFilmsMessageWrapper.text()).toEqual(NoFilmsFoundMessage);
     });
 
-    test(`Should display film full description if it was selected from previews`, async () => {
+    it(`Should display film full description if it was selected from previews`, async () => {
         //Arrange
         const requestDelay: number = 100;
 

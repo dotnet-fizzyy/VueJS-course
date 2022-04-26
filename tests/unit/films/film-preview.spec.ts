@@ -2,7 +2,7 @@ import FilmPreview from '@/components/films/FilmPreview.vue';
 import { shallowMount } from '@vue/test-utils';
 
 describe('FilmPreview.vue Tests', () => {
-    test('Should render', () => {
+    it('Should render', () => {
         //Arrange
         const wrapper = shallowMount(FilmPreview, {
             propsData: {
@@ -19,7 +19,7 @@ describe('FilmPreview.vue Tests', () => {
         expect(wrapper.element).toMatchSnapshot();
     });
 
-    test('Should emit event on click', () => {
+    it('Should emit event on click', () => {
         //Arrange
         const id = 'filmId';
 
