@@ -13,17 +13,6 @@ import { mount } from '@vue/test-utils';
 const localVue = createDefaultVueInstance();
 
 describe('StartPage.vue', () => {
-    it('Should render', () => {
-        //Arrange
-        const wrapper = mount(StartPage, {
-            store,
-            localVue,
-        });
-
-        //Act & Assert
-        expect(wrapper.element).toMatchSnapshot();
-    });
-
     it('Should display all available films previews in body section from store', () => {
         //Arrange
         const wrapper = mount(StartPage, {
@@ -61,13 +50,33 @@ describe('StartPage.vue', () => {
         });
 
         //Act & Assert
-        const noFilmsMessageContainerWrapper = wrapper.find('[data-aqa-no-films-message-container]');
+        expect(wrapper.html().includes(NoFilmsFoundMessage)).toBeTruthy();
+    });
 
-        expect(noFilmsMessageContainerWrapper.element).toBeTruthy();
+    it(`Should display loading logo if request to API is in process`, () => {
+        //Arrange
+        const store = new Vuex.Store({
+            modules: {
+                [FilmsModuleName]: {
+                    ...Films,
+                    getters: {
+                        ...Films.getters,
+                        [FilmGetterProps.FilmsPreviews]: () => [],
+                        [FilmGetterProps.IsLoadingItems]: () => true,
+                    },
+                },
+            },
+        });
 
-        const noFilmsMessageWrapper = noFilmsMessageContainerWrapper.find('span');
+        const wrapper = mount(StartPage, {
+            store,
+            localVue,
+        });
 
-        expect(noFilmsMessageWrapper.text()).toEqual(NoFilmsFoundMessage);
+        //Act & Assert
+        const loadingIconWrapper = wrapper.find('[data-aqa-loading-icon]');
+
+        expect(loadingIconWrapper.element).toBeTruthy();
     });
 
     it(`Should display film full description if it was selected from previews`, async () => {

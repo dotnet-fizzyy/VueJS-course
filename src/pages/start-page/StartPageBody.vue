@@ -4,7 +4,7 @@
             <sort-panel />
         </div>
 
-        <template v-if="!!films.length">
+        <template v-if="films.length">
             <div :class="$style['films-display']">
                 <div v-for="film in films" :key="film.id" :class="$style['film-container']">
                     <film-preview
@@ -50,15 +50,17 @@ import { mapGetters } from 'vuex';
 export default Vue.extend({
     name: 'StartPageBody',
     components: { LoadingIcon, FilmPreview, SortPanel, AppTitle },
-    data: () => ({
-        noFoundTitleFontStyle: FontStyle.Bold,
-        noFilmsFoundMessage: NoFilmsFoundMessage,
-    }),
     computed: {
         ...mapGetters({
             films: getFilmModuleType(FilmGetterProps.FilmsPreviews),
             isLoadingItems: getFilmModuleType(FilmGetterProps.IsLoadingItems),
         }),
+        noFoundTitleFontStyle(): FontStyle {
+            return FontStyle.Bold;
+        },
+        noFilmsFoundMessage(): string {
+            return NoFilmsFoundMessage;
+        },
     },
     methods: {
         selectFilm(id: string): void {
