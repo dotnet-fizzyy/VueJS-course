@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrimaryButton.vue Tests Should render 1`] = `
+<button
+  class="primary-button bold"
+  style="font-size: 16px;"
+>
+  ClickPrimaryButton
+</button>
+`;

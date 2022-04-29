@@ -1,13 +1,27 @@
 import FilmFullDescription, { FilmFullDescriptionProps } from '@/components/films/FilmFullDescription.vue';
+import FiltersPlugin from '@/plugins/filtersPlugin';
+import Vue from 'vue';
+import VueLazyload, { VueLazyloadOptions } from 'vue-lazyload';
+import { castNumberToStringWithPrecision, castNumberToStringWithRound, castToString } from '@/utils';
 
 export default {
     title: 'films/FilmFullDescription',
     component: FilmFullDescription,
 };
 
+Vue.use(FiltersPlugin);
+Vue.use(VueLazyload, {
+    error: 'https://res.cloudinary.com/djlynoeio/image/upload/v1649763572/vue/NoImageAvailable.png',
+} as VueLazyloadOptions);
+
 const Template = (args, { argTypes }) => ({
     components: { FilmFullDescription },
     props: Object.keys(argTypes),
+    filters: {
+        precision: castNumberToStringWithPrecision,
+        round: castNumberToStringWithRound,
+        string: castToString,
+    },
     template:
         '<div style="background-color: rgba(0, 0, 0, 0.8); padding: 30px; width: fit-content"><FilmFullDescription v-bind="$props" /></div>',
 });

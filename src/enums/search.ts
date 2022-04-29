@@ -1,9 +1,9 @@
 export enum SearchByOptionNames {
-    Title = 't_e',
-    Genre = 'g_e',
+    Title = 'title',
+    Genre = 'genres',
 }
 
 export enum SortByOptionsNames {
-    ReleaseDate = 'r_d',
-    Rating = 'r_g',
+    ReleaseDate = 'release_date',
+    Rating = 'rating',
 }

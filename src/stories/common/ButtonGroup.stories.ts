@@ -1,4 +1,5 @@
-import ButtonGroup, { ButtonGroupOption, ButtonGroupProps } from '@/components/common/ButtonGroup.vue';
+import ButtonGroup, { ButtonGroupProps } from '@/components/common/ButtonGroup.vue';
+import { ButtonGroupOption } from '@/types/button';
 import { action } from '@storybook/addon-actions';
 
 export default {

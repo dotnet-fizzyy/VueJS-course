@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortPanel.vue Tests Should render 1`] = `
+<div
+  class="root"
+>
+  <span
+    class="title"
+    data-aqa-available-items-count=""
+  >
+    5 movies found
+  </span>
+   
+  <button-group-stub
+    label="Sort By"
+    options="[object Object],[object Object]"
+    selectedoption="release_date"
+  />
+</div>
+`;

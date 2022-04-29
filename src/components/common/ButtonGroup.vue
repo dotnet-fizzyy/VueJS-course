@@ -5,6 +5,7 @@
         <div :class="$style['options-container']">
             <template v-for="(option, index) in options">
                 <button
+                    :data-aqa-button-name="option.name"
                     :class="[
                         isSelected(option.name) ? $style['selected-option'] : $style['non-selected-option'],
                         $style.option,
@@ -21,11 +22,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-
-export interface ButtonGroupOption {
-    label: string;
-    name: string;
-}
+import { ButtonGroupOption } from '@/types/button';
 
 export interface ButtonGroupProps {
     label: string;

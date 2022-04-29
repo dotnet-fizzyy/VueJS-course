@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.root">
+    <div data-aqa-search-panel :class="$style.root">
         <span :class="$style['main-label']">Find your movie</span>
 
         <div :class="$style['search-container']">
@@ -12,7 +12,7 @@
                 />
             </div>
             <div :class="$style['search-button-container']">
-                <PrimaryButton :font-size="inputFontSize" @click="onSearch">Search</PrimaryButton>
+                <primary-button :font-size="inputFontSize" @click="onSearch">Search</primary-button>
             </div>
         </div>
 
@@ -38,7 +38,7 @@ import { SearchByOptions } from '@/constants/search';
 import {
     changeSearchActionPayload,
     changeSearchByActionPayload,
-    searchFilmsActionPayload,
+    getFilmsRequestActionPayload,
 } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
@@ -64,7 +64,7 @@ export default Vue.extend({
     },
     methods: {
         onSearch(): void {
-            this.$store.dispatch(searchFilmsActionPayload());
+            this.$store.dispatch(getFilmsRequestActionPayload());
         },
         onChangeSearchByOption(option: string): void {
             this.$store.dispatch(changeSearchByActionPayload(option as SearchByOptionNames));

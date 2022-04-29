@@ -1,5 +1,7 @@
-import { ButtonGroupOption } from '@/components/common/ButtonGroup.vue';
+import { ButtonGroupOption } from '@/types/button';
 import { SearchByOptionNames, SortByOptionsNames } from '@/enums/search';
+
+export const NoFilmsFoundMessage = 'No films found';
 
 export const SortByOptions: ButtonGroupOption[] = [
     { label: 'Release Date', name: SortByOptionsNames.ReleaseDate },

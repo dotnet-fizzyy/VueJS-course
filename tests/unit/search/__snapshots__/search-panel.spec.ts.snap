@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchPanel.vue Tests Should render 1`] = `
+<div
+  class="root"
+  data-aqa-search-panel=""
+>
+  <span
+    class="main-label"
+  >
+    Find your movie
+  </span>
+   
+  <div
+    class="search-container"
+  >
+    <div
+      class="input-container"
+    >
+      <app-input-stub
+        fontsize="24"
+        placeholder="Search"
+        value="value"
+      />
+    </div>
+     
+    <div
+      class="search-button-container"
+    >
+      <primary-button-stub
+        fontsize="24"
+        fontstyle="normal"
+      >
+        Search
+      </primary-button-stub>
+    </div>
+  </div>
+   
+  <div
+    class="options-container"
+  >
+    <button-group-stub
+      label="Search By"
+      options="[object Object],[object Object]"
+      selectedoption="genres"
+    />
+  </div>
+</div>
+`;

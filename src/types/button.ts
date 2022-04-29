@@ -6,3 +6,8 @@ export interface BaseButtonProps {
     fontSize?: number;
     click: () => void;
 }
+
+export interface ButtonGroupOption {
+    label: string;
+    name: string;
+}

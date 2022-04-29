@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonGroup.vue Tests Should not render "label" block if it was not provided via props 1`] = `
+<div class="root">
+  <!---->
+  <div class="options-container"><button data-aqa-button-name="btn1" class="non-selected-option option">
+      First Button
+    </button><button data-aqa-button-name="btn2" class="selected-option option">
+      Second Button
+    </button></div>
+</div>
+`;
+
+exports[`ButtonGroup.vue Tests Should render 1`] = `
+<div class="root"><span class="label">Label</span>
+  <div class="options-container"><button data-aqa-button-name="btn1" class="non-selected-option option">
+      First Button
+    </button><button data-aqa-button-name="btn2" class="selected-option option">
+      Second Button
+    </button></div>
+</div>
+`;

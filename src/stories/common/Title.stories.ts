@@ -1,4 +1,4 @@
-import Title, { TitleProps } from '@/components/common/Title.vue';
+import Title, { TitleProps } from '@/components/common/AppTitle.vue';
 import { DefaultFontSize, DefaultFontStyle } from '@/constants/styles';
 import { FontStyle } from '@/enums/styles';
 

@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.root">
+    <div data-aqa-start-footer :class="$style.root">
         <logo-icon />
     </div>
 </template>

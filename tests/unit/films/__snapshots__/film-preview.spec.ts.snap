@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmPreview.vue Tests Should render 1`] = `
+<div
+  class="root"
+  data-aqa-preview=""
+>
+  <img
+    alt="poster_alt"
+    class="poster"
+  />
+   
+  <div
+    class="poster-footer"
+  >
+    <div
+      class="poster-footer-description-container"
+    >
+      <span
+        class="film-name"
+        data-aqa-film-preview-name=""
+      >
+        Film Name
+      </span>
+       
+      <span
+        class="film-short-info"
+        data-aqa-film-preview-short-desc=""
+      >
+        Short Description
+      </span>
+    </div>
+     
+    <div
+      class="poster-footer-year-release-container"
+    >
+      <span
+        class="release-year-pill"
+        data-aqa-film-preview-release-year=""
+      >
+        2022
+      </span>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SecondaryButton.vue Tests Should render 1`] = `
+<button
+  class="secondary-button italic"
+  style="font-size: 14px;"
+>
+  ClickSecondaryButton
+</button>
+`;

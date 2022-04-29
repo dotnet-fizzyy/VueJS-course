@@ -1,12 +1,16 @@
 <template>
-    <div :class="$style.root">
-        <div :class="$style.background">
+    <div data-aqa-start-header :class="$style.root">
+        <div :class="[$style.background, { [$style['center-content-background']]: isLoadingSelectedItem }]">
             <div :class="$style['logo-icon-container']">
                 <logo-icon />
             </div>
 
-            <template v-if="selectedFilm">
-                <div :class="$style['search-icon-container']" @click="backToSearch">
+            <template v-if="isLoadingSelectedItem">
+                <loading-icon />
+            </template>
+
+            <template v-else-if="selectedFilm">
+                <div data-aqa-back-to-search :class="$style['search-icon-container']" @click="backToSearch">
                     <search-icon />
                 </div>
 
@@ -22,26 +26,28 @@
 
 <script lang="ts">
 import FilmFullDescription from '@/components/films/FilmFullDescription.vue';
+import LoadingIcon from '@/components/icons/LoadingIcon.vue';
 import LogoIcon from '@/components/icons/LogoIcon.vue';
 import SearchIcon from '@/components/icons/SearchIcon.vue';
 import SearchPanel from '@/components/search/SearchPanel.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
+import { backToSearchActionPayload } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
-import { setSelectedFilmActionPayload } from '@/vuex/modules/films/actions';
 
 export default Vue.extend({
     name: 'StartPageHeader',
-    components: { SearchIcon, LogoIcon, SearchPanel, FilmFullDescription },
+    components: { LoadingIcon, SearchIcon, LogoIcon, SearchPanel, FilmFullDescription },
     computed: {
         ...mapGetters({
             selectedFilm: getFilmModuleType(FilmGetterProps.GetSelectedFilmWithFullDescription),
+            isLoadingSelectedItem: getFilmModuleType(FilmGetterProps.IsLoadingSelectedItem),
         }),
     },
     methods: {
         backToSearch(): void {
-            this.$store.dispatch(setSelectedFilmActionPayload(''));
+            this.$store.dispatch(backToSearchActionPayload());
         },
     },
 });
@@ -68,6 +74,10 @@ export default Vue.extend({
     backdrop-filter: blur(3px);
     box-sizing: border-box;
     padding: 100px 120px;
+}
+
+.center-content-background {
+    justify-content: center;
 }
 
 .logo-icon-container {

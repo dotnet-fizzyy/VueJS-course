@@ -1,24 +1,22 @@
 <template>
-    <div :class="$style.root">
+    <div data-aqa-full-description :class="$style.root">
         <!--v-lazy is registered as plugin-->
-        <img v-lazy="posterUrl" :class="$style.poster" :alt="posterAlt" />
+        <img data-aqa-full-poster v-lazy="posterUrl" :class="$style.poster" :alt="posterAlt" />
 
         <div :class="$style['film-description-container']">
             <div :class="$style['name-container']">
-                <span :class="$style.name">{{ name }}</span>
-                <span :class="$style.rating">{{ rating | precision }}</span>
+                <span data-aqa-full-desc-name :class="$style.name">{{ name }}</span>
+                <span data-aqa-full-rating :class="$style.rating">{{ rating | precision }}</span>
             </div>
 
-            <span :class="$style['short-description']">{{ shortDescription }}</span>
+            <span data-aqa-full-short-desc :class="$style['short-description']">{{ shortDescription }}</span>
 
             <div :class="$style['summary-container']">
                 <film-description-item :key-label="releaseYear | string" additional-label="year" />
                 <film-description-item :key-label="runtime | round('up')" additional-label="min" />
             </div>
 
-            <span :class="$style.description">
-                {{ fullDescription }}
-            </span>
+            <span data-aqa-full-full-desc :class="$style.description">{{ fullDescription }}</span>
         </div>
     </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <div :class="$style.root">
-        <span :class="$style.title">{{ availableItemsCount }} movies found</span>
+        <span data-aqa-available-items-count :class="$style.title">{{ availableItemsCount }} movies found</span>
 
         <button-group
             label="Sort By"
