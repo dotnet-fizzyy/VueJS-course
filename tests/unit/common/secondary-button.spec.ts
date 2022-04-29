@@ -1,19 +1,26 @@
 import SecondaryButton from '@/components/common/SecondaryButton.vue';
+import Vue from 'vue';
 import { FontStyle } from '@/enums/styles';
-import { shallowMount } from '@vue/test-utils';
+import { Wrapper, shallowMount } from '@vue/test-utils';
 
 describe('SecondaryButton.vue Tests', () => {
+    const createComponent = (propsData, slots): Wrapper<Vue> =>
+        shallowMount(SecondaryButton, {
+            propsData,
+            slots,
+        });
+
     it('Should render', () => {
         //Arrange
-        const wrapper = shallowMount(SecondaryButton, {
-            propsData: {
+        const wrapper = createComponent(
+            {
                 fontSize: 14,
                 fontStyle: FontStyle.Italic,
             },
-            slots: {
+            {
                 default: 'ClickSecondaryButton',
-            },
-        });
+            }
+        );
 
         //Act & Assert
         expect(wrapper.element).toMatchSnapshot();
@@ -23,15 +30,15 @@ describe('SecondaryButton.vue Tests', () => {
         //Arrange
         const message = 'Hello world!';
 
-        const wrapper = shallowMount(SecondaryButton, {
-            propsData: {
+        const wrapper = createComponent(
+            {
                 fontSize: 14,
                 fontStyle: FontStyle.Italic,
             },
-            slots: {
+            {
                 default: message,
-            },
-        });
+            }
+        );
 
         //Act & Assert
         expect(wrapper.text()).toEqual(message);
@@ -39,15 +46,15 @@ describe('SecondaryButton.vue Tests', () => {
 
     it('Should emit event on click', () => {
         //Arrange
-        const wrapper = shallowMount(SecondaryButton, {
-            propsData: {
+        const wrapper = createComponent(
+            {
                 fontSize: 14,
                 fontStyle: FontStyle.Italic,
             },
-            slots: {
+            {
                 default: 'ClickSecondaryButton',
-            },
-        });
+            }
+        );
 
         //Act
         wrapper.trigger('click');

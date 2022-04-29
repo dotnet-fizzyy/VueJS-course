@@ -1,20 +1,24 @@
 import ButtonGroup from '@/components/common/ButtonGroup.vue';
-import { shallowMount } from '@vue/test-utils';
+import Vue from 'vue';
+import { Wrapper, shallowMount } from '@vue/test-utils';
 
 describe('ButtonGroup.vue Tests', () => {
+    const createComponent = (propsData): Wrapper<Vue> =>
+        shallowMount(ButtonGroup, {
+            propsData,
+        });
+
     it('Should render', () => {
         //Arrange
         const selectedOption = 'btn2';
 
-        const wrapper = shallowMount(ButtonGroup, {
-            propsData: {
-                label: 'Label',
-                options: [
-                    { label: 'First Button', name: 'btn1' },
-                    { label: 'Second Button', name: selectedOption },
-                ],
-                selectedOption,
-            },
+        const wrapper = createComponent({
+            label: 'Label',
+            options: [
+                { label: 'First Button', name: 'btn1' },
+                { label: 'Second Button', name: selectedOption },
+            ],
+            selectedOption,
         });
 
         //Act & Assert
@@ -25,14 +29,12 @@ describe('ButtonGroup.vue Tests', () => {
         //Arrange
         const selectedOption = 'btn2';
 
-        const wrapper = shallowMount(ButtonGroup, {
-            propsData: {
-                options: [
-                    { label: 'First Button', name: 'btn1' },
-                    { label: 'Second Button', name: selectedOption },
-                ],
-                selectedOption,
-            },
+        const wrapper = createComponent({
+            options: [
+                { label: 'First Button', name: 'btn1' },
+                { label: 'Second Button', name: selectedOption },
+            ],
+            selectedOption,
         });
 
         //Act & Assert
@@ -44,15 +46,13 @@ describe('ButtonGroup.vue Tests', () => {
         const nonSelectedOption = 'bt1';
         const selectedOption = 'btn2';
 
-        const wrapper = shallowMount(ButtonGroup, {
-            propsData: {
-                label: 'Label',
-                options: [
-                    { label: 'First Button', name: nonSelectedOption },
-                    { label: 'Second Button', name: selectedOption },
-                ],
-                selectedOption,
-            },
+        const wrapper = createComponent({
+            label: 'Label',
+            options: [
+                { label: 'First Button', name: nonSelectedOption },
+                { label: 'Second Button', name: selectedOption },
+            ],
+            selectedOption,
         });
 
         //Act & Assert

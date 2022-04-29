@@ -1,19 +1,26 @@
 import PrimaryButton from '@/components/common/PrimaryButton.vue';
+import Vue from 'vue';
 import { FontStyle } from '@/enums/styles';
-import { shallowMount } from '@vue/test-utils';
+import { Wrapper, shallowMount } from '@vue/test-utils';
 
 describe('PrimaryButton.vue Tests', () => {
+    const createComponent = (propsData, slots): Wrapper<Vue> =>
+        shallowMount(PrimaryButton, {
+            propsData,
+            slots,
+        });
+
     it('Should render', () => {
         //Arrange
-        const wrapper = shallowMount(PrimaryButton, {
-            propsData: {
+        const wrapper = createComponent(
+            {
                 fontSize: 16,
                 fontStyle: FontStyle.Bold,
             },
-            slots: {
+            {
                 default: 'ClickPrimaryButton',
-            },
-        });
+            }
+        );
 
         //Act & Assert
         expect(wrapper.element).toMatchSnapshot();
@@ -23,15 +30,15 @@ describe('PrimaryButton.vue Tests', () => {
         //Arrange
         const message = 'Hello world!';
 
-        const wrapper = shallowMount(PrimaryButton, {
-            propsData: {
+        const wrapper = createComponent(
+            {
                 fontSize: 16,
                 fontStyle: FontStyle.Bold,
             },
-            slots: {
+            {
                 default: message,
-            },
-        });
+            }
+        );
 
         //Act & Assert
         expect(wrapper.text()).toEqual(message);
@@ -39,15 +46,15 @@ describe('PrimaryButton.vue Tests', () => {
 
     it('Should emit event on click', () => {
         //Arrange
-        const wrapper = shallowMount(PrimaryButton, {
-            propsData: {
+        const wrapper = createComponent(
+            {
                 fontSize: 16,
                 fontStyle: FontStyle.Bold,
             },
-            slots: {
+            {
                 default: 'ClickPrimaryButton',
-            },
-        });
+            }
+        );
 
         //Act
         wrapper.trigger('click');

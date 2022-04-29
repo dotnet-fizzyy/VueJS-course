@@ -1,4 +1,5 @@
 import SearchPanel from '@/components/search/SearchPanel.vue';
+import Vue from 'vue';
 import Vuex from 'vuex';
 import {
     FilmActionTypes,
@@ -8,13 +9,25 @@ import {
 } from '@/vuex/modules/films/actions';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { SearchByOptionNames } from '@/enums/search';
+import { Wrapper, shallowMount } from '@vue/test-utils';
 import { createDefaultVueInstance } from '../../setup';
 import { getFilmModuleType } from '@/vuex/store/utils';
-import { shallowMount } from '@vue/test-utils';
 
 const localVue = createDefaultVueInstance();
 
 describe('SearchPanel.vue Tests', () => {
+    const createComponent = (store): Wrapper<Vue> =>
+        shallowMount(SearchPanel, {
+            store,
+            localVue,
+        });
+
+    const findSearchButton = (wrapper: Wrapper<Vue>) => wrapper.findComponent({ name: 'primary-button' });
+
+    const findSearchInput = (wrapper: Wrapper<Vue>) => wrapper.findComponent({ name: 'app-input' });
+
+    const findSearchByOptions = (wrapper: Wrapper<Vue>) => wrapper.findComponent({ name: 'button-group' });
+
     it('Should render', () => {
         //Arrange
         const actions = {
@@ -32,10 +45,7 @@ describe('SearchPanel.vue Tests', () => {
 
         store.dispatch = jest.fn();
 
-        const wrapper = shallowMount(SearchPanel, {
-            store,
-            localVue,
-        });
+        const wrapper = createComponent(store);
 
         //Act & Assert
         expect(wrapper.element).toMatchSnapshot();
@@ -58,13 +68,10 @@ describe('SearchPanel.vue Tests', () => {
 
         store.dispatch = jest.fn();
 
-        const wrapper = shallowMount(SearchPanel, {
-            store,
-            localVue,
-        });
+        const wrapper = createComponent(store);
 
         //Act & Assert
-        const searchButtonWrapper = wrapper.findComponent({ name: 'primary-button' });
+        const searchButtonWrapper = findSearchButton(wrapper);
 
         expect(searchButtonWrapper.element).toBeTruthy();
 
@@ -90,15 +97,12 @@ describe('SearchPanel.vue Tests', () => {
 
         store.dispatch = jest.fn();
 
-        const wrapper = shallowMount(SearchPanel, {
-            store,
-            localVue,
-        });
+        const wrapper = createComponent(store);
 
         const expectedSearchValue: string = 'new_search_value';
 
         //Act & Assert
-        const searchAppInputWrapper = wrapper.findComponent({ name: 'app-input' });
+        const searchAppInputWrapper = findSearchInput(wrapper);
 
         expect(searchAppInputWrapper.element).toBeTruthy();
 
@@ -124,15 +128,12 @@ describe('SearchPanel.vue Tests', () => {
 
         store.dispatch = jest.fn();
 
-        const wrapper = shallowMount(SearchPanel, {
-            store,
-            localVue,
-        });
+        const wrapper = createComponent(store);
 
         const expectedSearchByValue: SearchByOptionNames = SearchByOptionNames.Title;
 
         //Act & Assert
-        const searchByOptionsWrapper = wrapper.findComponent({ name: 'button-group' });
+        const searchByOptionsWrapper = findSearchByOptions(wrapper);
 
         expect(searchByOptionsWrapper.element).toBeTruthy();
 
@@ -154,13 +155,10 @@ describe('SearchPanel.vue Tests', () => {
             getters,
         });
 
-        const wrapper = shallowMount(SearchPanel, {
-            store,
-            localVue,
-        });
+        const wrapper = createComponent(store);
 
         //Act & Assert
-        const searchAppInputWrapper = wrapper.findComponent({ name: 'app-input' });
+        const searchAppInputWrapper = findSearchInput(wrapper);
 
         expect(searchAppInputWrapper.element).toBeTruthy();
         expect(searchAppInputWrapper.attributes('value')).toEqual(searchTerm);
@@ -179,15 +177,12 @@ describe('SearchPanel.vue Tests', () => {
             getters,
         });
 
-        const wrapper = shallowMount(SearchPanel, {
-            store,
-            localVue,
-        });
+        const wrapper = createComponent(store);
 
         //Act & Assert
-        const searchAppInputWrapper = wrapper.findComponent({ name: 'button-group' });
+        const sortByOptionsWrapper = findSearchByOptions(wrapper);
 
-        expect(searchAppInputWrapper.element).toBeTruthy();
-        expect(searchAppInputWrapper.attributes('selectedoption')).toEqual(selectedSearchByOption);
+        expect(sortByOptionsWrapper.element).toBeTruthy();
+        expect(sortByOptionsWrapper.attributes('selectedoption')).toEqual(selectedSearchByOption);
     });
 });

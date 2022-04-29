@@ -1,11 +1,12 @@
 import SortPanel from '@/components/listing/SortPanel.vue';
+import Vue from 'vue';
 import Vuex from 'vuex';
 import { FilmActionTypes, changeSortByActionPayload } from '@/vuex/modules/films/actions';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { SortByOptionsNames } from '@/enums/search';
+import { Wrapper, shallowMount } from '@vue/test-utils';
 import { createDefaultVueInstance } from '../../setup';
 import { getFilmModuleType } from '@/vuex/store/utils';
-import { shallowMount } from '@vue/test-utils';
 
 const localVue = createDefaultVueInstance();
 
@@ -33,12 +34,19 @@ describe('SortPanel.vue Tests', () => {
         store.dispatch = jest.fn();
     });
 
-    it('Should render', () => {
-        //Arrange
-        const wrapper = shallowMount(SortPanel, {
+    const createComponent = (): Wrapper<Vue> =>
+        shallowMount(SortPanel, {
             store,
             localVue,
         });
+
+    const findAvailableItemsCountLabel = (wrapper: Wrapper<Vue>) => wrapper.find('[data-aqa-available-items-count]');
+
+    const findButtonGroupComponent = (wrapper: Wrapper<Vue>) => wrapper.findComponent({ name: 'button-group' });
+
+    it('Should render', () => {
+        //Arrange
+        const wrapper = createComponent();
 
         //Act & Assert
         expect(wrapper.element).toMatchSnapshot();
@@ -46,13 +54,10 @@ describe('SortPanel.vue Tests', () => {
 
     it('Should render exact "availableItemsCount" passed from getter', () => {
         //Arrange
-        const wrapper = shallowMount(SortPanel, {
-            store,
-            localVue,
-        });
+        const wrapper = createComponent();
 
         //Act & Assert
-        const availableItemsCountLabelWrapper = wrapper.find('[data-aqa-available-items-count]');
+        const availableItemsCountLabelWrapper = findAvailableItemsCountLabel(wrapper);
 
         expect(availableItemsCountLabelWrapper.text()).toEqual(`${availableItemsCount} movies found`);
     });
@@ -61,15 +66,12 @@ describe('SortPanel.vue Tests', () => {
         //Arrange
         const sortOptionEventName: string = 'select-option';
 
-        const wrapper = shallowMount(SortPanel, {
-            store,
-            localVue,
-        });
+        const wrapper = createComponent();
 
         const expectedOption: string = 'different_sort_opt';
 
         //Act & Assert
-        const sortOptionsWrapper = wrapper.findComponent({ name: 'button-group' });
+        const sortOptionsWrapper = findButtonGroupComponent(wrapper);
 
         expect(sortOptionsWrapper.element).toBeTruthy();
 

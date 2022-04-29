@@ -1,24 +1,33 @@
 import FilmFullDescription from '@/components/films/FilmFullDescription.vue';
+import Vue from 'vue';
+import { Wrapper, shallowMount } from '@vue/test-utils';
 import { createDefaultVueInstance } from '../../setup';
-import { shallowMount } from '@vue/test-utils';
 
 const localVue = createDefaultVueInstance();
 
 describe('FilmFullDescription.vue Tests', () => {
+    const createComponent = (propsData): Wrapper<Vue> =>
+        shallowMount(FilmFullDescription, {
+            localVue,
+            propsData,
+        });
+
+    const findFilmRating = (wrapper: Wrapper<Vue>) => wrapper.find('[data-aqa-full-rating]');
+
+    const findAllFilmDescriptionItemComponents = (wrapper: Wrapper<Vue>) =>
+        wrapper.findAllComponents({ name: 'film-description-item' });
+
     it('Should render', () => {
         //Arrange
-        const wrapper = shallowMount(FilmFullDescription, {
-            localVue,
-            propsData: {
-                name: 'Film Name',
-                releaseYear: 2022,
-                runtime: 120,
-                rating: 4.2,
-                shortDescription: 'Short Description',
-                fullDescription: 'Some Long Film Description',
-                posterUrl: 'posterUrl',
-                posterAlt: 'posterAlt',
-            },
+        const wrapper = createComponent({
+            name: 'Film Name',
+            releaseYear: 2022,
+            runtime: 120,
+            rating: 4.2,
+            shortDescription: 'Short Description',
+            fullDescription: 'Some Long Film Description',
+            posterUrl: 'posterUrl',
+            posterAlt: 'posterAlt',
         });
 
         //Act & Assert
@@ -29,22 +38,19 @@ describe('FilmFullDescription.vue Tests', () => {
         //Arrange
         const numeralRating = 4;
 
-        const wrapper = shallowMount(FilmFullDescription, {
-            localVue,
-            propsData: {
-                name: 'Film Name',
-                releaseYear: 2022,
-                runtime: 120,
-                rating: numeralRating,
-                shortDescription: 'Short Description',
-                fullDescription: 'Some Long Film Description',
-                posterUrl: 'posterUrl',
-                posterAlt: 'posterAlt',
-            },
+        const wrapper = createComponent({
+            name: 'Film Name',
+            releaseYear: 2022,
+            runtime: 120,
+            rating: numeralRating,
+            shortDescription: 'Short Description',
+            fullDescription: 'Some Long Film Description',
+            posterUrl: 'posterUrl',
+            posterAlt: 'posterAlt',
         });
 
         //Act
-        const ratingWrapper = wrapper.find('[data-aqa-full-rating]');
+        const ratingWrapper = findFilmRating(wrapper);
 
         //Assert
         expect(ratingWrapper.element).toBeTruthy();
@@ -56,22 +62,19 @@ describe('FilmFullDescription.vue Tests', () => {
         const originalRuntime = 121.4;
         const expectedRuntime = 122;
 
-        const wrapper = shallowMount(FilmFullDescription, {
-            localVue,
-            propsData: {
-                name: 'Film Name',
-                releaseYear: 2022,
-                runtime: originalRuntime,
-                rating: 4.2,
-                shortDescription: 'Short Description',
-                fullDescription: 'Some Long Film Description',
-                posterUrl: 'posterUrl',
-                posterAlt: 'posterAlt',
-            },
+        const wrapper = createComponent({
+            name: 'Film Name',
+            releaseYear: 2022,
+            runtime: originalRuntime,
+            rating: 4.2,
+            shortDescription: 'Short Description',
+            fullDescription: 'Some Long Film Description',
+            posterUrl: 'posterUrl',
+            posterAlt: 'posterAlt',
         });
 
         //Act
-        const filmDescriptionWrappers = wrapper.findAllComponents({ name: 'film-description-item' });
+        const filmDescriptionWrappers = findAllFilmDescriptionItemComponents(wrapper);
         const runtimeWrapper = filmDescriptionWrappers.wrappers[1];
 
         //Assert

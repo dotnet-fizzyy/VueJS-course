@@ -1,18 +1,22 @@
 import FilmPreview from '@/components/films/FilmPreview.vue';
-import { shallowMount } from '@vue/test-utils';
+import Vue from 'vue';
+import { Wrapper, shallowMount } from '@vue/test-utils';
 
 describe('FilmPreview.vue Tests', () => {
+    const createComponent = (propsData): Wrapper<Vue> =>
+        shallowMount(FilmPreview, {
+            propsData,
+        });
+
     it('Should render', () => {
         //Arrange
-        const wrapper = shallowMount(FilmPreview, {
-            propsData: {
-                id: 'id',
-                posterUrl: 'poster_url',
-                posterAlt: 'poster_alt',
-                name: 'Film Name',
-                shortDescription: 'Short Description',
-                releaseYear: 2022,
-            },
+        const wrapper = createComponent({
+            id: 'id',
+            posterUrl: 'poster_url',
+            posterAlt: 'poster_alt',
+            name: 'Film Name',
+            shortDescription: 'Short Description',
+            releaseYear: 2022,
         });
 
         //Act & Assert
@@ -23,15 +27,13 @@ describe('FilmPreview.vue Tests', () => {
         //Arrange
         const id = 'filmId';
 
-        const wrapper = shallowMount(FilmPreview, {
-            propsData: {
-                id,
-                posterUrl: 'poster_url',
-                posterAlt: 'poster_alt',
-                name: 'Film Name',
-                shortDescription: 'Short Description',
-                releaseYear: 2022,
-            },
+        const wrapper = createComponent({
+            id,
+            posterUrl: 'poster_url',
+            posterAlt: 'poster_alt',
+            name: 'Film Name',
+            shortDescription: 'Short Description',
+            releaseYear: 2022,
         });
 
         //Act

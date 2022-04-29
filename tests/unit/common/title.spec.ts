@@ -1,19 +1,26 @@
 import Title from '@/components/common/AppTitle.vue';
+import Vue from 'vue';
 import { FontStyle } from '@/enums/styles';
-import { shallowMount } from '@vue/test-utils';
+import { Wrapper, shallowMount } from '@vue/test-utils';
 
 describe('AppTitle.vue Tests', () => {
+    const createComponent = (propsData, slots): Wrapper<Vue> =>
+        shallowMount(Title, {
+            propsData,
+            slots,
+        });
+
     it('Should render', () => {
         //Arrange
-        const wrapper = shallowMount(Title, {
-            slots: {
-                default: 'Hello world!',
-            },
-            propsData: {
+        const wrapper = createComponent(
+            {
                 fontSize: 20,
                 fontStyle: FontStyle.Italic,
             },
-        });
+            {
+                default: 'Hello world!',
+            }
+        );
 
         //Act & Assert
         expect(wrapper.element).toMatchSnapshot();
@@ -23,15 +30,15 @@ describe('AppTitle.vue Tests', () => {
         //Arrange
         const message = 'Some message';
 
-        const wrapper = shallowMount(Title, {
-            slots: {
-                default: message,
-            },
-            propsData: {
+        const wrapper = createComponent(
+            {
                 fontSize: 20,
                 fontStyle: FontStyle.Italic,
             },
-        });
+            {
+                default: message,
+            }
+        );
 
         //Act & Assert
         expect(wrapper.text()).toEqual(message);
