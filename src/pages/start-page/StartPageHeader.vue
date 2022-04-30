@@ -5,50 +5,25 @@
                 <logo-icon />
             </div>
 
-            <template v-if="isLoadingSelectedItem">
-                <loading-icon />
-            </template>
-
-            <template v-else-if="selectedFilm">
-                <div data-aqa-back-to-search :class="$style['search-icon-container']" @click="backToSearch">
-                    <search-icon />
-                </div>
-
-                <film-full-description v-bind="selectedFilm" />
-            </template>
-
-            <template v-else>
-                <search-panel />
-            </template>
+            <router-view />
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import FilmFullDescription from '@/components/films/FilmFullDescription.vue';
-import LoadingIcon from '@/components/icons/LoadingIcon.vue';
 import LogoIcon from '@/components/icons/LogoIcon.vue';
-import SearchIcon from '@/components/icons/SearchIcon.vue';
-import SearchPanel from '@/components/search/SearchPanel.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
-import { backToSearchActionPayload } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
 
 export default Vue.extend({
     name: 'StartPageHeader',
-    components: { LoadingIcon, SearchIcon, LogoIcon, SearchPanel, FilmFullDescription },
+    components: { LogoIcon },
     computed: {
         ...mapGetters({
-            selectedFilm: getFilmModuleType(FilmGetterProps.GetSelectedFilmWithFullDescription),
             isLoadingSelectedItem: getFilmModuleType(FilmGetterProps.IsLoadingSelectedItem),
         }),
-    },
-    methods: {
-        backToSearch(): void {
-            this.$store.dispatch(backToSearchActionPayload());
-        },
     },
 });
 </script>
@@ -84,12 +59,5 @@ export default Vue.extend({
     position: absolute;
     left: 60px;
     top: 20px;
-}
-
-.search-icon-container {
-    position: absolute;
-    right: 60px;
-    top: 20px;
-    cursor: pointer;
 }
 </style>

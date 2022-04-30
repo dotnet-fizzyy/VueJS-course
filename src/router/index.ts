@@ -1,23 +1,34 @@
+import SearchPanel from '@/components/search/SearchPanel.vue';
 import StartPage from '@/pages/start-page/StartPage.vue';
+import StartPageFilmFullDescription from '@/pages/start-page/StartPageFilmFullDescription.vue';
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
+import { DefaultRoute, MoviesRoute } from '@/router/routes';
 import { getAppSettings } from '@/utils/appSettings';
 
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
     {
-        path: '/',
-        name: 'StartPage',
-        component: StartPage,
+        path: DefaultRoute,
+        redirect: MoviesRoute,
     },
     {
-        path: '/about',
-        name: 'About',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        // component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+        path: MoviesRoute,
+        component: StartPage,
+        children: [
+            {
+                path: '',
+                component: SearchPanel,
+            },
+            {
+                path: ':id',
+                component: StartPageFilmFullDescription,
+            },
+        ],
+    },
+    {
+        path: '*',
     },
 ];
 

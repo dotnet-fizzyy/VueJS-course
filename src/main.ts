@@ -1,5 +1,6 @@
 import App from './App.vue';
 import FiltersPlugin from '@/plugins/filtersPlugin';
+import Fragment from 'vue-fragment';
 import Vue from 'vue';
 import VueLazyload, { VueLazyloadOptions } from 'vue-lazyload';
 import VueResource from 'vue-resource';
@@ -11,6 +12,7 @@ const appSettings = getAppSettings();
 
 Vue.use(VueResource);
 Vue.use(FiltersPlugin);
+Vue.use(Fragment.Plugin);
 Vue.use(VueLazyload, {
     preLoad: 1,
     lazyComponent: true,
