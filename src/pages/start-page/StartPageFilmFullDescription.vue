@@ -21,7 +21,7 @@ import SearchIcon from '@/components/icons/SearchIcon.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { MoviesRoute } from '@/router/routes';
-import { getFilmByIdRequestActionPayload } from '@/vuex/modules/films/actions';
+import { getFilmByIdRequestActionPayload, removeSelectedItemActionPayload } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
 
@@ -46,6 +46,11 @@ export default Vue.extend({
         if (to.params.id !== from.params.id) {
             this.$store.dispatch(getFilmByIdRequestActionPayload(to.params.id));
         }
+
+        next();
+    },
+    beforeRouteLeave(to, from, next): void {
+        this.$store.dispatch(removeSelectedItemActionPayload());
 
         next();
     },

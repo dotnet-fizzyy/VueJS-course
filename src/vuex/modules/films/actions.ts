@@ -6,7 +6,6 @@ import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { FilmsState } from '@/vuex/modules/films/state';
 import { SearchByOptionNames, SortByOptionsNames } from '@/enums/search';
 import {
-    backToSearchMutationPayload,
     changeSearchByMutationPayload,
     changeSearchTermMutationPayload,
     changeSortByMutationPayload,
@@ -16,6 +15,7 @@ import {
     getFilmsRequestFailureMutationPayload,
     getFilmsRequestMutationPayload,
     getFilmsRequestSuccessMutationPayload,
+    removeSelectedItemMutationPayload,
 } from '@/vuex/modules/films/mutations';
 import { getFilmModuleType } from '@/vuex/store/utils';
 
@@ -28,7 +28,7 @@ export enum FilmActionTypes {
     ChangeSearchTerm = 'CHANGE_SEARCH_TERM',
     ChangeSortBy = 'CHANGE_SORT_BY',
     ChangeSearchBy = 'CHANGE_SEARCH_BY',
-    BackToSearch = 'BACK_TO_SEARCH',
+    RemoveSelectedItem = 'REMOVE_SELECTED_ITEM',
 }
 
 /**
@@ -52,7 +52,7 @@ export interface ChangeSearchByActionPayload extends BaseAction {
     value: SearchByOptionNames;
 }
 
-export interface BackToSearchActionPayload extends BaseAction {}
+export interface RemoveSelectedItemActionPayload extends BaseAction {}
 
 /**
  *  Payloads
@@ -81,8 +81,8 @@ export const changeSearchByActionPayload = (value: SearchByOptionNames): ChangeS
     value,
 });
 
-export const backToSearchActionPayload = (): BackToSearchActionPayload => ({
-    type: getFilmModuleType(FilmActionTypes.BackToSearch),
+export const removeSelectedItemActionPayload = (): RemoveSelectedItemActionPayload => ({
+    type: getFilmModuleType(FilmActionTypes.RemoveSelectedItem),
 });
 
 /**
@@ -132,7 +132,7 @@ export const actions: ActionTree<FilmsState, FilmsState> & Actions = {
     [FilmActionTypes.ChangeSearchBy]: (state, payload: ChangeSearchByActionPayload): void => {
         state.commit(changeSearchByMutationPayload(payload.value));
     },
-    [FilmActionTypes.BackToSearch]: (state): void => {
-        state.commit(backToSearchMutationPayload());
+    [FilmActionTypes.RemoveSelectedItem]: (state): void => {
+        state.commit(removeSelectedItemMutationPayload());
     },
 };

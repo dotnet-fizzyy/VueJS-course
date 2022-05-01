@@ -17,7 +17,7 @@ export enum FilmMutationTypes {
     ChangeSearchTerm = 'CHANGE_SEARCH_TERM',
     ChangeSearchBy = 'CHANGE_SEARCH_BY',
     ChangeSortBy = 'CHANGE_SORT_BY',
-    BackToSearch = 'BACK_TO_SEARCH',
+    RemoveSelectedItem = 'REMOVE_SELECTED_ITEM',
 }
 
 /**
@@ -54,7 +54,7 @@ export interface ChangeSortByMutationPayload extends BaseAction {
     value: SortByOptionsNames;
 }
 
-export interface BackToSearchMutationPayload extends BaseAction {}
+export interface RemoveSelectedItemMutationPayload extends BaseAction {}
 
 /**
  *  Payloads
@@ -106,8 +106,8 @@ export const changeSearchByMutationPayload = (value: SearchByOptionNames): Chang
     value: value,
 });
 
-export const backToSearchMutationPayload = (): BackToSearchMutationPayload => ({
-    type: FilmMutationTypes.BackToSearch,
+export const removeSelectedItemMutationPayload = (): RemoveSelectedItemMutationPayload => ({
+    type: FilmMutationTypes.RemoveSelectedItem,
 });
 
 /**
@@ -150,7 +150,7 @@ export const mutations: MutationTree<FilmsState> & Mutations = {
     [FilmMutationTypes.ChangeSortBy]: (state: FilmsState, payload: ChangeSortByMutationPayload): void => {
         state.sortBy = payload.value;
     },
-    [FilmMutationTypes.BackToSearch]: (state: FilmsState): void => {
+    [FilmMutationTypes.RemoveSelectedItem]: (state: FilmsState): void => {
         state.selectedItem = null;
     },
 };
