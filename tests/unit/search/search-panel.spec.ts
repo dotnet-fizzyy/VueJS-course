@@ -3,8 +3,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import {
     FilmActionTypes,
-    changeSearchActionPayload,
     changeSearchByActionPayload,
+    changeSearchTermActionPayload,
     getFilmsRequestActionPayload,
 } from '@/vuex/modules/films/actions';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
@@ -108,7 +108,7 @@ describe('SearchPanel.vue Tests', () => {
 
         searchAppInputWrapper.vm.$emit('change', expectedSearchValue);
 
-        expect(store.dispatch).toHaveBeenCalledWith(changeSearchActionPayload(expectedSearchValue));
+        expect(store.dispatch).toHaveBeenCalledWith(changeSearchTermActionPayload(expectedSearchValue));
     });
 
     it('Should dispatch "onChangeSearchByOption" action on changing search by option', () => {

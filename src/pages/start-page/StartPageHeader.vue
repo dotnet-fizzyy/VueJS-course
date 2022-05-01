@@ -14,7 +14,15 @@
 import LogoIcon from '@/components/icons/LogoIcon.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
+import { SearchByOptionNames, SearchQueryParams, SortByOptionsNames } from '@/enums/search';
+import { SearchParams } from '@/types/search';
+import {
+    changeSearchByActionPayload,
+    changeSearchTermActionPayload,
+    changeSortByActionPayload,
+} from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
+import { getSearchParams } from '@/utils/search';
 import { mapGetters } from 'vuex';
 
 export default Vue.extend({
@@ -23,7 +31,29 @@ export default Vue.extend({
     computed: {
         ...mapGetters({
             isLoadingSelectedItem: getFilmModuleType(FilmGetterProps.IsLoadingSelectedItem),
+            searchTerm: getFilmModuleType(FilmGetterProps.SearchTerm),
+            searchByOption: getFilmModuleType(FilmGetterProps.SearchBy),
+            sortByOption: getFilmModuleType(FilmGetterProps.SortBy),
         }),
+    },
+    created(): void {
+        const searchQueryParams: SearchParams = getSearchParams(this.$route);
+
+        const searchTermQueryParameter: string | undefined = searchQueryParams[SearchQueryParams.SearchTerm];
+        const searchByQueryParameter: string = searchQueryParams[SearchQueryParams.SearchByOption];
+        const sortByQueryParameter: string = searchQueryParams[SearchQueryParams.SortByOption];
+
+        if (searchTermQueryParameter && searchTermQueryParameter !== this.searchTerm) {
+            this.$store.dispatch(changeSearchTermActionPayload(searchTermQueryParameter));
+        }
+
+        if (searchByQueryParameter && searchByQueryParameter !== this.searchByOption) {
+            this.$store.dispatch(changeSearchByActionPayload(searchByQueryParameter as SearchByOptionNames));
+        }
+
+        if (sortByQueryParameter && sortByQueryParameter !== this.sortByOption) {
+            this.$store.dispatch(changeSortByActionPayload(sortByQueryParameter as SortByOptionsNames));
+        }
     },
 });
 </script>

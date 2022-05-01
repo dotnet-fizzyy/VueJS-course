@@ -66,7 +66,7 @@ export const getFilmByIdRequestActionPayload = (value: string): GetFilmByIdReque
     value,
 });
 
-export const changeSearchActionPayload = (value: string): ChangeSearchTermActionPayload => ({
+export const changeSearchTermActionPayload = (value: string): ChangeSearchTermActionPayload => ({
     type: getFilmModuleType(FilmActionTypes.ChangeSearchTerm),
     value,
 });
