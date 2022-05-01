@@ -21,8 +21,6 @@ import { changeSortByActionPayload } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
 
-export interface SortPanelProps {}
-
 export default Vue.extend({
     name: 'SortPanel',
     components: { ButtonGroup },
