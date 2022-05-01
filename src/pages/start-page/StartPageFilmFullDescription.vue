@@ -1,5 +1,5 @@
 <template>
-    <fragment>
+    <div :class="$style.root">
         <template v-if="isLoadingSelectedItem">
             <loading-icon />
         </template>
@@ -11,7 +11,7 @@
 
             <film-full-description v-bind="selectedFilm" />
         </template>
-    </fragment>
+    </div>
 </template>
 
 <script lang="ts">
@@ -53,6 +53,12 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" module scoped>
+.root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .search-icon-container {
     position: absolute;
     right: 60px;
