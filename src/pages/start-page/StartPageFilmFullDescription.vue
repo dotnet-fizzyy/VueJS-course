@@ -36,7 +36,7 @@ export default Vue.extend({
     },
     methods: {
         backToSearch(): void {
-            this.$router.push(MoviesRoute);
+            this.$router.push({ path: MoviesRoute, query: this.$route.query });
         },
     },
     created(): void {

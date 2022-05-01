@@ -3,7 +3,7 @@ import StartPage from '@/pages/start-page/StartPage.vue';
 import StartPageFilmFullDescription from '@/pages/start-page/StartPageFilmFullDescription.vue';
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import { DefaultRoute, MoviesRoute } from '@/router/routes';
+import { DefaultRoute, MoviesRoute, RandomRoute } from '@/router/routes';
 import { getAppSettings } from '@/utils/appSettings';
 
 Vue.use(VueRouter);
@@ -28,7 +28,7 @@ const routes: RouteConfig[] = [
         ],
     },
     {
-        path: '*',
+        path: RandomRoute,
     },
 ];
 

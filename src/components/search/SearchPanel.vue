@@ -20,7 +20,7 @@
             <button-group
                 label="Search By"
                 :options="filterOptions"
-                :selected-option="selectedSearchByOption"
+                :selected-option="searchByOption"
                 @select-option="onChangeSearchByOption"
             />
         </div>
@@ -33,19 +33,18 @@ import ButtonGroup from '@/components/common/ButtonGroup.vue';
 import PrimaryButton from '@/components/common/PrimaryButton.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
-import { SearchByOptionNames } from '@/enums/search';
+import { SearchByOptionNames, SearchQueryParams, SortByOptionsNames } from '@/enums/search';
 import { SearchByOptions } from '@/constants/search';
+import { SearchParams } from '@/types/search';
+import { areSearchParamsEqual, createSearchUrl, getSearchParams } from '@/utils/search';
 import {
     changeSearchActionPayload,
     changeSearchByActionPayload,
+    changeSortByActionPayload,
     getFilmsRequestActionPayload,
 } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
-
-export interface SearchPanelProps {
-    onSearch: (searchValue: string, selectedFilterOption: string) => void;
-}
 
 export default Vue.extend({
     name: 'SearchPanel',
@@ -59,11 +58,29 @@ export default Vue.extend({
     computed: {
         ...mapGetters({
             searchTerm: getFilmModuleType(FilmGetterProps.SearchTerm),
-            selectedSearchByOption: getFilmModuleType(FilmGetterProps.SearchBy),
+            searchByOption: getFilmModuleType(FilmGetterProps.SearchBy),
+            sortByOption: getFilmModuleType(FilmGetterProps.SortBy),
         }),
     },
     methods: {
         onSearch(): void {
+            const searchQueryParams: SearchParams = getSearchParams(this.$route);
+
+            if (
+                !areSearchParamsEqual(
+                    searchQueryParams[SearchQueryParams.SearchTerm],
+                    searchQueryParams[SearchQueryParams.SortByOption],
+                    searchQueryParams[SearchQueryParams.SearchByOption],
+                    this.searchTerm,
+                    this.sortByOption,
+                    this.searchByOption
+                )
+            ) {
+                this.$router.push(
+                    createSearchUrl(this.$route.path, this.searchTerm, this.searchByOption, this.sortByOption)
+                );
+            }
+
             this.$store.dispatch(getFilmsRequestActionPayload());
         },
         onChangeSearchByOption(option: string): void {
@@ -72,6 +89,28 @@ export default Vue.extend({
         onChangeSearchQuery(value: string): void {
             this.$store.dispatch(changeSearchActionPayload(value));
         },
+        onChangeSortByOption(option: string): void {
+            this.$store.dispatch(changeSortByActionPayload(option as SortByOptionsNames));
+        },
+    },
+    created(): void {
+        const searchQueryParams: SearchParams = getSearchParams(this.$route);
+
+        const searchTermQueryParameter: string | undefined = searchQueryParams[SearchQueryParams.SearchTerm];
+        const searchByQueryParameter: string = searchQueryParams[SearchQueryParams.SearchByOption];
+        const sortByQueryParameter: string = searchQueryParams[SearchQueryParams.SortByOption];
+
+        if (searchTermQueryParameter && searchTermQueryParameter !== this.searchTerm) {
+            this.onChangeSearchQuery(searchTermQueryParameter);
+        }
+
+        if (searchByQueryParameter && searchByQueryParameter !== this.searchByOption) {
+            this.onChangeSearchByOption(searchByQueryParameter);
+        }
+
+        if (sortByQueryParameter && sortByQueryParameter !== this.sortByOption) {
+            this.onChangeSortByOption(sortByQueryParameter);
+        }
     },
 });
 </script>

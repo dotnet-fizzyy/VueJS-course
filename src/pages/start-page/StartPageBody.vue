@@ -69,7 +69,7 @@ export default Vue.extend({
                 return;
             }
 
-            this.$router.push(`${MoviesRoute}/${id}`);
+            this.$router.push({ path: `${MoviesRoute}/${id}`, query: this.$route.query });
         },
     },
     created(): void {
