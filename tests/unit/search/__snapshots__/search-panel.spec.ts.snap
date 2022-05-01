@@ -20,7 +20,7 @@ exports[`SearchPanel.vue Tests Should render 1`] = `
       <app-input-stub
         fontsize="24"
         placeholder="Search"
-        value="value"
+        value="SomeAwesomeSearchValue"
       />
     </div>
      

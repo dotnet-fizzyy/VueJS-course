@@ -1,6 +1,7 @@
 import SearchPanel from '@/components/search/SearchPanel.vue';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import router from '@/router';
 import {
     FilmActionTypes,
     changeSearchByActionPayload,
@@ -8,7 +9,7 @@ import {
     getFilmsRequestActionPayload,
 } from '@/vuex/modules/films/actions';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
-import { SearchByOptionNames } from '@/enums/search';
+import { SearchByOptionNames, SortByOptionsNames } from '@/enums/search';
 import { Wrapper, shallowMount } from '@vue/test-utils';
 import { createDefaultVueInstance } from '../../setup';
 import { getFilmModuleType } from '@/vuex/store/utils';
@@ -19,6 +20,7 @@ describe('SearchPanel.vue Tests', () => {
     const createComponent = (store): Wrapper<Vue> =>
         shallowMount(SearchPanel, {
             store,
+            router,
             localVue,
         });
 
@@ -28,23 +30,28 @@ describe('SearchPanel.vue Tests', () => {
 
     const findSearchByOptions = (wrapper: Wrapper<Vue>) => wrapper.findComponent({ name: 'button-group' });
 
-    it('Should render', () => {
-        //Arrange
+    let store;
+
+    beforeEach(() => {
         const actions = {
             [getFilmModuleType(FilmActionTypes.ChangeSortBy)]: jest.fn(),
         };
         const getters = {
-            [getFilmModuleType(FilmGetterProps.SearchTerm)]: (): string => 'value',
+            [getFilmModuleType(FilmGetterProps.SearchTerm)]: (): string => 'SomeAwesomeSearchValue',
             [getFilmModuleType(FilmGetterProps.SearchBy)]: (): SearchByOptionNames => SearchByOptionNames.Genre,
+            [getFilmModuleType(FilmGetterProps.SortBy)]: (): SortByOptionsNames => SortByOptionsNames.ReleaseDate,
         };
 
-        const store = new Vuex.Store({
+        store = new Vuex.Store({
             actions,
             getters,
         });
 
         store.dispatch = jest.fn();
+    });
 
+    it('Should render', () => {
+        //Arrange
         const wrapper = createComponent(store);
 
         //Act & Assert
@@ -53,21 +60,6 @@ describe('SearchPanel.vue Tests', () => {
 
     it('Should dispatch "getFilmsRequestActionPayload" action on clicking search button', () => {
         //Arrange
-        const actions = {
-            [getFilmModuleType(FilmActionTypes.ChangeSortBy)]: jest.fn(),
-        };
-        const getters = {
-            [getFilmModuleType(FilmGetterProps.SearchTerm)]: (): string => 'value',
-            [getFilmModuleType(FilmGetterProps.SearchBy)]: (): SearchByOptionNames => SearchByOptionNames.Genre,
-        };
-
-        const store = new Vuex.Store({
-            actions,
-            getters,
-        });
-
-        store.dispatch = jest.fn();
-
         const wrapper = createComponent(store);
 
         //Act & Assert
@@ -82,21 +74,6 @@ describe('SearchPanel.vue Tests', () => {
 
     it('Should dispatch "onChangeSearchQuery" action on changing search input', () => {
         //Arrange
-        const actions = {
-            [getFilmModuleType(FilmActionTypes.ChangeSortBy)]: jest.fn(),
-        };
-        const getters = {
-            [getFilmModuleType(FilmGetterProps.SearchTerm)]: (): string => 'value',
-            [getFilmModuleType(FilmGetterProps.SearchBy)]: (): SearchByOptionNames => SearchByOptionNames.Genre,
-        };
-
-        const store = new Vuex.Store({
-            actions,
-            getters,
-        });
-
-        store.dispatch = jest.fn();
-
         const wrapper = createComponent(store);
 
         const expectedSearchValue: string = 'new_search_value';
@@ -113,21 +90,6 @@ describe('SearchPanel.vue Tests', () => {
 
     it('Should dispatch "onChangeSearchByOption" action on changing search by option', () => {
         //Arrange
-        const actions = {
-            [getFilmModuleType(FilmActionTypes.ChangeSortBy)]: jest.fn(),
-        };
-        const getters = {
-            [getFilmModuleType(FilmGetterProps.SearchTerm)]: (): string => 'value',
-            [getFilmModuleType(FilmGetterProps.SearchBy)]: (): SearchByOptionNames => SearchByOptionNames.Genre,
-        };
-
-        const store = new Vuex.Store({
-            actions,
-            getters,
-        });
-
-        store.dispatch = jest.fn();
-
         const wrapper = createComponent(store);
 
         const expectedSearchByValue: SearchByOptionNames = SearchByOptionNames.Title;
@@ -144,45 +106,23 @@ describe('SearchPanel.vue Tests', () => {
 
     it('Should bind "searchTerm" getter to search input value', () => {
         //Arrange
-        const searchTerm: string = 'SomeNewAwesomeValue';
-
-        const getters = {
-            [getFilmModuleType(FilmGetterProps.SearchTerm)]: (): string => searchTerm,
-            [getFilmModuleType(FilmGetterProps.SearchBy)]: (): SearchByOptionNames => SearchByOptionNames.Genre,
-        };
-
-        const store = new Vuex.Store({
-            getters,
-        });
-
         const wrapper = createComponent(store);
 
         //Act & Assert
         const searchAppInputWrapper = findSearchInput(wrapper);
 
         expect(searchAppInputWrapper.element).toBeTruthy();
-        expect(searchAppInputWrapper.attributes('value')).toEqual(searchTerm);
+        expect(searchAppInputWrapper.attributes('value')).toEqual('SomeAwesomeSearchValue');
     });
 
     it('Should bind "selectedSearchByOption" getter to search by options', () => {
         //Arrange
-        const selectedSearchByOption: SearchByOptionNames = SearchByOptionNames.Genre;
-
-        const getters = {
-            [getFilmModuleType(FilmGetterProps.SearchTerm)]: (): string => '',
-            [getFilmModuleType(FilmGetterProps.SearchBy)]: (): SearchByOptionNames => selectedSearchByOption,
-        };
-
-        const store = new Vuex.Store({
-            getters,
-        });
-
         const wrapper = createComponent(store);
 
         //Act & Assert
         const sortByOptionsWrapper = findSearchByOptions(wrapper);
 
         expect(sortByOptionsWrapper.element).toBeTruthy();
-        expect(sortByOptionsWrapper.attributes('selectedoption')).toEqual(selectedSearchByOption);
+        expect(sortByOptionsWrapper.attributes('selectedoption')).toEqual(SearchByOptionNames.Genre);
     });
 });

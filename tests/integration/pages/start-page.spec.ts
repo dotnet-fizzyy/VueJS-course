@@ -2,6 +2,7 @@ import Films from '@/vuex/modules/films/state';
 import StartPage from '@/pages/start-page/StartPage.vue';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import router from '@/router';
 import store from '@/vuex/store';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { FilmsModuleName } from '@/vuex/store/constants';
@@ -17,6 +18,7 @@ describe('StartPage.vue', () => {
     const createComponent = (store): Wrapper<Vue> =>
         mount(StartPage, {
             store,
+            router,
             localVue,
         });
 
