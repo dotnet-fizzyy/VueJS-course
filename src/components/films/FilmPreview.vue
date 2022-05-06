@@ -26,7 +26,7 @@ export interface FilmPreviewProps {
     name: string;
     shortDescription: string;
     releaseYear: number;
-    onSelect: (id: string) => void;
+    select: (id: string) => void;
 }
 
 export default Vue.extend({

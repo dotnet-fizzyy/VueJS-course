@@ -6,7 +6,7 @@
             label="Sort By"
             :options="options"
             :selected-option="selectedOption"
-            @select-option="onSelectOption"
+            @select-option="selectOption"
         />
     </div>
 </template>
@@ -36,7 +36,7 @@ export default Vue.extend({
         }),
     },
     methods: {
-        onSelectOption(option: string): void {
+        selectOption(option: string): void {
             this.$store.dispatch(changeSortByActionPayload(option as SortByOptionsNames));
         },
     },

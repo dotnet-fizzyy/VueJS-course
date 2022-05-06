@@ -8,11 +8,11 @@
                     :value="searchTerm"
                     placeholder="Search"
                     :font-size="inputFontSize"
-                    @change="onChangeSearchQuery"
+                    @change="changeSearchQuery"
                 />
             </div>
             <div :class="$style['search-button-container']">
-                <primary-button :font-size="inputFontSize" @click="onSearch">Search</primary-button>
+                <primary-button :font-size="inputFontSize" @click="search">Search</primary-button>
             </div>
         </div>
 
@@ -21,7 +21,7 @@
                 label="Search By"
                 :options="filterOptions"
                 :selected-option="searchByOption"
-                @select-option="onChangeSearchByOption"
+                @select-option="changeSearchByOption"
             />
         </div>
     </div>
@@ -62,7 +62,7 @@ export default Vue.extend({
         }),
     },
     methods: {
-        onSearch(): void {
+        search(): void {
             const searchQueryParams: SearchParams = getSearchParams(this.$route);
 
             if (
@@ -82,10 +82,10 @@ export default Vue.extend({
 
             this.$store.dispatch(getFilmsRequestActionPayload());
         },
-        onChangeSearchByOption(option: string): void {
+        changeSearchByOption(option: string): void {
             this.$store.dispatch(changeSearchByActionPayload(option as SearchByOptionNames));
         },
-        onChangeSearchQuery(value: string): void {
+        changeSearchQuery(value: string): void {
             this.$store.dispatch(changeSearchTermActionPayload(value));
         },
     },
