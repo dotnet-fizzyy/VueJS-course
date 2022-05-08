@@ -1,7 +1,7 @@
 import NoPageFound from '@/pages/no-page-found/NoPageFound.vue';
-import SearchPanel from '@/components/search/SearchPanel.vue';
 import StartPage from '@/pages/start-page/StartPage.vue';
 import StartPageFilmFullDescription from '@/pages/start-page/StartPageFilmFullDescription.vue';
+import StartPageSearchPanel from '@/pages/start-page/StartPageSearchPanel.vue';
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import { MoviesRoute } from '@/constants/routes';
@@ -20,7 +20,7 @@ const routes: RouteConfig[] = [
         children: [
             {
                 path: '',
-                component: SearchPanel,
+                component: StartPageSearchPanel,
             },
             {
                 path: ':id',

@@ -33,15 +33,9 @@ import ButtonGroup from '@/components/common/ButtonGroup.vue';
 import PrimaryButton from '@/components/common/PrimaryButton.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
-import { SearchByOptionNames, SearchQueryParams } from '@/enums/search';
+import { SearchByOptionNames } from '@/enums/search';
 import { SearchByOptions } from '@/constants/search';
-import { SearchParams } from '@/types/search';
-import { areSearchParamsEqual, createSearchUrl, getSearchParams } from '@/utils/search';
-import {
-    changeSearchByActionPayload,
-    changeSearchTermActionPayload,
-    getFilmsRequestActionPayload,
-} from '@/vuex/modules/films/actions';
+import { changeSearchByActionPayload, changeSearchTermActionPayload } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
 
@@ -58,29 +52,11 @@ export default Vue.extend({
         ...mapGetters({
             searchTerm: getFilmModuleType(FilmGetterProps.SearchTerm),
             searchByOption: getFilmModuleType(FilmGetterProps.SearchBy),
-            sortByOption: getFilmModuleType(FilmGetterProps.SortBy),
         }),
     },
     methods: {
         search(): void {
-            const searchQueryParams: SearchParams = getSearchParams(this.$route);
-
-            if (
-                !areSearchParamsEqual(
-                    searchQueryParams[SearchQueryParams.SearchTerm],
-                    searchQueryParams[SearchQueryParams.SortByOption],
-                    searchQueryParams[SearchQueryParams.SearchByOption],
-                    this.searchTerm,
-                    this.sortByOption,
-                    this.searchByOption
-                )
-            ) {
-                this.$router.push(
-                    createSearchUrl(this.$route.path, this.searchTerm, this.searchByOption, this.sortByOption)
-                );
-            }
-
-            this.$store.dispatch(getFilmsRequestActionPayload());
+            this.$emit('search');
         },
         changeSearchByOption(option: string): void {
             this.$store.dispatch(changeSearchByActionPayload(option as SearchByOptionNames));
