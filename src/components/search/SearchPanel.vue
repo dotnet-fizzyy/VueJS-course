@@ -39,6 +39,10 @@ import { changeSearchByActionPayload, changeSearchTermActionPayload } from '@/vu
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
 
+export interface SearchPanelProps {
+    search: () => void;
+}
+
 export default Vue.extend({
     name: 'SearchPanel',
     components: { AppInput, PrimaryButton, ButtonGroup },

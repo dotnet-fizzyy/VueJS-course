@@ -1,12 +1,10 @@
 import SearchPanel from '@/components/search/SearchPanel.vue';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import router from '@/router';
 import {
     FilmActionTypes,
     changeSearchByActionPayload,
     changeSearchTermActionPayload,
-    getFilmsRequestActionPayload,
 } from '@/vuex/modules/films/actions';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { SearchByOptionNames, SortByOptionsNames } from '@/enums/search';
@@ -20,7 +18,6 @@ describe('SearchPanel.vue Tests', () => {
     const createComponent = (store): Wrapper<Vue> =>
         shallowMount(SearchPanel, {
             store,
-            router,
             localVue,
         });
 
@@ -58,7 +55,7 @@ describe('SearchPanel.vue Tests', () => {
         expect(wrapper.element).toMatchSnapshot();
     });
 
-    it('Should dispatch "getFilmsRequestActionPayload" action on clicking search button', () => {
+    it('Should emit "search" event on click search button', () => {
         //Arrange
         const wrapper = createComponent(store);
 
@@ -69,7 +66,7 @@ describe('SearchPanel.vue Tests', () => {
 
         searchButtonWrapper.vm.$emit('click');
 
-        expect(store.dispatch).toHaveBeenCalledWith(getFilmsRequestActionPayload());
+        expect(wrapper.emitted().search).toBeTruthy();
     });
 
     it('Should dispatch "onChangeSearchQuery" action on changing search input', () => {
