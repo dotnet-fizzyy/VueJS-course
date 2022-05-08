@@ -6,6 +6,7 @@
             <template v-for="(option, index) in options">
                 <button
                     :data-aqa-button-name="option.name"
+                    :data-aqa-is-button-selected="isSelected(option.name)"
                     :class="[
                         isSelected(option.name) ? $style['selected-option'] : $style['non-selected-option'],
                         $style.option,

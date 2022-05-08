@@ -1,5 +1,10 @@
 <template>
-    <button v-font-size="fontSize" :class="[$style['primary-button'], $style[fontStyle]]" @click="click">
+    <button
+        data-aqa-primary-button
+        v-font-size="fontSize"
+        :class="[$style['primary-button'], $style[fontStyle]]"
+        @click="click"
+    >
         <slot />
     </button>
 </template>

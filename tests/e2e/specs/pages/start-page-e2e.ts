@@ -2,7 +2,9 @@ describe('Start page E2E Tests', () => {
     const baseAqaDataAttributePrefix = 'data-aqa';
     const timeout = 1000;
 
-    it('Should visit the app root url and find all main sections', () => {
+    const searchFilmName = 'The Mummy';
+
+    it.skip('Should visit the app root url and find all main sections', () => {
         // visit base url and verify all main sections are displayed
         cy.visit('/')
             .get(`[${baseAqaDataAttributePrefix}-start-header]`)
@@ -10,11 +12,12 @@ describe('Start page E2E Tests', () => {
             .get(`[${baseAqaDataAttributePrefix}-start-footer]`);
     });
 
-    it('Should visit non-existing app url and display not found page', () => {
+    it.skip('Should visit non-existing app url and display not found page', () => {
+        // visit random url and verify not-page-found is displayed
         cy.visit('/test-url').get(`[${baseAqaDataAttributePrefix}-not-found-page]`);
     });
 
-    it('Should visit the app root url, select preview item, view its full description and go back to search', () => {
+    it.skip('Should visit the app root url, select preview item, view its full description and go back to search', () => {
         // visit base url
         cy.visit('/');
 
@@ -56,5 +59,52 @@ describe('Start page E2E Tests', () => {
 
         // verify search panel is displayed again
         cy.get(`[${baseAqaDataAttributePrefix}-search-panel]`);
+    });
+
+    // todo: refactor
+    it.skip('Should visit app url, change search criteria, search for results', () => {
+        // visit base url
+        cy.visit('/');
+
+        // verify search panel is displayed
+        cy.get(`[${baseAqaDataAttributePrefix}-search-panel]`);
+        cy.wait(timeout);
+
+        // set search criteria
+        cy.get(`[${baseAqaDataAttributePrefix}-app-input]`).type(searchFilmName);
+        cy.get(`[${baseAqaDataAttributePrefix}-button-name="rating"]`).click();
+        cy.get(`[${baseAqaDataAttributePrefix}-primary-button]`).click();
+
+        cy.wait(timeout);
+
+        // verify all available results names have the same search value
+        cy.get(`[${baseAqaDataAttributePrefix}-film-preview-name]`).each($el => {
+            $el.text().includes(searchFilmName);
+        });
+    });
+
+    // todo: refactor
+    it('Should visit app url with search criteria in query params, parse them and search for results', () => {
+        const encodedSearchFilmName = encodeURIComponent(searchFilmName);
+        const searchByOption = 'title';
+        const sortByOption = 'rating';
+
+        // visit base url
+        cy.visit(`/?searchBy=${searchByOption}&sortBy=${sortByOption}&term=${encodedSearchFilmName}`);
+
+        cy.wait(timeout);
+
+        // search for components
+        cy.get(`[${baseAqaDataAttributePrefix}-app-input]`).should($el => {
+            // @ts-ignore to.equal belongs to Cypress for comparison
+            expect($el.val()).to.equal(searchFilmName);
+        });
+
+        cy.get(
+            `[${baseAqaDataAttributePrefix}-button-name="${searchByOption}"][${baseAqaDataAttributePrefix}-is-button-selected]`
+        );
+        cy.get(
+            `[${baseAqaDataAttributePrefix}-button-name="${sortByOption}"][${baseAqaDataAttributePrefix}-is-button-selected]`
+        );
     });
 });

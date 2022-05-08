@@ -12,6 +12,7 @@ exports[`AppInput.vue Tests Should not render "error" block if it was not provid
    
   <input
     class="input"
+    data-aqa-app-input=""
     placeholder="Placeholder"
     style="font-size: 16px;"
   />
@@ -28,6 +29,7 @@ exports[`AppInput.vue Tests Should not render "label" block if it was not provid
    
   <input
     class="input"
+    data-aqa-app-input=""
     placeholder="Placeholder"
     style="font-size: 16px;"
   />
@@ -58,6 +60,7 @@ exports[`AppInput.vue Tests Should render 1`] = `
    
   <input
     class="input"
+    data-aqa-app-input=""
     placeholder="Placeholder"
     style="font-size: 16px;"
   />
