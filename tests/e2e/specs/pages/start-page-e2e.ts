@@ -10,6 +10,10 @@ describe('Start page E2E Tests', () => {
             .get(`[${baseAqaDataAttributePrefix}-start-footer]`);
     });
 
+    it('Should visit non-existing app url and display not found page', () => {
+        cy.visit('/test-url').get(`[${baseAqaDataAttributePrefix}-not-found-page]`);
+    });
+
     it('Should visit the app root url, select preview item, view its full description and go back to search', () => {
         // visit base url
         cy.visit('/');

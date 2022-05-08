@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.root">
+    <div data-aqa-not-found-page :class="$style.root">
         <span :class="$style['error-title']">404 :(</span>
         <span :class="$style['error-description']">Sorry, the page you are looking does not exist.</span>
 
