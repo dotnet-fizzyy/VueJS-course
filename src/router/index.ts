@@ -4,7 +4,7 @@ import StartPage from '@/pages/start-page/StartPage.vue';
 import StartPageFilmFullDescription from '@/pages/start-page/StartPageFilmFullDescription.vue';
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import { MoviesRoute } from '@/router/routes';
+import { MoviesRoute } from '@/constants/routes';
 import { getAppSettings } from '@/utils/appSettings';
 
 Vue.use(VueRouter);

@@ -42,7 +42,7 @@ import SortPanel from '@/components/listing/SortPanel.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { FontStyle } from '@/enums/styles';
-import { MoviesRoute } from '@/router/routes';
+import { MoviesRoute } from '@/constants/routes';
 import { NoFilmsFoundMessage } from '@/constants/search';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { getFilmsRequestActionPayload } from '@/vuex/modules/films/actions';

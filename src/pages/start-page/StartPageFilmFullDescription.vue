@@ -20,7 +20,7 @@ import LoadingIcon from '@/components/icons/LoadingIcon.vue';
 import SearchIcon from '@/components/icons/SearchIcon.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
-import { MoviesRoute } from '@/router/routes';
+import { MoviesRoute } from '@/constants/routes';
 import { getFilmByIdRequestActionPayload, removeSelectedItemActionPayload } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
