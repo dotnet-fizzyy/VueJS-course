@@ -97,13 +97,13 @@ export const actions: ActionTree<FilmsState, FilmsState> & Actions = {
 
             commit(getFilmsRequestMutationPayload());
 
-            const { data, limit }: CollectionResponse<Film> = await FilmsApi.getFilms(
+            const { data, total }: CollectionResponse<Film> = await FilmsApi.getFilms(
                 searchTerm,
                 searchByOption,
                 sortByOption
             );
 
-            commit(getFilmsRequestSuccessMutationPayload(data, limit));
+            commit(getFilmsRequestSuccessMutationPayload(data, total));
         } catch (e) {
             console.error(e);
 
