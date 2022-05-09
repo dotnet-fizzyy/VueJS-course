@@ -58,11 +58,11 @@ describe('Start page E2E Tests', () => {
 
     const visitRandomUrl = () => cy.visit('/test-url');
 
-    const visitBaseUrl = (params = null) => {
+    const visitBaseUrl = (queryParams = null) => {
         let url = '/';
 
-        if (params) {
-            url += params;
+        if (queryParams) {
+            url += queryParams;
         }
 
         return cy.visit(url);
@@ -89,7 +89,6 @@ describe('Start page E2E Tests', () => {
         getNotFoundPage();
     });
 
-    // todo: mock network requests
     it('Should visit the app root url, select preview item, view its full description and go back to search', () => {
         // visit base url
         visitBaseUrl();
@@ -134,8 +133,8 @@ describe('Start page E2E Tests', () => {
         getSearchPanel();
     });
 
-    // todo: mock network requests
     it('Should visit app url, change search criteria, search for results', () => {
+        const buttonGroupName = 'rating';
         const includeSelectedOption = false;
 
         // visit base url
@@ -147,7 +146,7 @@ describe('Start page E2E Tests', () => {
 
         // set search criteria
         getSearchInput().type(searchFilmName);
-        getButtonGroupOption('rating', includeSelectedOption).click();
+        getButtonGroupOption(buttonGroupName, includeSelectedOption).click();
         getPrimaryButton().click();
 
         delay();
@@ -164,8 +163,10 @@ describe('Start page E2E Tests', () => {
         const sortByOption = 'rating';
         const includeSelectedOption = true;
 
+        const queryParams = `?searchBy=${searchByOption}&sortBy=${sortByOption}&term=${encodedSearchFilmName}`;
+
         // visit base url
-        visitBaseUrl(`?searchBy=${searchByOption}&sortBy=${sortByOption}&term=${encodedSearchFilmName}`);
+        visitBaseUrl(queryParams);
 
         delay();
 
