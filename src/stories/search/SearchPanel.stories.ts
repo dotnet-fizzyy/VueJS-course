@@ -12,10 +12,10 @@ const Template = (args, { argTypes }) => ({
     props: Object.keys(argTypes),
     store,
     template:
-        '<div style="background-color: #555555; padding: 30px; width: 700px;"><SearchPanel @search="$props.onSearch" /></div>',
+        '<div style="background-color: #555555; padding: 30px; width: 700px;"><SearchPanel @search="$props.search" /></div>',
 });
 
 export const Default = Template.bind({});
 Default.args = {
-    onSearch: action('onSearch'),
+    search: action('click search'),
 } as SearchPanelProps;

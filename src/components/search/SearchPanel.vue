@@ -8,11 +8,11 @@
                     :value="searchTerm"
                     placeholder="Search"
                     :font-size="inputFontSize"
-                    @change="onChangeSearchQuery"
+                    @change="changeSearchQuery"
                 />
             </div>
             <div :class="$style['search-button-container']">
-                <primary-button :font-size="inputFontSize" @click="onSearch">Search</primary-button>
+                <primary-button :font-size="inputFontSize" @click="search">Search</primary-button>
             </div>
         </div>
 
@@ -20,8 +20,8 @@
             <button-group
                 label="Search By"
                 :options="filterOptions"
-                :selected-option="selectedSearchByOption"
-                @select-option="onChangeSearchByOption"
+                :selected-option="searchByOption"
+                @select-option="changeSearchByOption"
             />
         </div>
     </div>
@@ -35,16 +35,12 @@ import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
 import { SearchByOptionNames } from '@/enums/search';
 import { SearchByOptions } from '@/constants/search';
-import {
-    changeSearchActionPayload,
-    changeSearchByActionPayload,
-    getFilmsRequestActionPayload,
-} from '@/vuex/modules/films/actions';
+import { changeSearchByActionPayload, changeSearchTermActionPayload } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
 
 export interface SearchPanelProps {
-    onSearch: (searchValue: string, selectedFilterOption: string) => void;
+    search: () => void;
 }
 
 export default Vue.extend({
@@ -59,18 +55,18 @@ export default Vue.extend({
     computed: {
         ...mapGetters({
             searchTerm: getFilmModuleType(FilmGetterProps.SearchTerm),
-            selectedSearchByOption: getFilmModuleType(FilmGetterProps.SearchBy),
+            searchByOption: getFilmModuleType(FilmGetterProps.SearchBy),
         }),
     },
     methods: {
-        onSearch(): void {
-            this.$store.dispatch(getFilmsRequestActionPayload());
+        search(): void {
+            this.$emit('search');
         },
-        onChangeSearchByOption(option: string): void {
+        changeSearchByOption(option: string): void {
             this.$store.dispatch(changeSearchByActionPayload(option as SearchByOptionNames));
         },
-        onChangeSearchQuery(value: string): void {
-            this.$store.dispatch(changeSearchActionPayload(value));
+        changeSearchQuery(value: string): void {
+            this.$store.dispatch(changeSearchTermActionPayload(value));
         },
     },
 });

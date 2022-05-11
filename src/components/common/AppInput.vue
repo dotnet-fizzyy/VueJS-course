@@ -2,7 +2,14 @@
     <div :class="$style.root">
         <span v-if="!!label" :class="$style.label">{{ label }}</span>
 
-        <input :class="$style.input" v-font-size="fontSize" :placeholder="placeholder" :value="value" @input="change" />
+        <input
+            data-aqa-app-input
+            :class="$style.input"
+            v-font-size="fontSize"
+            :placeholder="placeholder"
+            :value="value"
+            @input="change"
+        />
 
         <div v-if="!!errorMessage" :class="$style['error-message-container']">
             <error-icon />

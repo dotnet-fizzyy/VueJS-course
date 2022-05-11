@@ -1,20 +1,16 @@
 <template>
     <div id="app">
         <div id="main">
-            <start-page />
+            <router-view />
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import StartPage from '@/pages/start-page/StartPage.vue';
 import Vue from 'vue';
 
 export default Vue.extend({
     name: 'App',
-    components: {
-        StartPage,
-    },
 });
 </script>
 

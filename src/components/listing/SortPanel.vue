@@ -6,7 +6,7 @@
             label="Sort By"
             :options="options"
             :selected-option="selectedOption"
-            @select-option="onSelectOption"
+            @select-option="selectOption"
         />
     </div>
 </template>
@@ -20,8 +20,6 @@ import { SortByOptionsNames } from '@/enums/search';
 import { changeSortByActionPayload } from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
 import { mapGetters } from 'vuex';
-
-export interface SortPanelProps {}
 
 export default Vue.extend({
     name: 'SortPanel',
@@ -38,7 +36,7 @@ export default Vue.extend({
         }),
     },
     methods: {
-        onSelectOption(option: string): void {
+        selectOption(option: string): void {
             this.$store.dispatch(changeSortByActionPayload(option as SortByOptionsNames));
         },
     },

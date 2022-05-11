@@ -1,39 +1,118 @@
 describe('Start page E2E Tests', () => {
-    const baseAqaDataAttributePrefix = 'data-aqa';
+    /**
+     *  Constants
+     */
+    const searchFilmName = 'The Mummy';
     const timeout = 1000;
 
+    const baseAqaDataAttributePrefix = 'data-aqa';
+    const startPageAqaDataAttributePrefix = `${baseAqaDataAttributePrefix}-start`;
+    const filmFullDescAqaDataAttributePrefix = `${baseAqaDataAttributePrefix}-full`;
+
+    /**
+     *  Helpers
+     */
+    const delay = () => cy.wait(timeout);
+
+    const getStartPageHeader = () => cy.get(`[${startPageAqaDataAttributePrefix}-header]`);
+
+    const getStartPageBody = () => cy.get(`[${startPageAqaDataAttributePrefix}-body]`);
+
+    const getStartPageFooter = () => cy.get(`[${startPageAqaDataAttributePrefix}-footer]`);
+
+    const getNotFoundPage = () => cy.get(`[${baseAqaDataAttributePrefix}-not-found-page]`);
+
+    const getSearchPanel = () => cy.get(`[${baseAqaDataAttributePrefix}-search-panel]`);
+
+    const getSearchInput = () => cy.get(`[${baseAqaDataAttributePrefix}-app-input]`);
+
+    const getFilmPreview = () => cy.get(`[${baseAqaDataAttributePrefix}-preview]`);
+
+    const getFilmPreviewName = () => cy.get(`[${baseAqaDataAttributePrefix}-film-preview-name]`);
+
+    const getFilmFullDescription = () => cy.get(`[${filmFullDescAqaDataAttributePrefix}-description]`);
+
+    const getFilmFullDescriptionName = () => cy.get(`[${filmFullDescAqaDataAttributePrefix}-desc-name]`);
+
+    const getFilmFullDescriptionPoster = () => cy.get(`[${filmFullDescAqaDataAttributePrefix}-poster]`);
+
+    const getFilmFullDescriptionRating = () => cy.get(`[${filmFullDescAqaDataAttributePrefix}-rating]`);
+
+    const getFilmFullDescriptionShortOverview = () => cy.get(`[${filmFullDescAqaDataAttributePrefix}-short-desc]`);
+
+    const getFilmFullDescriptionFullOverview = () => cy.get(`[${filmFullDescAqaDataAttributePrefix}-full-desc]`);
+
+    const getPrimaryButton = () => cy.get(`[${baseAqaDataAttributePrefix}-primary-button]`);
+
+    const getBackToSearchButton = () => cy.get(`[${baseAqaDataAttributePrefix}-back-to-search]`);
+
+    const getButtonGroupOption = (value, includeSelectedOptionAttribute) => {
+        let buttonNameAttribute = `[${baseAqaDataAttributePrefix}-button-name="${value}"]`;
+
+        if (includeSelectedOptionAttribute) {
+            buttonNameAttribute += `[${baseAqaDataAttributePrefix}-is-button-selected]`;
+        }
+
+        return cy.get(buttonNameAttribute);
+    };
+
+    const visitRandomUrl = () => cy.visit('/test-url');
+
+    const visitBaseUrl = (queryParams = null) => {
+        let url = '/';
+
+        if (queryParams) {
+            url += queryParams;
+        }
+
+        return cy.visit(url);
+    };
+
+    /**
+     *  Tests
+     */
     it('Should visit the app root url and find all main sections', () => {
-        // visit base url and verify all main sections are displayed
-        cy.visit('/')
-            .get(`[${baseAqaDataAttributePrefix}-start-header]`)
-            .get(`[${baseAqaDataAttributePrefix}-start-body]`)
-            .get(`[${baseAqaDataAttributePrefix}-start-footer]`);
+        // visit base url
+        visitBaseUrl();
+
+        // verify all main sections are displayed
+        getStartPageHeader();
+        getStartPageBody();
+        getStartPageFooter();
+    });
+
+    it('Should visit non-existing app url and display not found page', () => {
+        // visit random url
+        visitRandomUrl();
+
+        // verify not-page-found is displayed
+        getNotFoundPage();
     });
 
     it('Should visit the app root url, select preview item, view its full description and go back to search', () => {
         // visit base url
-        cy.visit('/');
+        visitBaseUrl();
 
         // verify search panel is displayed
-        cy.get(`[${baseAqaDataAttributePrefix}-search-panel]`);
-        cy.wait(timeout);
+        getSearchPanel();
+        delay();
 
         // click first available item in previews
-        cy.get(`[${baseAqaDataAttributePrefix}-preview]`).first().click();
-        cy.wait(timeout);
+        getFilmPreview().first().click();
+        delay();
 
         // verify full description for item is available
-        cy.get(`[${baseAqaDataAttributePrefix}-full-description]`);
-        cy.wait(timeout);
+        getFilmFullDescription();
+        delay();
 
         // find item name on preview and full description, verify their equality
         let previewNameText;
         let fullDescriptionNameText;
 
-        cy.get(`[${baseAqaDataAttributePrefix}-film-preview-name]`).should($identifier => {
+        getFilmPreviewName().should($identifier => {
             previewNameText = $identifier.text();
         });
-        cy.get(`[${baseAqaDataAttributePrefix}-full-desc-name]`).should($identifier => {
+        getFilmFullDescriptionName().should($identifier => {
             fullDescriptionNameText = $identifier.text();
         });
 
@@ -41,16 +120,62 @@ describe('Start page E2E Tests', () => {
         expect(previewNameText).to.equal(fullDescriptionNameText);
 
         // verify rest important item full description items are displayed
-        cy.get(`[${baseAqaDataAttributePrefix}-full-poster]`);
-        cy.get(`[${baseAqaDataAttributePrefix}-full-rating]`);
-        cy.get(`[${baseAqaDataAttributePrefix}-full-short-desc]`);
-        cy.get(`[${baseAqaDataAttributePrefix}-full-full-desc]`);
+        getFilmFullDescriptionPoster();
+        getFilmFullDescriptionRating();
+        getFilmFullDescriptionShortOverview();
+        getFilmFullDescriptionFullOverview();
 
         // go back to search panel (close full description)
-        cy.get(`[${baseAqaDataAttributePrefix}-back-to-search]`).click();
-        cy.wait(timeout);
+        getBackToSearchButton().click();
+        delay();
 
         // verify search panel is displayed again
-        cy.get(`[${baseAqaDataAttributePrefix}-search-panel]`);
+        getSearchPanel();
+    });
+
+    it('Should visit app url, change search criteria, search for results', () => {
+        const buttonGroupName = 'rating';
+        const includeSelectedOption = false;
+
+        // visit base url
+        visitBaseUrl();
+
+        // verify search panel is displayed
+        getSearchPanel();
+        delay();
+
+        // set search criteria
+        getSearchInput().type(searchFilmName);
+        getButtonGroupOption(buttonGroupName, includeSelectedOption).click();
+        getPrimaryButton().click();
+
+        delay();
+
+        // verify all available results names have the same search value
+        getFilmPreviewName().each($el => {
+            $el.text().includes(searchFilmName);
+        });
+    });
+
+    it('Should visit app url with search criteria in query params, parse them and search for results', () => {
+        const encodedSearchFilmName = encodeURIComponent(searchFilmName);
+        const searchByOption = 'title';
+        const sortByOption = 'rating';
+        const includeSelectedOption = true;
+
+        const queryParams = `?searchBy=${searchByOption}&sortBy=${sortByOption}&term=${encodedSearchFilmName}`;
+
+        // visit base url
+        visitBaseUrl(queryParams);
+
+        delay();
+
+        // verify search parameters are set correctly in search header
+        getSearchInput().should($el => {
+            // @ts-ignore to.equal belongs to Cypress for comparison
+            expect($el.val()).to.equal(searchFilmName);
+        });
+        getButtonGroupOption(searchByOption, includeSelectedOption);
+        getButtonGroupOption(sortByOption, includeSelectedOption);
     });
 });

@@ -3,6 +3,7 @@ import FiltersPlugin from '@/plugins/filtersPlugin';
 import Vue from 'vue';
 import VueLazyload, { VueLazyloadOptions } from 'vue-lazyload';
 import VueResource from 'vue-resource';
+import router from './router';
 import store from '@/vuex/store';
 import { getAppSettings } from '@/utils/appSettings';
 
@@ -22,5 +23,6 @@ Vue.http.options.root = appSettings.apiUrl;
 
 new Vue({
     render: h => h(App),
+    router,
     store,
 }).$mount('#app');

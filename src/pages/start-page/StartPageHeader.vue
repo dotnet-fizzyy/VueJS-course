@@ -5,50 +5,55 @@
                 <logo-icon />
             </div>
 
-            <template v-if="isLoadingSelectedItem">
-                <loading-icon />
-            </template>
-
-            <template v-else-if="selectedFilm">
-                <div data-aqa-back-to-search :class="$style['search-icon-container']" @click="backToSearch">
-                    <search-icon />
-                </div>
-
-                <film-full-description v-bind="selectedFilm" />
-            </template>
-
-            <template v-else>
-                <search-panel />
-            </template>
+            <router-view />
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import FilmFullDescription from '@/components/films/FilmFullDescription.vue';
-import LoadingIcon from '@/components/icons/LoadingIcon.vue';
 import LogoIcon from '@/components/icons/LogoIcon.vue';
-import SearchIcon from '@/components/icons/SearchIcon.vue';
-import SearchPanel from '@/components/search/SearchPanel.vue';
 import Vue from 'vue';
 import { FilmGetterProps } from '@/vuex/modules/films/getters';
-import { backToSearchActionPayload } from '@/vuex/modules/films/actions';
+import { SearchByOptionNames, SearchQueryParams, SortByOptionsNames } from '@/enums/search';
+import { SearchParams } from '@/types/search';
+import {
+    changeSearchByActionPayload,
+    changeSearchTermActionPayload,
+    changeSortByActionPayload,
+} from '@/vuex/modules/films/actions';
 import { getFilmModuleType } from '@/vuex/store/utils';
+import { getSearchParams } from '@/utils/search';
 import { mapGetters } from 'vuex';
 
 export default Vue.extend({
     name: 'StartPageHeader',
-    components: { LoadingIcon, SearchIcon, LogoIcon, SearchPanel, FilmFullDescription },
+    components: { LogoIcon },
     computed: {
         ...mapGetters({
-            selectedFilm: getFilmModuleType(FilmGetterProps.GetSelectedFilmWithFullDescription),
             isLoadingSelectedItem: getFilmModuleType(FilmGetterProps.IsLoadingSelectedItem),
+            searchTerm: getFilmModuleType(FilmGetterProps.SearchTerm),
+            searchByOption: getFilmModuleType(FilmGetterProps.SearchBy),
+            sortByOption: getFilmModuleType(FilmGetterProps.SortBy),
         }),
     },
-    methods: {
-        backToSearch(): void {
-            this.$store.dispatch(backToSearchActionPayload());
-        },
+    created(): void {
+        const searchQueryParams: SearchParams = getSearchParams(this.$route);
+
+        const searchTermQueryParameter: string | undefined = searchQueryParams[SearchQueryParams.SearchTerm];
+        const searchByQueryParameter: string = searchQueryParams[SearchQueryParams.SearchByOption];
+        const sortByQueryParameter: string = searchQueryParams[SearchQueryParams.SortByOption];
+
+        if (searchTermQueryParameter && searchTermQueryParameter !== this.searchTerm) {
+            this.$store.dispatch(changeSearchTermActionPayload(searchTermQueryParameter));
+        }
+
+        if (searchByQueryParameter && searchByQueryParameter !== this.searchByOption) {
+            this.$store.dispatch(changeSearchByActionPayload(searchByQueryParameter as SearchByOptionNames));
+        }
+
+        if (sortByQueryParameter && sortByQueryParameter !== this.sortByOption) {
+            this.$store.dispatch(changeSortByActionPayload(sortByQueryParameter as SortByOptionsNames));
+        }
     },
 });
 </script>
@@ -84,12 +89,5 @@ export default Vue.extend({
     position: absolute;
     left: 60px;
     top: 20px;
-}
-
-.search-icon-container {
-    position: absolute;
-    right: 60px;
-    top: 20px;
-    cursor: pointer;
 }
 </style>
